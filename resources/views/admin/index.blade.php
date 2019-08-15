@@ -4,5 +4,4 @@
 @section('content')
 
 This is dashbord
-
 @endsection
