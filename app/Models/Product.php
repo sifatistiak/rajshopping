@@ -13,4 +13,15 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function displayImage()
+    {
+        return $this->hasOne(ProductImage::class)->where('display_image_status','1');   
+    }
+    
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);   
+
+    }
 }

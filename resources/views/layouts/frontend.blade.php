@@ -28,6 +28,10 @@
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="{{asset('frontend/css/style.css')}}" />
 
+	{{-- autocomplete --}}
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -59,7 +63,7 @@
 				<div class="pull-left">
 					<!-- Logo -->
 					<div class="header-logo">
-						<a class="logo" href="#">
+						<a class="logo" href="{{route('index')}}">
 							<img src="{{asset('frontend/img/logo.png')}}" alt="">
 						</a>
 					</div>
@@ -68,8 +72,10 @@
 					<!-- Search -->
 					<div class="header-search">
 
-						<form>
-							<input class="input search-input" type="text" placeholder="Enter your keyword">
+						<form id="searchForm" action="{{route('search.page')}}" method="get">
+							{{-- @csrf --}}
+							<input id="search" name="search" class="input search-input" type="text"
+								placeholder="Enter your keyword">
 
 							<button class="search-btn"><i class="fa fa-search"></i></button>
 						</form>
@@ -123,25 +129,36 @@
 						</li>
 						<!-- /Cart -->
 						<!-- Account -->
+						@if (Auth::user())
+
 						<li class="header-account dropdown default-dropdown">
 							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-user-o"></i>
 								</div>
+
 								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
-								<br>
-								<strong><a href="#" class="text-uppercase">Login</a> / <a href="#"
-										class="text-uppercase">Join</a></strong>
+
 							</div>
 							<ul class="custom-menu">
 								<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-								<li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-								<li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
-								<li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
-								<li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
-								<li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+						        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a></li>
 							</ul>
 						</li>
+						
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
+						@else
+						<li>
+							<div class="header-btns-icon">
+								<i class="fa fa-sign-in"></i>
+							</div>
+							<strong><a href="{{route('login')}}" class="text-uppercase">Login</a> / <a href="{{route('register')}}"
+									class="text-uppercase">Join</a></strong>
+						</li>
+						@endif
 						<!-- /Account -->
 						<!-- Mobile nav toggle-->
 						<li class="nav-toggle">
@@ -169,11 +186,9 @@
 		">
 					<span class="category-header">Categories <i class="fa fa-list"></i></span>
 					<ul class="category-list">
-						<li><a href="#">Bags & Shoes</a></li>
-						<li><a href="#">Bags & Shoes</a></li>
-						<li><a href="#">Bags & Shoes</a></li>
-						<li><a href="#">Bags & Shoes</a></li>
-						<li><a href="#">View All</a></li>
+						@foreach (App\Models\Category::all() as $category)
+						<li><a href="{{route('products',encrypt($category->id))}}">{{$category->name}}</a></li>
+						@endforeach
 					</ul>
 
 				</div>
@@ -185,8 +200,12 @@
 	</div>
 	<!-- /NAVIGATION -->
 
+<div class="container">
+	<div class="row">
+		@include('includes.message')
 
-	@include('includes.message')
+	</div>
+</div>
 	@yield('content')
 
 
@@ -299,13 +318,26 @@
 	{{-- <script src="{{asset('frontend/js/jquery.min.js')}}"></script> --}}
 	<!-- jQuery 3 -->
 	<script src="{{asset('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('frontend/js/slick.min.js')}}"></script>
 	<script src="{{asset('frontend/js/nouislider.min.js')}}"></script>
 	<script src="{{asset('frontend/js/jquery.zoom.min.js')}}"></script>
 	<script src="{{asset('frontend/js/main.js')}}"></script>
 
+	<script>
+		$( function() {
+		    $( "#search" ).autocomplete({
+			  source: "{{route('search')}}",
+			  select: function( event, ui ) {
+				  $("#searchForm").submit();			 
+				 }
+		    });
+		  } );
+	</script>
 	@yield('script')
+
+
 
 
 </body>

@@ -50,6 +50,8 @@ class ProductController extends Controller
             $img = $request->file('display_image');
             $displayImageName = rand() . '.' . $img->getClientOriginalExtension();
             Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(1200, 1200)->save('main_product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName);
         }
         $productImage = new ProductImage();
         $productImage->product_id = $product->id;
@@ -63,6 +65,9 @@ class ProductController extends Controller
                 foreach ($request->images as $image) {
                     $imageName = rand() . '.' . $image->getClientOriginalExtension();
                     Image::make($image)->resize(500, 700)->save('product_images/' . $imageName);
+                    Image::make($image)->resize(1200, 1200)->save('main_product_images/' . $imageName);
+                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName);
+
 
                     $productImage = new ProductImage();
                     $productImage->product_id = $product->id;
@@ -103,10 +108,19 @@ class ProductController extends Controller
             $productDisplayImage = ProductImage::where('product_id', $id)->where('display_image_status', 1)->first();
             $img = $request->file('display_image');
             $displayImageName = rand() . '.' . $img->getClientOriginalExtension();
+
             Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(1200, 1200)->save('main_product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName);
 
             if (File::exists('product_images/' . $productDisplayImage->image)) {
                 File::delete('product_images/' . $productDisplayImage->image);
+            }
+            if (File::exists('main_product_images/' . $productDisplayImage->image)) {
+                File::delete('main_product_images/' . $productDisplayImage->image);
+            }
+            if (File::exists('thumb_product_images/' . $productDisplayImage->image)) {
+                File::delete('thumb_product_images/' . $productDisplayImage->image);
             }
 
             $productDisplayImage->product_id = $product->id;
@@ -125,12 +139,20 @@ class ProductController extends Controller
                     if (File::exists('product_images/' . $productImage->image)) {
                         File::delete('product_images/' . $productImage->image);
                     }
+                    if (File::exists('main_product_images/' . $productImage->image)) {
+                        File::delete('main_product_images/' . $productImage->image);
+                    }
+                    if (File::exists('thumb_product_images/' . $productImage->image)) {
+                        File::delete('thumb_product_images/' . $productImage->image);
+                    }
                     $productImage->delete();
                 }
                 //add new images
                 foreach ($request->images as $image) {
                     $imageName = rand() . '.' . $image->getClientOriginalExtension();
                     Image::make($image)->resize(500, 700)->save('product_images/' . $imageName);
+                    Image::make($image)->resize(1200, 1200)->save('main_product_images/' . $imageName);
+                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName);
 
                     $productImage = new ProductImage();
                     $productImage->product_id = $product->id;
@@ -150,6 +172,12 @@ class ProductController extends Controller
         foreach ($productImages as $productImage) {
             if (File::exists('product_images/' . $productImage->image)) {
                 File::delete('product_images/' . $productImage->image);
+            }
+            if (File::exists('main_product_images/' . $productImage->image)) {
+                File::delete('main_product_images/' . $productImage->image);
+            }
+            if (File::exists('thumb_product_images/' . $productImage->image)) {
+                File::delete('thumb_product_images/' . $productImage->image);
             }
             $productImage->delete();
         }

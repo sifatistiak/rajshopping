@@ -12,42 +12,37 @@
 			<div class="product product-details clearfix">
 				<div class="col-md-6">
 					<div id="product-main-view">
-						<div class="product-view">
-							<img src="{{asset('frontend/img/main-product01.jpg')}}" alt="">
-						</div>
-						<div class="product-view">
-							<img src="{{asset('frontend/img/main-product02.jpg')}}" alt="">
-						</div>
-						<div class="product-view">
-							<img src="{{asset('frontend/img/main-product03.jpg')}}" alt="">
-						</div>
-						<div class="product-view">
-							<img src="{{asset('frontend/img/main-product04.jpg')}}" alt="">
-						</div>
+						@foreach ($product->images as $image)
+							<div class="product-view">
+								<img src="{{asset('main_product_images/'.$image->image)}}" alt="">
+							</div>
+						@endforeach
+						
 					</div>
 					<div id="product-view">
+						@foreach ($product->images as $image)
 						<div class="product-view">
-							<img src="{{asset('frontend/img/thumb-product01.jp')}}g" alt="">
+							<img src="{{asset('thumb_product_images/'.$image->image)}}" alt="">
 						</div>
-						<div class="product-view">
-							<img src="{{asset('frontend/img/thumb-product02.jp')}}g" alt="">
-						</div>
-						<div class="product-view">
-							<img src="{{asset('frontend/img/thumb-product03.jp')}}g" alt="">
-						</div>
-						<div class="product-view">
-							<img src="{{asset('frontend/img/thumb-product04.jp')}}g" alt="">
-						</div>
+						@endforeach
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="product-body">
 						<div class="product-label">
 							<span>New</span>
-							<span class="sale">-20%</span>
+							<span class="sale">-10%</span>
 						</div>
-						<h2 class="product-name">Product Name Goes Here</h2>
-						<h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
+						<h2 class="product-name">{{$product->title}}</h2>
+						<h3 class="product-price">{{$product->price}}<img style="display: inline" width="15px"
+								src="{{asset('frontend/img/taka.png')}}" alt="">
+							<del class="product-old-price">@php
+								$price = $product->price;
+								$oldPrice = round($price+$price*.1);
+								@endphp
+								{{$oldPrice}}<img style="display: inline" width="15px"
+									src="{{asset('frontend/img/taka.png')}}" alt="">
+							</del></h3>
 						<div>
 							<div class="product-rating">
 								<i class="fa fa-star"></i>
@@ -58,14 +53,13 @@
 							</div>
 							<a href="#">3 Review(s) / Add Review</a>
 						</div>
-						<p><strong>Availability:</strong> In Stock</p>
-						<p><strong>Brand:</strong> E-SHOP</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-							laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-							dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-							anim id est laborum.</p>
+						<p><strong>Availability:</strong> @if ($product->quantity > 0)
+							In Stock
+							@else
+							Not Available
+							@endif</p>
+						<p><strong>Category:</strong> {{$product->category->name }} </p>
+						<p>{{$product->desc}}</p>
 						<div class="product-options">
 							<ul class="size-option">
 								<li><span class="text-uppercase">Size:</span></li>
@@ -266,8 +260,8 @@
 					<div class="product-thumb">
 						<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
 						<img src="{{asset('frontend/img/product04.jpg')}}" alt="">
-						</div>
-						<div class=" product-body">
+					</div>
+					<div class=" product-body">
 						<h3 class="product-price">$32.50</h3>
 						<div class="product-rating">
 							<i class="fa fa-star"></i>
@@ -297,8 +291,8 @@
 						</div>
 						<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
 						<img src="{{asset('frontend/img/product03.jpg')}}" alt="">
-						</div>
-						<div class=" product-body">
+					</div>
+					<div class=" product-body">
 						<h3 class="product-price">$32.50</h3>
 						<div class="product-rating">
 							<i class="fa fa-star"></i>
@@ -328,8 +322,8 @@
 						</div>
 						<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
 						<img src="{{asset('frontend/img/product02.jpg')}}" alt="">
-						</div>
-						<div class=" product-body">
+					</div>
+					<div class=" product-body">
 						<h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
 						<div class="product-rating">
 							<i class="fa fa-star"></i>
@@ -360,8 +354,8 @@
 						</div>
 						<button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
 						<img src="{{asset('frontend/img/product01.jpg')}}" alt="">
-						</div>
-						<div class=" product-body">
+					</div>
+					<div class=" product-body">
 						<h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
 						<div class="product-rating">
 							<i class="fa fa-star"></i>

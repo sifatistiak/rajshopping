@@ -1,8 +1,15 @@
 <?php
 
+// FrontendController
+
+Route::get('/', 'Frontend\IndexController@index')->name('index');
+Route::get('/products/{id}', 'Frontend\IndexController@products')->name('products');
+Route::get('/product/{id}', 'Frontend\IndexController@product')->name('product');
+Route::get('/search', 'Frontend\IndexController@search')->name('search');
+Route::get('/search_page', 'Frontend\IndexController@searchPage')->name('search.page');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 //admin Login, logout, forget password routes
 Route::prefix('admin')->group(function () {
@@ -36,7 +43,7 @@ Route::prefix('admin')->group(function () {
         Route::get('delete_category/{id}', 'Admin\CategoryController@deleteCategory')->name('delete.category');
         Route::get('add_category', 'Admin\CategoryController@addCategoryView')->name('add.category.view');
         Route::post('add_category', 'Admin\CategoryController@addCategory')->name('add.category');
-        
+
         //slider_image
         Route::get('slider_images', 'Admin\SliderImageController@sliderImages')->name('slider.images');
         Route::get('delete_slider_image/{id}', 'Admin\SliderImageController@deleteSliderImage')->name('delete.slider.image');

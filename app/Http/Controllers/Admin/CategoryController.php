@@ -6,6 +6,7 @@ use App\Helpers\AdminHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Exception;
 
 class CategoryController extends Controller
 {
@@ -13,13 +14,13 @@ class CategoryController extends Controller
     {
         AdminHelper::middleware($this);
     }
-    
+
     public function categories()
     {
         $categories = Category::all();
-        return view('admin.categories',compact('categories'));
+        return view('admin.categories', compact('categories'));
     }
-    
+
     public function addCategoryView()
     {
         return view('admin.add_category');
@@ -37,8 +38,11 @@ class CategoryController extends Controller
 
     public function deleteCategory($id)
     {
-         Category::findOrFail($id)->delete();
-         return back()->with('success','Category deleted successful.');
-        
+        try {
+            Category::findOrFail($id)->delete();
+            return back()->with('success', 'Category deleted successful.');
+        } catch (Exception $e) {
+            return back()->with('error', 'Something wrong! Foreign key constraint violation.');
+        }
     }
 }
