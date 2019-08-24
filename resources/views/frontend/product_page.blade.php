@@ -60,34 +60,14 @@
 							@endif</p>
 						<p><strong>Category:</strong> {{$product->category->name }} </p>
 						<p>{{$product->desc}}</p>
-						<div class="product-options">
-							<ul class="size-option">
-								<li><span class="text-uppercase">Size:</span></li>
-								<li class="active"><a href="#">S</a></li>
-								<li><a href="#">XL</a></li>
-								<li><a href="#">SL</a></li>
-							</ul>
-							<ul class="color-option">
-								<li><span class="text-uppercase">Color:</span></li>
-								<li class="active"><a href="#" style="background-color:#475984;"></a></li>
-								<li><a href="#" style="background-color:#8A2454;"></a></li>
-								<li><a href="#" style="background-color:#BF6989;"></a></li>
-								<li><a href="#" style="background-color:#9A54D8;"></a></li>
-							</ul>
-						</div>
+						
 
 						<div class="product-btns">
-							<div class="qty-input">
-								<span class="text-uppercase">QTY: </span>
-								<input class="input" type="number">
-							</div>
+							
+							<button class="primary-btn add-to-cart"><i class="fa fa-shopping-basket"></i> Shop Now
+								</button>
 							<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
 								Cart</button>
-							<div class="pull-right">
-								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-								<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
-							</div>
 						</div>
 					</div>
 				</div>

@@ -431,13 +431,13 @@ textarea.input {
 
 .header-cart .header-btns-icon .qty {
   position     : absolute;
-  right        : -9px;
-  top          : -9px;
-  width        : 18px;
-  height       : 18px;
-  line-height  : 18px;
+  right        : -13px;
+  top          : -13px;
+  width        : 25px;
+  height       : 25px;
+  line-height  : 25px;
   text-align   : center;
-  font-size    : 10px;
+  font-size    : 20px;
   background   : #F8694A;
   color        : #FFF;
   border-radius: 50%;

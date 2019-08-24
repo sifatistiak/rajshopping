@@ -89,11 +89,32 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
-									<span class="qty">3</span>
+									{{-- cart --}}
+									@php
+									$userIdentity = "";
+									if (Auth::user()) {
+									$userIdentity = Auth::user()->id;
+									} else {
+									$userIdentity = Request::ip();
+									}
+									@endphp
+
+									<span id="cart_number"
+										class="qty">{{App\Models\Cart::where('user_identity',$userIdentity)->count()}}</span>
 								</div>
 								<strong class="text-uppercase">My Cart:</strong>
 								<br>
-								<span>35.20$</span>
+								{{-- price --}}
+								@php
+								$carts = App\Models\Cart::where('user_identity',$userIdentity)->get();
+								$price = 0;
+								foreach ($carts as $cart) {
+								$price = $cart->product->price*$cart->quantity + $price;
+								}
+
+								@endphp
+								<span id="cart_price">{{$price}}</span><img style="display: inline" width="12px"
+									src="{{asset('frontend/img/taka.png')}}" alt="">
 							</a>
 							<div style="margin-left:90px" class="custom-menu">
 								<div id="shopping-cart">
@@ -146,7 +167,7 @@
 						        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a></li>
 							</ul>
 						</li>
-						
+
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							@csrf
 						</form>
@@ -155,8 +176,8 @@
 							<div class="header-btns-icon">
 								<i class="fa fa-sign-in"></i>
 							</div>
-							<strong><a href="{{route('login')}}" class="text-uppercase">Login</a> / <a href="{{route('register')}}"
-									class="text-uppercase">Join</a></strong>
+							<strong><a href="{{route('login')}}" class="text-uppercase">Login</a> / <a
+									href="{{route('register')}}" class="text-uppercase">Join</a></strong>
 						</li>
 						@endif
 						<!-- /Account -->
@@ -200,12 +221,12 @@
 	</div>
 	<!-- /NAVIGATION -->
 
-<div class="container">
-	<div class="row">
-		@include('includes.message')
+	<div class="container">
+		<div class="row">
+			@include('includes.message')
 
+		</div>
 	</div>
-</div>
 	@yield('content')
 
 
@@ -335,6 +356,7 @@
 		    });
 		  } );
 	</script>
+	@include('scripts.add_to_cart')
 	@yield('script')
 
 

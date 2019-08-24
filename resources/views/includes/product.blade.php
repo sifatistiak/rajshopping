@@ -20,7 +20,7 @@
         <h2 class="product-name"><a href="#">{{$product->title}}</a></h2>
         <div class="product-btns">
             <button class="primary-btn">Shop Now</button>
-            <button class="primary-btn"></i> Add
+        <button id="add_to_cart" value="{{$product->id}}" class="primary-btn add_to_cart"></i> Add
                 to Cart</button>
         </div>
     </div>

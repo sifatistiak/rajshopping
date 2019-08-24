@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\SliderImage;
 use Exception;
-
+use Auth;
 class IndexController extends Controller
 {
     public function index()
@@ -59,4 +59,5 @@ class IndexController extends Controller
         $products = Product::where('title', 'LIKE', '%' . $term . '%')->paginate(6);
         return view('frontend.search_page',compact('products'));
     }
+
 }

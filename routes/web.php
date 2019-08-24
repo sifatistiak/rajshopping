@@ -8,6 +8,11 @@ Route::get('/product/{id}', 'Frontend\IndexController@product')->name('product')
 Route::get('/search', 'Frontend\IndexController@search')->name('search');
 Route::get('/search_page', 'Frontend\IndexController@searchPage')->name('search.page');
 
+
+// Route::middleware(['onlyAjaxRequest'])->group(function () {
+    Route::get('/add_to_cart', 'Frontend\ShoppingController@addToCart')->name('add.to.cart');
+// });
+
 Auth::routes();
 
 
