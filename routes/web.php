@@ -11,7 +11,9 @@ Route::get('/search_page', 'Frontend\IndexController@searchPage')->name('search.
 
 // Route::middleware(['onlyAjaxRequest'])->group(function () {
     Route::get('/add_to_cart', 'Frontend\ShoppingController@addToCart')->name('add.to.cart');
+    Route::post('/add_review', 'Frontend\ReviewController@addReview')->name('add.review');
 // });
+
 
 Auth::routes();
 

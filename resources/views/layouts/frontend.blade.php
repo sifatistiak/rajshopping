@@ -223,7 +223,7 @@
 
 	<div class="container">
 		<div class="row">
-			@include('includes.message')
+			
 
 		</div>
 	</div>

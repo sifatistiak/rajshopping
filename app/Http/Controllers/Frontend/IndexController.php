@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\SliderImage;
 use Exception;
 use Auth;
+
 class IndexController extends Controller
 {
     public function index()
@@ -38,7 +40,9 @@ class IndexController extends Controller
             return back();
         }
         $product = Product::findOrFail($productId);
-        return view('frontend.product_page', compact('product'));
+        $reviews = Review::where('product_id', $product->id)->paginate(6);
+        $products = Product::where('category_id', $product->category_id)->orderBy('created_at', 'desc')->paginate(12);
+        return view('frontend.product_page', compact('product', 'reviews', 'products'));
     }
 
     public function search(Request $request)
@@ -57,7 +61,6 @@ class IndexController extends Controller
     {
         $term = $request->search;
         $products = Product::where('title', 'LIKE', '%' . $term . '%')->paginate(6);
-        return view('frontend.search_page',compact('products'));
+        return view('frontend.search_page', compact('products'));
     }
-
 }
