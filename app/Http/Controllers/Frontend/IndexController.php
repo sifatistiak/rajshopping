@@ -32,6 +32,22 @@ class IndexController extends Controller
         return view('frontend.products', compact('products', 'category'));
     }
 
+    public function sortByPrice(Request $request)
+    {
+        $this->validate($request, [
+            'filter' => 'required|integer'
+        ]);
+        $filter = $request->filter;
+        $categoryId = $request->category_id;
+        $category = Category::findOrFail($categoryId);
+        if ($filter == 1) {
+            $products = Product::where('category_id', $categoryId)->orderBy('price', 'desc')->paginate(12);
+        } else {
+            $products = Product::where('category_id', $categoryId)->orderBy('price', 'asc')->paginate(12);
+        }
+        return view('frontend.products', compact('products', 'category', 'filter'));
+    }
+
     public function product($id)
     {
         try {
@@ -49,9 +65,13 @@ class IndexController extends Controller
     {
         $term = $request->term;
         $products = Product::where('title', 'LIKE', '%' . $term . '%')->paginate(6);
+        $categories = Category::where('name', 'LIKE', '%' . $term . '%')->paginate(6);
 
         foreach ($products as $product) {
             $result[] = $product->title;
+        }
+        foreach ($categories as $category) {
+            $result[] = $category->name;
         }
 
         return $result;
@@ -60,7 +80,8 @@ class IndexController extends Controller
     public function searchPage(Request $request)
     {
         $term = $request->search;
-        $products = Product::where('title', 'LIKE', '%' . $term . '%')->paginate(6);
-        return view('frontend.search_page', compact('products'));
+        $products = Product::where('title', 'LIKE', '%' . $term . '%')->paginate(8);
+        $categories = Category::where('name', 'LIKE', '%' . $term . '%')->get();
+        return view('frontend.search_page', compact('products', 'categories','term'));
     }
 }

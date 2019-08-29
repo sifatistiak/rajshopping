@@ -435,7 +435,7 @@ textarea.input {
   top          : -13px;
   width        : 25px;
   height       : 25px;
-  line-height  : 25px;
+  line-height  : 27px;
   text-align   : center;
   font-size    : 20px;
   background   : #F8694A;
@@ -1242,7 +1242,7 @@ textarea.input {
 }
 
 .sort-filter select.input {
-  width: 120px;
+  width: 130px;
 }
 
 .page-filter select.input {

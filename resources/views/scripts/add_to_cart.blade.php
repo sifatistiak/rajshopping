@@ -7,6 +7,9 @@
                 alert('Product has added to cart.');
                 $("#cart_number").text(data[0]);
                 $("#cart_price").text(data[1]);
+                $("#no_product_added").hide();
+                $("#view_cart").show();
+                $("#carts").load(location.href + " #carts");
             });
         });
     });

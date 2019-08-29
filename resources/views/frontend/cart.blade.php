@@ -8,68 +8,6 @@
 		<!-- row -->
 		<div class="row">
 			<form id="checkout-form" class="clearfix">
-				<div class="col-md-6">
-					<div class="billing-details">
-						<p>Already a customer ? <a href="#">Login</a></p>
-						<div class="section-title">
-							<h3 class="title">Billing Details</h3>
-						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="first-name" placeholder="First Name">
-						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="last-name" placeholder="Last Name">
-						</div>
-						<div class="form-group">
-							<input class="input" type="email" name="email" placeholder="Email">
-						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="address" placeholder="Address">
-						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="city" placeholder="City">
-						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="country" placeholder="Country">
-						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-						</div>
-						<div class="form-group">
-							<input class="input" type="tel" name="tel" placeholder="Telephone">
-						</div>
-						<div class="form-group">
-							<div class="input-checkbox">
-								<input type="checkbox" id="register">
-								<label class="font-weak" for="register">Create Account?</label>
-								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt.
-										<p>
-											<input class="input" type="password" name="password"
-												placeholder="Enter Your Password">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-
-					<div class="payments-methods">
-						<div class="section-title">
-							<h4 class="title">Payments Methods</h4>
-						</div>
-						<div class="input-checkbox">
-							<input type="radio" name="payments" id="payments-1" checked>
-							<label for="payments-1">Cash on Delivery</label>
-							<div class="caption">
-								<p>Please provide cash on receiving your produce. Thank you.
-									<p>
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<div class="col-md-12">
 					<div class="order-summary clearfix">
@@ -107,7 +45,8 @@
 
 									{{-- Quantity --}}
 									<td class="qty text-center"><input min="1" class="input quantity" type="number"
-											disabled data-value="{{$cart->id}}" value="{{$cart->quantity}}">
+											onkeydown="return event.key != 'Enter';" data-value="{{$cart->id}}"
+											value="{{$cart->quantity}}">
 									</td>
 									{{-- price --}}
 									<td class="total1 text-center"><strong class="primary-color">
@@ -120,6 +59,8 @@
 											<img style="display: inline" width="15px"
 												src="{{asset('frontend/img/taka.png')}}" alt=""></strong></td>
 
+									<td class="text-right"><button data-value="{{$cart->id}}"
+											class="closebtn main-btn icon-btn"><i class="fa fa-close"></i></button></td>
 								</tr>
 								@endforeach
 
@@ -152,12 +93,13 @@
 							</tfoot>
 						</table>
 						<div class="pull-right">
-							<button id="checkout" class="primary-btn">Place Order</button>
+							<button id="checkout" class="primary-btn">Checkout</button>
 						</div>
 						@else
 						<h1>Nothing has added to cart.</h1>
 						@endif
 					</div>
+					<div id="showde"></div>
 
 				</div>
 			</form>
@@ -167,4 +109,50 @@
 	<!-- /container -->
 </div>
 <!-- /section -->
+@endsection
+@section('script')
+<script>
+	$(document).ready(function(){
+		$(document).on('click', '.closebtn', function (e) {
+			e.preventDefault();
+			if(confirm("Are you sure to remove this product from your cart?")){
+				var cartId = $(this).data();
+				$.get("{{route('delete.cart')}}",{cartId:cartId},function(data){
+				alert('Product Removed.');
+				$("#cart_table").load(location.href + ' #cart_table');
+				$("#cart_number").text(data[0]);
+				$("#cart_price").text(data[1]);
+				$("#carts").load(location.href + " #carts");
+				});
+			}
+		});
+
+		$(document).on("input",".quantity", function() {
+			var quantity = parseInt(this.value,10);
+			var productPrice = parseInt($(this).closest("tr").find(".product_price").text(),10);
+			$(this).closest("tr").find(".view").html(quantity*productPrice);
+			var sum = 0;
+			$(".total1").each(function(){
+			sum += Number($(this).text());
+			
+			});
+			$("#sub_total").text(sum);
+			$("#total").text(sum+50);
+			$("#cart_price").text(sum);
+		});
+
+		$("#checkout").click(function(e){
+			e.preventDefault();
+			$(".quantity").each(function(){
+				var quantity = this.value;
+				var cartId = $(this).data();
+				$.get("{{route('change.quantity')}}",{quantity:quantity,cartId:cartId},function(data){
+					window.location.href="{{route('checkout',null)}}";
+				});
+			});
+		});
+		
+	});
+
+</script>
 @endsection

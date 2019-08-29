@@ -75,8 +75,9 @@
 
 						<div class="product-btns">
 
-							<button class="primary-btn"><i class="fa fa-shopping-basket"></i> Shop Now
-							</button>
+							<a href="{{route('checkout',encrypt($product->id))}}" class="primary-btn"><i
+									class="fa fa-shopping-basket"></i> Buy Now
+							</a>
 							<button id="add_to_cart" value="{{$product->id}}" class="primary-btn add_to_cart"><i
 									class="fa fa-shopping-cart"></i> Add to
 								Cart</button>

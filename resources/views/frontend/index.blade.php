@@ -85,7 +85,7 @@
 			<!-- section title -->
 			<div class="col-md-12">
 				<div class="section-title">
-					<h2 class="title">{{$categoryProduct->name}}</h2>
+					<a href=" {{route('products',encrypt($categoryProduct->id))}} "><h2 class="title">{{$categoryProduct->name}}</h2></a>
 					<div class="pull-right">
 						<a href=" {{route('products',encrypt($categoryProduct->id))}} ">
 							<h3 style="color: #F8694A" class="title">View All</h3>

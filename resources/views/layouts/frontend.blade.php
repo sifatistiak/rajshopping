@@ -92,8 +92,8 @@
 									{{-- cart --}}
 									@php
 									$userIdentity = "";
-									if (Auth::user()) {
-									$userIdentity = Auth::user()->id;
+									if (Auth::check()) {
+									$userIdentity = Auth::id();
 									} else {
 									$userIdentity = Request::ip();
 									}
@@ -119,38 +119,49 @@
 							<div style="margin-left:90px" class="custom-menu">
 								<div id="shopping-cart">
 									<div class="shopping-cart-list">
-										<div class="product product-widget">
-											<div class="product-thumb">
-												<img src="{{asset('frontend/img/thumb-product01.jpg')}}" alt="">
+										@php
+										if(Auth::check()){
+										$userIdentity = Auth::id();
+										}
+										else{
+										$userIdentity = Request::ip();
+										}
+										$carts = App\Models\Cart::where('user_identity',$userIdentity)->get();
+										@endphp
+										<div id="carts">
+											@foreach ($carts as $cart)
+											<div class="product product-widget">
+												<div class="product-thumb">
+													<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
+														alt="">
+												</div>
+												<div class="product-body">
+													<h3 class="product-price">{{$cart->product->price}} <span
+															class="qty">x{{$cart->quantity}}</span></h3>
+													<h2 class="product-name"><a href="#">{{$cart->product->title}}</a>
+													</h2>
+												</div>
 											</div>
-											<div class="product-body">
-												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-												<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-											</div>
-											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
-										</div>
-										<div class="product product-widget">
-											<div class="product-thumb">
-												<img src="{{asset('frontend/img/thumb-product01.jpg')}}" alt="">
-											</div>
-											<div class="product-body">
-												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-												<h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-											</div>
-											<button class="cancel-btn"><i class="fa fa-trash"></i></button>
+											@endforeach
+
 										</div>
 									</div>
-									<divclass="shopping-cart-btns">
-										<button class="main-btn">View Cart</button>
-										<button class="primary-btn">Checkout <i
-												class="fa fa-arrow-circle-right"></i></button>
-									</divclass="shopping-cart-btns">
+									<div id="no_product_added">
+										@if(count($carts)<1) <h4>No Product added</h4>
+											@endif
+									</div>
+									<div id="view_cart" class="shopping-cart-btns">
+										<a href="{{route('cart')}}" class="main-btn">View Cart</a>
+										<a href="{{route('checkout')}}" class="primary-btn">Checkout <i
+												class="fa fa-arrow-circle-right"></i></a>
+									</div>
+
 								</div>
 							</div>
 						</li>
 						<!-- /Cart -->
 						<!-- Account -->
-						@if (Auth::user())
+						@if (Auth::check())
 
 						<li class="header-account dropdown default-dropdown">
 							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
@@ -162,7 +173,9 @@
 
 							</div>
 							<ul class="custom-menu">
-								<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+								<li><a href="{{route('user.profile')}}"><i class="fa fa-user-o"></i>Profile</a></li>
+								<li><a href="{{route('change.password')}}"><i class="fa fa-pencil"></i>Change
+										Password</a></li>
 								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
 						        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a></li>
 							</ul>
@@ -223,7 +236,7 @@
 
 	<div class="container">
 		<div class="row">
-			
+
 
 		</div>
 	</div>

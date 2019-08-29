@@ -16,12 +16,20 @@
 
 						</div>
 						<div class="sort-filter">
-							<span class="text-uppercase">Sort By Price:</span>
-							<select class="input">
-								<option value="0">High to Low</option>
-								<option value="0">Low to High</option>
-							</select>
-							<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							<form action="{{route('sort.by.price')}}" method="POST">
+								@csrf
+								<span class="text-uppercase">Sort By Price:</span>
+								<select name="filter" required class="input">
+									<option value="">--Select--</option>
+									<option @isset($filter) @if ($filter==1) selected @endif @endisset value="1">High
+										to Low</option>
+									<option @isset($filter) @if ($filter==0) selected @endif @endisset value="0">Low
+										to High</option>
+								</select>
+								<input type="hidden" name="category_id" value="{{$category->id}}">
+								<button type="submit" class="main-btn icon-btn"><i
+										class="fa fa-arrow-down"></i></button>
+							</form>
 						</div>
 					</div>
 					<div style="margin-top:-20px" class="pull-right">
@@ -38,7 +46,9 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h2 class="title">{{$category->name}}</h2>
+							<a href=" {{route('products',encrypt($category->id))}} ">
+								<h2 class="title">{{$category->name}}</h2>
+							</a>
 						</div>
 					</div>
 					<!-- section title -->
@@ -70,12 +80,20 @@
 
 						</div>
 						<div class="sort-filter">
-							<span class="text-uppercase">Sort By Price:</span>
-							<select class="input">
-								<option value="0">High to Low</option>
-								<option value="0">Low to High</option>
-							</select>
-							<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+							<form action="{{route('sort.by.price')}}" method="POST">
+								@csrf
+								<span class="text-uppercase">Sort By Price:</span>
+								<select name="filter" required class="input">
+									<option value="">--Select--</option>
+									<option @isset($filter) @if ($filter==1) selected @endif @endisset value="1">High
+										to Low</option>
+									<option @isset($filter) @if ($filter==0) selected @endif @endisset value="0">Low
+										to High</option>
+								</select>
+								<input type="hidden" name="category_id" value="{{$category->id}}">
+								<button type="submit" class="main-btn icon-btn"><i
+										class="fa fa-arrow-down"></i></button>
+							</form>
 						</div>
 					</div>
 					<div style="margin-top:-20px" class="pull-right">
@@ -88,4 +106,12 @@
 
 	</div>
 </div>
+@endsection
+@section('script')
+<script>
+	$(document).ready(function(){
+			
+
+		});
+</script>
 @endsection

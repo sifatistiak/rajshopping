@@ -10,6 +10,11 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class)->with('reviews')->where('status', 1);
+    }
+
+    public function searchProducts($term)
+    {
+        return $this->hasMany(Product::class)->where('title', $term);
     }
 }

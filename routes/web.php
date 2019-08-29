@@ -7,12 +7,26 @@ Route::get('/products/{id}', 'Frontend\IndexController@products')->name('product
 Route::get('/product/{id}', 'Frontend\IndexController@product')->name('product');
 Route::get('/search', 'Frontend\IndexController@search')->name('search');
 Route::get('/search_page', 'Frontend\IndexController@searchPage')->name('search.page');
+Route::post('/sort_by_price', 'Frontend\IndexController@sortByPrice')->name('sort.by.price');
+Route::get('/cart', 'Frontend\ShoppingController@cart')->name('cart');
+Route::get('/checkout/{id?}', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
+
+Route::get('/change_password', 'Frontend\UserController@changePasswordView')->name('change.password');
+Route::post('/change_password', 'Frontend\UserController@changePassword')->name('change.password');
+
+Route::get('/user_profile', 'Frontend\UserController@userProfileChangeView')->name('user.profile');
+Route::post('/user_profile', 'Frontend\UserController@userProfileChange')->name('user.profile');
 
 
-// Route::middleware(['onlyAjaxRequest'])->group(function () {
+Route::middleware(['onlyAjaxRequest'])->group(function () {
     Route::get('/add_to_cart', 'Frontend\ShoppingController@addToCart')->name('add.to.cart');
+    Route::get('/frontend_carts', 'Frontend\ShoppingController@frontendCarts')->name('frontend.carts');
+    Route::get('/change_quantity', 'Frontend\ShoppingController@changeQuantity')->name('change.quantity');
+
+    Route::get('/delete_cart', 'Frontend\ShoppingController@deleteCart')->name('delete.cart');
+
     Route::post('/add_review', 'Frontend\ReviewController@addReview')->name('add.review');
-// });
+});
 
 
 Auth::routes();
