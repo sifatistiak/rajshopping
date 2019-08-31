@@ -74,7 +74,7 @@
 
 						<form id="searchForm" action="{{route('search.page')}}" method="get">
 							{{-- @csrf --}}
-							<input id="search" name="search" class="input search-input" type="text"
+							<input id="search" name="search" required class="input search-input" type="text"
 								placeholder="Enter your keyword">
 
 							<button class="search-btn"><i class="fa fa-search"></i></button>

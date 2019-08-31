@@ -5,6 +5,7 @@
     <div class="row">
         <form action="{{ route('register') }}" method="POST">
             @csrf
+            @include('includes.message')
             <div class="col-md-8">
                 <div class="billing-details"><br>
                     <p>Already a customer ? <a class="btn btn-link" href="{{route('login')}}">Login</a></p>
@@ -12,15 +13,19 @@
                         <h3 class="title">Register Here</h3>
                     </div>
                     <div class="form-group">
+                        <h4>Name</h4>
                         <input required class="input" type="text" name="name" placeholder=" Name">
                     </div>
                     <div class="form-group">
+                        <h4>Email</h4>
                         <input required class="input" type="email" name="email" placeholder="Email">
                     </div>
                     <div class="form-group">
+                        <h4>Phone</h4>
                         <input required class="input" type="number" name="phone" placeholder="Phone">
                     </div>
                     <div class="form-group">
+                        <h4>Devision</h4>
                         <select required name="division" class="form-control">
                             <option value="">Select Division</option>
                             <option value="Dhaka">Dhaka</option>
@@ -34,13 +39,16 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <h4>Address</h4>
                         <textarea required class="form-control" rows="5" placeholder="Your Shipping Address"
                             name="address"></textarea>
                     </div>
                     <div class="form-group">
+                        <h4>Password</h4>
                         <input required class="input" type="password" name="password" placeholder="Password">
                     </div>
                     <div class="form-group">
+                        <h4>Confirm Password</h4>
                         <input required class="input" type="password" name="password_confirmation"
                             placeholder="Confirm Password">
                     </div>

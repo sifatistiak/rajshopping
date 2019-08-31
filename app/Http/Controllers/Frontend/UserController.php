@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,8 @@ class UserController extends Controller
     public function userProfileChangeView()
     {
         $userProfile = Auth::user();
-        return view('frontend.user_profile_change', compact('userProfile'));
+        $address = Address::where('user_identity', $userProfile->id)->first();
+        return view('frontend.user_profile_change', compact('userProfile', 'address'));
     }
 
     //perform the changes
@@ -33,10 +35,14 @@ class UserController extends Controller
 
         $userProfile = Auth::user();
 
+        $address = Address::where('user_identity', $userProfile->id)->first();
+
+        $address->name = $request->name;
+        $address->phone = $request->phone;
+        $address->division = $request->division;
+        $address->address = $request->address;
+        $address->save();
         $userProfile->name = $request->name;
-        $userProfile->phone = $request->phone;
-        $userProfile->division = $request->division;
-        $userProfile->address = $request->address;
         $userProfile->save();
         return back()->with('success', 'Profile Updated Successful.');
     }

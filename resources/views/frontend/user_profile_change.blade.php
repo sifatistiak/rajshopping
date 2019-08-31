@@ -13,34 +13,43 @@
                     @include('includes.message')
                     <div class="form-group">
                         <h4>Name</h4>
-                        <input required class="input" value="{{$userProfile->name}}" type="text" name="name" placeholder="Name">
+                        <input required class="input" value="{{$address->name}}" type="text" name="name"
+                            placeholder="Name">
                     </div>
                     <div class="form-group">
                         <h4>Email</h4>
-                        <input required class="input" disabled value="{{$userProfile->email}}" type="email" name="email" placeholder="Email">
+                        <input required class="input" disabled value="{{$address->email}}" type="email" name="email"
+                            placeholder="Email">
                     </div>
                     <div class="form-group">
                         <h4>Phone</h4>
-                        <input required class="input" value="{{$userProfile->phone}}" type="number" name="phone" placeholder="Phone">
+                        <input required class="input" value="{{$address->phone}}" type="number" name="phone"
+                            placeholder="Phone">
                     </div>
                     <div class="form-group">
                         <h4>Division</h4>
                         <select required name="division" class="form-control">
                             <option value="">Select Division</option>
-                            <option @if($userProfile->division == "Dhaka") selected @endif value="Dhaka">Dhaka</option>
-                            <option  @if($userProfile->division == "Barishal") selected @endif  value="Barishal">Barishal</option>
-                            <option  @if($userProfile->division == "Chittagong") selected @endif  value="Chittagong">Chittagong</option>
-                            <option  @if($userProfile->division == "Khulna") selected @endif  value="Khulna">Khulna</option>
-                            <option  @if($userProfile->division == "Mymensingh") selected @endif  value="Mymensingh">Mymensingh</option>
-                            <option  @if($userProfile->division == "Rajshahi") selected @endif  value="Rajshahi">Rajshahi </option>
-                            <option  @if($userProfile->division == "Rajshahi") selected @endif  value="Sylhet">Sylhet </option>
-                            <option  @if($userProfile->division == "Rangpur") selected @endif  value="Rangpur">Rangpur</option>
+                            <option @if($address->division == "Dhaka") selected @endif value="Dhaka">Dhaka</option>
+                            <option @if($address->division == "Barishal") selected @endif value="Barishal">Barishal
+                            </option>
+                            <option @if($address->division == "Chittagong") selected @endif
+                                value="Chittagong">Chittagong</option>
+                            <option @if($address->division == "Khulna") selected @endif value="Khulna">Khulna</option>
+                            <option @if($address->division == "Mymensingh") selected @endif
+                                value="Mymensingh">Mymensingh</option>
+                            <option @if($address->division == "Rajshahi") selected @endif value="Rajshahi">Rajshahi
+                            </option>
+                            <option @if($address->division == "Rajshahi") selected @endif value="Sylhet">Sylhet
+                            </option>
+                            <option @if($address->division == "Rangpur") selected @endif value="Rangpur">Rangpur
+                            </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <h4>Shipping Address</h4>
                         <textarea required class="form-control" rows="5" placeholder="Your Shipping Address"
-                    name="address">{{$userProfile->address}}</textarea>
+                            name="address">{{$address->address}}</textarea>
                     </div>
                     <button type="submit" class="primary-btn">Update</button>
 

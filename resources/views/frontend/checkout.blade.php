@@ -7,50 +7,81 @@
 	<div class="container">
 		<!-- row -->
 		<div class="row">
-			<form id="checkout-form" class="clearfix">
+			<form action="{{route('place.order')}}" method="POST" id="checkout-form" class="clearfix">
+				@include('includes.message')
+				@csrf
 				<div class="col-md-6">
 					<div class="billing-details">
 						<p>Already a customer ? <a href="#">Login</a></p>
 						<div class="section-title">
 							<h3 class="title">Billing Details</h3>
 						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="first-name" placeholder="First Name">
+						<input type="hidden" name="user_identity"
+							value="@if($address){{$address->user_identity}}@endif">
+						<div class=" form-group">
+							<h4>Name</h4>
+							<input required class="input"
+								value="@if($address){{$address->name}}@else{{ old('name') }} @endif" type="text"
+								name="name" placeholder=" Name">
 						</div>
 						<div class="form-group">
-							<input class="input" type="text" name="last-name" placeholder="Last Name">
+							<h4>Email</h4>
+							<input required class="input"
+								value="@if ($address){{$address->email}}@else{{ old('email') }} @endif"" type=" email"
+								name="email" placeholder="Email">
 						</div>
 						<div class="form-group">
-							<input class="input" type="email" name="email" placeholder="Email">
+							<h4>Phone</h4>
+							<input required class="input"
+								value="@if ($address){{$address->phone}}@else{{ old('phone') }} @endif" type="number"
+								name="phone" placeholder="Phone">
 						</div>
 						<div class="form-group">
-							<input class="input" type="text" name="address" placeholder="Address">
+							<h4>Devision</h4>
+							<select required name="division" class="form-control">
+								<option value="">Select Division</option>
+								<option @if ($address) @if ($address->division == "Dhaka") selected @endif @endif
+									value="Dhaka">Dhaka </option>
+								<option @if ($address) @if ($address->division == "Barishal") selected @endif @endif
+									value="Barishal">Barishal</option>
+								<option @if ($address) @if ($address->division == "Chittagong") selected @endif @endif
+									value="Chittagong">Chittagong</option>
+								<option @if ($address) @if ($address->division == "Khulna") selected @endif @endif
+									value="Khulna">Khulna</option>
+								<option @if ($address) @if ($address->division == "Mymensingh") selected @endif @endif
+									value="Mymensingh">Mymensingh</option>
+								<option @if ($address) @if ($address->division == "Rajshahi") selected @endif @endif
+									value="Rajshahi">Rajshahi </option>
+								<option @if ($address) @if ($address->division == "Sylhet") selected @endif @endif
+									value="Sylhet">Sylhet </option>
+								<option @if ($address) @if ($address->division == "Rangpur") selected @endif @endif
+									value="Rangpur">Rangpur</option>
+							</select>
 						</div>
 						<div class="form-group">
-							<input class="input" type="text" name="city" placeholder="City">
+							<h4>Address</h4>
+							<textarea required class="form-control" rows="5" placeholder="Your Shipping Address"
+								name="address">@if ($address){{$address->address}}@else{{ old('address') }}@endif</textarea>
 						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="country" placeholder="Country">
-						</div>
-						<div class="form-group">
-							<input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-						</div>
-						<div class="form-group">
-							<input class="input" type="tel" name="tel" placeholder="Telephone">
-						</div>
+						@if(!Auth::check())
 						<div class="form-group">
 							<div class="input-checkbox">
 								<input type="checkbox" id="register">
 								<label class="font-weak" for="register">Create Account?</label>
 								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-										tempor incididunt.
-										<p>
-											<input class="input" type="password" name="password"
-												placeholder="Enter Your Password">
+									<div class="form-group">
+										<h4>Password</h4>
+										<input class="input" type="password" name="password" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<h4>Confirm Password</h4>
+										<input class="input" type="password" name="password_confirmation"
+											placeholder="Confirm Password">
+									</div>
 								</div>
 							</div>
 						</div>
+						@endif
 					</div>
 				</div>
 
@@ -64,7 +95,7 @@
 							<input type="radio" name="payments" id="payments-1" checked>
 							<label for="payments-1">Cash on Delivery</label>
 							<div class="caption">
-								<p>Please provide cash on receiving your produce. Thank you.
+								<p>Please provide cash on receiving your product. Thank you.
 									<p>
 							</div>
 						</div>
@@ -97,7 +128,8 @@
 								<tr class="rows">
 									<td class="thumb"><img
 											src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
-											alt=""></td>
+											alt="">
+									</td>
 									<td class="details">
 										<a href="#">{{$cart->product->title}}</a>
 									</td>
@@ -152,7 +184,7 @@
 							</tfoot>
 						</table>
 						<div class="pull-right">
-							<button id="checkout" class="primary-btn">Place Order</button>
+							<button id="checkout" type="submit" class="primary-btn">Place Order</button>
 						</div>
 						@else
 						<h1>Nothing has added to cart.</h1>

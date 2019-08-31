@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Cart;
+use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class ShoppingController extends Controller
 {
@@ -83,14 +87,13 @@ class ShoppingController extends Controller
 
     public function checkoutPage(Request $request)
     {
-
-
         $userIdentity = "";
         if (Auth::check()) {
             $userIdentity = Auth::user()->id;
         } else {
             $userIdentity = $request->ip();
         }
+        //buy now button work
         if ($request->id) {
             $productId = decrypt($request->id);
             $cart = Cart::where('product_id', $productId)->where('user_identity', $userIdentity)->first();
@@ -105,8 +108,70 @@ class ShoppingController extends Controller
             $cart->save();
         }
 
+        $address = Address::where('user_identity', $userIdentity)->first();
         $carts = Cart::where('user_identity', $userIdentity)->get();
-        return view('frontend.checkout', compact('carts'));
+        return view('frontend.checkout', compact('carts', 'address'));
+    }
+
+    public function placeOrder(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'starts_with:01', 'digits:11'],
+            'division' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:65535'],
+        ]);
+
+        // create account in only address table
+        if ($request->password == "") {
+            $this->validate($request, [
+                'email' => ['required', 'string', 'email', 'max:255'],
+            ]);
+
+            // create
+            if ($request->user_identity == "") {
+                $address = new Address();
+                $userIdentity = $request->ip();
+            } else {
+                // update
+                if (Auth::check()) {
+                    $userIdentity = Auth::id();
+                } else {
+                    $userIdentity = $request->user_identity;
+                }
+                $address = Address::where('user_identity', $userIdentity)->first();
+            }
+            $address->user_identity = $userIdentity;
+            $address->name = $request->name;
+            $address->email = $request->email;
+            $address->phone = $request->phone;
+            $address->division = $request->division;
+            $address->address = $request->address;
+            $address->save();
+            return back()->with('success', 'Your Order has been placed. We will contact you soon. Thank You.');
+        } else { //user table enty
+            $this->validate($request, [
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+
+            $user =  User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'status' => 1,
+                'password' => Hash::make($request['password']),
+            ]);
+            $address = new Address();
+            $address->user_identity = $user->id;
+            $address->name = $request['name'];
+            $address->email = $request['email'];
+            $address->phone = $request['phone'];
+            $address->division = $request['division'];
+            $address->address = $request['address'];
+            $address->save();
+            Auth::loginUsingId($user->id);
+            return back()->with('success', 'Your account has been created and  Order has been placed. We will contact you soon. Thank You.');
+        }
     }
 
     public function changeQuantity(Request $request)

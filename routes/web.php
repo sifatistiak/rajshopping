@@ -10,6 +10,7 @@ Route::get('/search_page', 'Frontend\IndexController@searchPage')->name('search.
 Route::post('/sort_by_price', 'Frontend\IndexController@sortByPrice')->name('sort.by.price');
 Route::get('/cart', 'Frontend\ShoppingController@cart')->name('cart');
 Route::get('/checkout/{id?}', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
+Route::post('/place_order', 'Frontend\ShoppingController@placeOrder')->name('place.order');
 
 Route::get('/change_password', 'Frontend\UserController@changePasswordView')->name('change.password');
 Route::post('/change_password', 'Frontend\UserController@changePassword')->name('change.password');
