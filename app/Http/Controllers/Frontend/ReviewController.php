@@ -19,6 +19,6 @@ class ReviewController extends Controller
             'product_id'=>'required|integer'
         ]);
         Review::create($request->all());
-        return back()->with('success','Review Added!');
+        return back()->with('success', 'Review Added!');
     }
 }

@@ -85,8 +85,10 @@
 				<div class="pull-right">
 					<ul class="header-btns">
 						<!-- Cart -->
+
 						<li class="header-cart dropdown default-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 								<div class="header-btns-icon">
 									<i class="fa fa-shopping-cart"></i>
 									{{-- cart --}}
@@ -100,13 +102,14 @@
 									@endphp
 
 									<span id="cart_number"
-										class="qty">{{App\Models\Cart::where('user_identity',$userIdentity)->count()}}</span>
+										class="qty">{{App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->count()}}</span>
 								</div>
 								<strong class="text-uppercase">My Cart:</strong>
 								<br>
 								{{-- price --}}
 								@php
-								$carts = App\Models\Cart::where('user_identity',$userIdentity)->get();
+								$carts =
+								App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->get();
 								$price = 0;
 								foreach ($carts as $cart) {
 								$price = $cart->product->price*$cart->quantity + $price;
@@ -115,51 +118,51 @@
 								@endphp
 								<span id="cart_price">{{$price}}</span><img style="display: inline" width="12px"
 									src="{{asset('frontend/img/taka.png')}}" alt="">
-							</a>
-							<div style="margin-left:90px" class="custom-menu">
-								<div id="shopping-cart">
-									<div class="shopping-cart-list">
-										@php
-										if(Auth::check()){
-										$userIdentity = Auth::id();
-										}
-										else{
-										$userIdentity = Request::ip();
-										}
-										$carts = App\Models\Cart::where('user_identity',$userIdentity)->get();
-										@endphp
-										<div id="carts">
-											@foreach ($carts as $cart)
-											<div class="product product-widget">
-												<div class="product-thumb">
-													<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
-														alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-price">{{$cart->product->price}} <span
-															class="qty">x{{$cart->quantity}}</span></h3>
-													<h2 class="product-name"><a href="#">{{$cart->product->title}}</a>
-													</h2>
-												</div>
-											</div>
-											@endforeach
 
+							</a>
+
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<div class="dropdown-cart-list">
+									@php
+									if(Auth::check()){
+									$userIdentity = Auth::id();
+									}
+									else{
+									$userIdentity = Request::ip();
+									}
+									$carts =
+									App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->get();
+									@endphp
+									<div id="carts">
+										@foreach ($carts as $cart)
+										<div class="product product-widget">
+											<div class="product-thumb">
+												<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
+													alt="">
+											</div>
+											<div class="product-body">
+												<h3 class="product-price">{{$cart->product->price}} <span
+														class="qty">x{{$cart->quantity}}</span></h3>
+												<h2 class="product-name"><a href="#">{{$cart->product->title}}</a>
+												</h2>
+											</div>
 										</div>
+										@endforeach
 									</div>
 									<div id="no_product_added">
-										@if(count($carts)<1) <h4>No Product added</h4>
+										@if(count($carts)<1) <h4 style="margin-top:10px">No Product added</h4>
 											@endif
 									</div>
-									<div id="view_cart" class="shopping-cart-btns">
-										<a href="{{route('cart')}}" class="main-btn">View Cart</a>
-										<a href="{{route('checkout')}}" class="primary-btn">Checkout <i
-												class="fa fa-arrow-circle-right"></i></a>
-									</div>
-
+								</div>
+								<div id="view_cart" class="shopping-cart-btns">
+									<span style="margin-left:15px"></span>
+									<a href="{{route('cart')}}" class="main-btn ">View Cart</a>
+									<a href="{{route('checkout')}}" class="primary-btn ">Checkout <i
+											class="fa fa-arrow-circle-right"></i></a>
 								</div>
 							</div>
 						</li>
-						<!-- /Cart -->
+						{{-- cart end --}}
 						<!-- Account -->
 						@if (Auth::check())
 
@@ -176,6 +179,7 @@
 								<li><a href="{{route('user.profile')}}"><i class="fa fa-user-o"></i>Profile</a></li>
 								<li><a href="{{route('change.password')}}"><i class="fa fa-pencil"></i>Change
 										Password</a></li>
+
 								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
 						        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a></li>
 							</ul>
@@ -263,8 +267,8 @@
 						</div>
 						<!-- /footer logo -->
 
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna</p>
+						<p>This is a trust worthy platform. Anyone from bangladesh can buy product from this e-commerce
+							site.</p>
 
 						<!-- footer social -->
 						<ul class="footer-social">
@@ -282,13 +286,22 @@
 				<!-- footer widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
-						<h3 class="footer-header">My Account</h3>
+						<h3 class="footer-header">Account</h3>
 						<ul class="list-links">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">My Wishlist</a></li>
-							<li><a href="#">Compare</a></li>
-							<li><a href="#">Checkout</a></li>
-							<li><a href="#">Login</a></li>
+							@if (Auth::check())
+							<li><a href="{{route('user.profile')}}"><i class="fa fa-user-o"></i> Profile</a></li>
+							<li><a href="{{route('change.password')}}"><i class="fa fa-pencil"></i> Change
+									Password</a></li>
+
+							<a><a href="{{ route('logout') }}" onclick="event.preventDefault();
+													        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a></a>
+							@else
+							<li><a href="{{route('register')}}"><i class="fa fa-registered"></i> Register</a></li>
+							<li><a href="{{route('login')}}"><i class="fa fa-sign-in"></i> Login</a></li>
+							@endif
+							<li><a href="{{route('cart')}}"> <i class="fa fa-shopping-cart"></i> Cart</a></li>
+							<li><a href="{{route('checkout')}}"><i class="fa fa-arrow-circle-right"></i> Checkout</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -301,10 +314,9 @@
 					<div class="footer">
 						<h3 class="footer-header">Customer Service</h3>
 						<ul class="list-links">
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Shiping & Return</a></li>
-							<li><a href="#">Shiping Guide</a></li>
-							<li><a href="#">FAQ</a></li>
+							<li><a href="/about_us">About Us</a></li>
+							<li><a href="{{route('help')}}">Help Us</a></li>
+							<li><a href="/shiping_return">Shiping & Return</a></li>
 						</ul>
 					</div>
 				</div>
@@ -313,14 +325,13 @@
 				<!-- footer subscribe -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
-						<h3 class="footer-header">Stay Connected</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-						<form>
-							<div class="form-group">
-								<input class="input" placeholder="Enter Email Address">
-							</div>
-							<button class="primary-btn">Join Newslatter</button>
-						</form>
+						<h3 class="footer-header">Contact Us</h3>
+						<ul class="list-links">
+							<li><a href="#">Call us +880 1833996321</a></li>
+							<li><a href="#">Email us</a> - touhedulislam46@gmail.com</li>
+						</ul>
+
+
 					</div>
 				</div>
 				<!-- /footer subscribe -->

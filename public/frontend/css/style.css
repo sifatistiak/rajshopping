@@ -463,9 +463,16 @@ textarea.input {
 }
 
 #shopping-cart .shopping-cart-btns>button {
-  width: calc(50% - 2px);
+  /* width: calc(50% - 2px); */
+  width: 50px;
 }
-
+.dropdown-cart-list{
+   width        : 270px;
+   max-height   : 260px;
+   margin-bottom: 15px;
+   margin-left: 15px;
+   overflow-y   : scroll;
+}
 /*=========================================================
 	03 -> NAVIGATION
 ========================================================== = */

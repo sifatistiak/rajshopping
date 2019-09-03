@@ -6,13 +6,18 @@
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
+
 		<div class="row">
 			<form action="{{route('place.order')}}" method="POST" id="checkout-form" class="clearfix">
-				@include('includes.message')
 				@csrf
+				<div class="col-md-12"> @include('includes.message')</div>
 				<div class="col-md-6">
 					<div class="billing-details">
-						<p>Already a customer ? <a href="#">Login</a></p>
+						@if (Auth::check())
+						@else
+						<p>Already a customer ? <a href="{{route('login')}}">Login</a></p>
+						
+						@endif
 						<div class="section-title">
 							<h3 class="title">Billing Details</h3>
 						</div>
@@ -130,6 +135,7 @@
 											src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
 											alt="">
 									</td>
+									<input type="hidden" name="carts[]" value="{{$cart->id}}">
 									<td class="details">
 										<a href="#">{{$cart->product->title}}</a>
 									</td>

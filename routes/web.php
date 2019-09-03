@@ -11,6 +11,8 @@ Route::post('/sort_by_price', 'Frontend\IndexController@sortByPrice')->name('sor
 Route::get('/cart', 'Frontend\ShoppingController@cart')->name('cart');
 Route::get('/checkout/{id?}', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
 Route::post('/place_order', 'Frontend\ShoppingController@placeOrder')->name('place.order');
+Route::get('/thanks', 'Frontend\ShoppingController@thanks')->name('thanks');
+
 
 Route::get('/change_password', 'Frontend\UserController@changePasswordView')->name('change.password');
 Route::post('/change_password', 'Frontend\UserController@changePassword')->name('change.password');
@@ -28,6 +30,21 @@ Route::middleware(['onlyAjaxRequest'])->group(function () {
 
     Route::post('/add_review', 'Frontend\ReviewController@addReview')->name('add.review');
 });
+
+
+//Give feed back and help User side
+Route::get('help', 'Frontend\HelpController@helpPage')->name('help');
+Route::post('submit_help', 'Frontend\HelpController@submitHelp')->name('submit.help');
+
+Route::get('/about_us', function () {
+    return view('frontend.about_us');
+});
+
+Route::get('/shiping_return', function () {
+    return view('frontend.shiping_return');
+});
+
+
 
 
 Auth::routes();
@@ -79,5 +96,16 @@ Route::prefix('admin')->group(function () {
         Route::post('add_product', 'Admin\ProductController@addProduct')->name('add.product');
         Route::get('edit_product/{id}', 'Admin\ProductController@editProductView')->name('edit.product.view');
         Route::post('edit_product/{id}', 'Admin\ProductController@editProduct')->name('edit.product');
+
+        // order
+        Route::get('orders', 'Admin\OrderController@orders')->name('orders');
+        Route::get('action/{action}/{user_identity}', 'Admin\OrderController@action')->name('action');
+        Route::get('reverse/{action}/{user_identity}', 'Admin\OrderController@reverseAction')->name('reverse.action');
+
+        Route::get('delete_order/{user_identity}', 'Admin\OrderController@deleteOrder')->name('delete.order');
+        Route::get('completed_orders', 'Admin\OrderController@completedOrders')->name('completed.orders');
+        
+        //helps
+        Route::get('helps', 'Admin\AdminController@helps')->name('helps');
     });
 });

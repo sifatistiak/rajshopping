@@ -22,7 +22,7 @@ class ShoppingController extends Controller
         } else {
             $userIdentity = $request->ip();
         }
-        $cart = Cart::where('product_id', $productId)->where('user_identity', $userIdentity)->first();
+        $cart = Cart::where('product_id', $productId)->where('user_identity', $userIdentity)->where('status', 1)->first();
         if ($cart) {
             $cart->quantity = $cart->quantity + 1;
         } else {
@@ -32,8 +32,8 @@ class ShoppingController extends Controller
             $cart->product_id = $productId;
         }
         $cart->save();
-        $userCart = Cart::where('user_identity', $userIdentity)->count();
-        $carts = Cart::where('user_identity', $userIdentity)->get();
+        $userCart = Cart::where('user_identity', $userIdentity)->where('status', 1)->count();
+        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->get();
         $price = 0;
         foreach ($carts as $cart) {
             $price = $cart->product->price * $cart->quantity + $price;
@@ -55,7 +55,7 @@ class ShoppingController extends Controller
             $userIdentity = $request->ip();
         }
         $userCart = Cart::where('user_identity', $userIdentity)->count();
-        $carts = Cart::where('user_identity', $userIdentity)->get();
+        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->get();
         $price = 0;
         foreach ($carts as $cart) {
             $price = $cart->product->price * $cart->quantity + $price;
@@ -70,7 +70,7 @@ class ShoppingController extends Controller
         } else {
             $userIdentity = $request->ip();
         }
-        $carts = Cart::where('user_identity', $userIdentity)->get();
+        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->get();
 
         return view('frontend.cart', compact('carts'));
     }
@@ -96,7 +96,7 @@ class ShoppingController extends Controller
         //buy now button work
         if ($request->id) {
             $productId = decrypt($request->id);
-            $cart = Cart::where('product_id', $productId)->where('user_identity', $userIdentity)->first();
+            $cart = Cart::where('product_id', $productId)->where('user_identity', $userIdentity)->where('status', 1)->first();
             if ($cart) {
                 $cart->quantity = $cart->quantity + 1;
             } else {
@@ -109,7 +109,7 @@ class ShoppingController extends Controller
         }
 
         $address = Address::where('user_identity', $userIdentity)->first();
-        $carts = Cart::where('user_identity', $userIdentity)->get();
+        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->get();
         return view('frontend.checkout', compact('carts', 'address'));
     }
 
@@ -148,8 +148,8 @@ class ShoppingController extends Controller
             $address->division = $request->division;
             $address->address = $request->address;
             $address->save();
-            return back()->with('success', 'Your Order has been placed. We will contact you soon. Thank You.');
-        } else { //user table enty
+            $msg = "<h3>Your Order has been placed. We will contact you soon. Thank You.</h3>";
+        } else { //user table enty create account
             $this->validate($request, [
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -170,8 +170,14 @@ class ShoppingController extends Controller
             $address->address = $request['address'];
             $address->save();
             Auth::loginUsingId($user->id);
-            return back()->with('success', 'Your account has been created and  Order has been placed. We will contact you soon. Thank You.');
+            $msg = "<h3>Your account has been created and  Order has been placed. We will contact you soon. Thank You.</h3>";
         }
+        foreach ($request->carts as $cartId) {
+            $cart = Cart::where('id', $cartId)->first();
+            $cart->status = 0;
+            $cart->save();
+        }
+        return redirect()->route('checkout')->with('success', $msg);
     }
 
     public function changeQuantity(Request $request)
@@ -181,5 +187,10 @@ class ShoppingController extends Controller
         $cart = Cart::where('id', $cartId)->first();
         $cart->quantity = $quantity;
         $cart->save();
+    }
+
+    public function thanks()
+    {
+        return view('frontend.thanks');
     }
 }

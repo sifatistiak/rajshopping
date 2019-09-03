@@ -16,7 +16,7 @@ class IndexController extends Controller
     public function index()
     {
         $sliderImages = SliderImage::all();
-        $categoryProducts = Category::with('products')->get();
+        $categoryProducts = Category::with('products')->paginate(10);
         return view('frontend.index', compact('sliderImages', 'categoryProducts'));
     }
 
@@ -82,6 +82,6 @@ class IndexController extends Controller
         $term = $request->search;
         $products = Product::where('title', 'LIKE', '%' . $term . '%')->paginate(8);
         $categories = Category::where('name', 'LIKE', '%' . $term . '%')->get();
-        return view('frontend.search_page', compact('products', 'categories','term'));
+        return view('frontend.search_page', compact('products', 'categories', 'term'));
     }
 }
