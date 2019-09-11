@@ -70,7 +70,7 @@
 							Not Available
 							@endif</p>
 						<p><strong>Category:</strong> {{$product->category->name }} </p>
-						<p>{{$product->desc}}</p>
+						<p>{!!$product->desc!!}</p>
 
 
 						<div class="product-btns">
@@ -93,7 +93,7 @@
 						<div class="tab-content">
 							<div id="tab1" class="tab-pane fade in ">
 								<p>
-									{{$product->desc}}
+									{!!$product->desc!!}
 								</p>
 							</div>
 							<div id="tab2" class="tab-pane fade in active">
@@ -127,21 +127,15 @@
 
 										</div>
 									</div>
+									@if(Auth::check())
 									<div class="col-md-6">
 										<h4 class="text-uppercase">Write Your Review</h4>
 										@include('includes.message')
-										<p>Your email address will not be published.</p>
+										
 										<form class="review-form" action="{{route('add.review')}}" method="POST">
 											@csrf
-											<div class="form-group">
-												<input class="input" required name="name" type="text"
-													placeholder="Your Name" />
-											</div>
 											<input type="hidden" required name="product_id" value="{{$product->id}}" />
-											<div class="form-group">
-												<input class="input" required name="email" type="email"
-													placeholder="Email Address" />
-											</div>
+											
 											<div class="form-group">
 												<textarea class="input" required name="message"
 													placeholder="Your review"></textarea>
@@ -150,15 +144,15 @@
 												<div class="input-rating">
 													<strong class="text-uppercase">Your Rating: </strong>
 													<div class="stars">
-														<input type="radio" id="star5" required name="rating"
+														<input type="radio" id="star5"  name="rating"
 															value="5" /><label for="star5"></label>
-														<input type="radio" id="star4" required name="rating"
+														<input type="radio" id="star4"  name="rating"
 															value="4" /><label for="star4"></label>
-														<input type="radio" id="star3" required name="rating"
+														<input type="radio" id="star3"  name="rating"
 															value="3" /><label for="star3"></label>
-														<input type="radio" id="star2" required name="rating"
+														<input type="radio" id="star2"  name="rating"
 															value="2" /><label for="star2"></label>
-														<input type="radio" id="star1" required name="rating"
+														<input type="radio" id="star1"  name="rating"
 															value="1" /><label for="star1"></label>
 													</div>
 												</div>
@@ -166,6 +160,13 @@
 											<button class="primary-btn">Submit</button>
 										</form>
 									</div>
+									@else
+									<div class="col-md-6">
+										<h4 class="text-uppercase">Write Your Review</h4>
+										<h4>Only register user can write reviews. <a class="primary-color" href="{{route('register')}}"> Register Here</a></h4>
+									</div>
+
+									@endif
 								</div>
 
 
@@ -183,6 +184,10 @@
 	<!-- /container -->
 </div>
 <!-- /section -->
+
+<!-- policy section -->
+@include('includes.policy')
+<!-- policy /section -->
 
 <!-- section -->
 <div class="section">

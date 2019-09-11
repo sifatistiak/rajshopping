@@ -224,7 +224,7 @@
 		">
 					<span class="category-header">Categories <i class="fa fa-list"></i></span>
 					<ul class="category-list">
-						@foreach (App\Models\Category::all() as $category)
+						@foreach (App\Models\Category::orderBy('created_at', 'desc')->get() as $category)
 						<li><a href="{{route('products',encrypt($category->id))}}">{{$category->name}}</a></li>
 						@endforeach
 					</ul>

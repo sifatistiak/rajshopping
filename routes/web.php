@@ -28,21 +28,17 @@ Route::middleware(['onlyAjaxRequest'])->group(function () {
 
     Route::get('/delete_cart', 'Frontend\ShoppingController@deleteCart')->name('delete.cart');
 
-    Route::post('/add_review', 'Frontend\ReviewController@addReview')->name('add.review');
 });
+Route::post('/add_review', 'Frontend\ReviewController@addReview')->name('add.review');
 
 
 //Give feed back and help User side
 Route::get('help', 'Frontend\HelpController@helpPage')->name('help');
 Route::post('submit_help', 'Frontend\HelpController@submitHelp')->name('submit.help');
 
-Route::get('/about_us', function () {
-    return view('frontend.about_us');
-});
+Route::get('/about_us', 'Frontend\IndexController@aboutUs')->name('about.us');
 
-Route::get('/shiping_return', function () {
-    return view('frontend.shiping_return');
-});
+Route::get('/shiping_return', 'Frontend\IndexController@shipingReturn')->name('shiping.return');
 
 
 
@@ -105,7 +101,11 @@ Route::prefix('admin')->group(function () {
         Route::get('delete_order/{user_identity}', 'Admin\OrderController@deleteOrder')->name('delete.order');
         Route::get('completed_orders', 'Admin\OrderController@completedOrders')->name('completed.orders');
         
+        //reviews
+        Route::get('reviews', 'Admin\ReviewHelpController@reviews')->name('reviews');
+        Route::get('change_review_status/{id}', 'Admin\ReviewHelpController@changeReviewStatus')->name('change.review.status');
+
         //helps
-        Route::get('helps', 'Admin\AdminController@helps')->name('helps');
+        Route::get('helps', 'Admin\ReviewHelpController@helps')->name('helps');
     });
 });

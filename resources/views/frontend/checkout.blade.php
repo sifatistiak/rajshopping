@@ -205,4 +205,9 @@
 	<!-- /container -->
 </div>
 <!-- /section -->
+
+
+<!-- policy section -->
+@include('includes.policy')
+<!-- policy /section -->
 @endsection

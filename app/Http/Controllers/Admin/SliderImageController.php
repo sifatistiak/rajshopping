@@ -18,7 +18,7 @@ class SliderImageController extends Controller
 
     public function sliderImages()
     {
-        $sliderImages = SliderImage::all();
+        $sliderImages = SliderImage::orderBy('created_at','desc')->get();
         return view('admin.slider_images', compact('sliderImages'));
     }
 

@@ -15,8 +15,9 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $sliderImages = SliderImage::all();
-        $categoryProducts = Category::with('products')->paginate(10);
+        $sliderImages = SliderImage::orderBy('created_at', 'desc')->get();
+
+        $categoryProducts = Category::with('products')->orderBy('created_at', 'desc')->get();
         return view('frontend.index', compact('sliderImages', 'categoryProducts'));
     }
 
@@ -56,7 +57,7 @@ class IndexController extends Controller
             return back();
         }
         $product = Product::findOrFail($productId);
-        $reviews = Review::where('product_id', $product->id)->paginate(6);
+        $reviews = Review::where('product_id', $product->id)->where('status',1)->paginate(6);
         $products = Product::where('category_id', $product->category_id)->orderBy('created_at', 'desc')->paginate(12);
         return view('frontend.product_page', compact('product', 'reviews', 'products'));
     }
@@ -83,5 +84,15 @@ class IndexController extends Controller
         $products = Product::where('title', 'LIKE', '%' . $term . '%')->paginate(8);
         $categories = Category::where('name', 'LIKE', '%' . $term . '%')->get();
         return view('frontend.search_page', compact('products', 'categories', 'term'));
+    }
+
+    public function aboutUs()
+    {
+        return view('frontend.about_us');
+    }
+    
+    public function shipingReturn()
+    {
+        return view('frontend.shiping_return');
     }
 }

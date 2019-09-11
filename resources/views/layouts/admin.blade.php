@@ -62,7 +62,7 @@ desired effect
     <header class="main-header">
 
       <!-- Logo -->
-      <a href="index.html" class="logo">
+      <a href="{{route('admin.index')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
@@ -263,8 +263,12 @@ desired effect
           <li class="@if (Request::path() == 'admin/completed_orders' ) active @endif"><a
               href="{{route('admin.completed.orders')}}"><i class="fa fa-link"></i> <span>Complete Orders</span></a>
           </li>
+          <li class="@if (Request::path() == 'admin/reviews' ) active @endif"><a href="{{route('admin.reviews')}}"><i
+                class="fa fa-link"></i> <span>Reviews</span></a>
+          </li>
 
-          <li class="@if (Request::path() == 'admin/helps' ) active @endif"><a href="{{route('admin.helps')}}"><i class="fa fa-link"></i> <span>Helps</span></a></li>
+          <li class="@if (Request::path() == 'admin/helps' ) active @endif"><a href="{{route('admin.helps')}}"><i
+                class="fa fa-link"></i> <span>Helps</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
       </section>

@@ -14,7 +14,7 @@
 				<div class="banner banner-1">
 					<img src="{{asset('slider_images/'.$sliderImage->image)}}" alt="">
 					<div class="banner-caption text-center">
-						<h3 class="white-color font-weak">Up to 10% Discount</h3>
+						{{-- <h3 style="color:black"> Up to 10% Discount</h3> --}}
 					</div>
 				</div>
 				@endforeach
@@ -36,7 +36,7 @@
 			<!-- banner -->
 			<div class="col-md-4 col-sm-6">
 				<a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[0]->id))}}">
-					<img src="{{asset('frontend/img/banner10.jpg')}}" alt="">
+					<img src="{{asset('frontend/img/malhar.jpg')}}" alt="">
 					<div class="banner-caption text-center">
 						<h2 class="white-color">NEW COLLECTION</h2>
 					</div>

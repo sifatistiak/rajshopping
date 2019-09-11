@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Help;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,13 +23,7 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function helps()
-    {
-        $helps = Help::orderBy('created_at', 'desc')->get();
-        $avarageFeedback = Help::avg('feedback');
-        $avarageFeedback = round($avarageFeedback, 2);
-        return view('admin.helps', compact('helps', 'avarageFeedback'));
-    }
+   
 
     public function changePasswordView()
     {

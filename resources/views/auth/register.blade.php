@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <h4>Email</h4>
-                        <input required class="input" type="email" name="email" placeholder="Email">
+                        <input required class="input" type="email" name="email" placeholder="You don't have to confirm your email.">
                     </div>
                     <div class="form-group">
                         <h4>Phone</h4>
@@ -39,7 +39,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <h4>Address</h4>
+                        <h4>Shipping Address</h4>
                         <textarea required class="form-control" rows="5" placeholder="Your Shipping Address"
                             name="address"></textarea>
                     </div>
