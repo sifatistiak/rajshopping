@@ -10,6 +10,7 @@
 			<!-- home slick -->
 			<div id="home-slick">
 				<!-- banner -->
+				@if($sliderImages)
 				@foreach ($sliderImages as $sliderImage)
 				<div class="banner banner-1">
 					<img src="{{asset('slider_images/'.$sliderImage->image)}}" alt="">
@@ -18,6 +19,7 @@
 					</div>
 				</div>
 				@endforeach
+				@endif
 				<!-- /banner -->
 			</div>
 			<!-- /home slick -->
@@ -33,38 +35,20 @@
 	<div class="container">
 		<!-- row -->
 		<div class="row">
+			@if($threeCollections)
+			@foreach($threeCollections as $threeCollection)
 			<!-- banner -->
 			<div class="col-md-4 col-sm-6">
-				<a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[0]->id))}}">
-					<img src="{{asset('frontend/img/malhar.jpg')}}" alt="">
+				<a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[$loop->index]->id))}}">
+					<img src="{{asset('slider_images/'.$threeCollection->image)}}" alt="">
 					<div class="banner-caption text-center">
 						<h2 class="white-color">NEW COLLECTION</h2>
 					</div>
 				</a>
 			</div>
 			<!-- /banner -->
-
-			<!-- banner -->
-			<div class="col-md-4 col-sm-6">
-				<a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[1]->id))}}">
-					<img src="{{asset('frontend/img/banner11.jpg')}}" alt="">
-					<div class="banner-caption text-center">
-						<h2 class="white-color">NEW COLLECTION</h2>
-					</div>
-				</a>
-			</div>
-			<!-- /banner -->
-
-			<!-- banner -->
-			<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
-				<a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[2]->id))}}">
-					<img src="{{asset('frontend/img/banner12.jpg')}}" alt="">
-					<div class="banner-caption text-center">
-						<h2 class="white-color">NEW COLLECTION</h2>
-					</div>
-				</a>
-			</div>
-			<!-- /banner -->
+			@endforeach
+			@endif
 
 		</div>
 		<!-- /row -->
@@ -135,37 +119,31 @@
 			<!-- banner -->
 			<div class="col-md-8">
 				<div class="banner banner-1">
-					<img src="{{asset('frontend/img/banner13.jpg')}}" alt="">
+					@if($bigCollection)
+					<img src="{{asset('slider_images/'.$bigCollection->image)}}" alt="">
+					@endif
 					<div class="banner-caption text-center">
-						<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50%
+						<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 10%
 								OFF</span></h1>
-						<button class="primary-btn">Shop Now</button>
+						<a href=" {{route('products',encrypt($categoryProducts[3]->id))}}" class="primary-btn">Shop
+							Now</a>
 					</div>
 				</div>
 			</div>
 			<!-- /banner -->
-
+			@if($twoCollections)
+			@foreach($twoCollections as $twoCollection)
 			<!-- banner -->
 			<div class="col-md-4 col-sm-6">
-				<a class="banner banner-1" href="#">
-					<img src="{{asset('frontend/img/banner11.jpg')}}" alt="">
+				<a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[$loop->index+4]->id))}}">
+					<img src="{{asset('slider_images/'.$twoCollection->image)}}" alt="">
 					<div class="banner-caption text-center">
-						<h2 class="white-color">NEW COLLECTION</h2>
 					</div>
 				</a>
 			</div>
 			<!-- /banner -->
-
-			<!-- banner -->
-			<div class="col-md-4 col-sm-6">
-				<a class="banner banner-1" href="#">
-					<img src="{{asset('frontend/img/banner12.jpg')}}" alt="">
-					<div class="banner-caption text-center">
-						<h2 class="white-color">NEW COLLECTION</h2>
-					</div>
-				</a>
-			</div>
-			<!-- /banner -->
+			@endforeach
+			@endif
 		</div>
 		<!-- /row -->
 	</div>

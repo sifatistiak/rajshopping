@@ -68,14 +68,14 @@
 							<tfoot>
 								<tr>
 									<th class="empty" colspan="3"></th>
-									<th>SUBTOTAL</th>
+									<th>TOTAL</th>
 									<th colspan="2" id="" class="sub-total">
 										<div style="display:inline" id="sub_total">{{$total}}</div><img
 											style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt="">
 									</th>
 								</tr>
-								<tr>
+								{{-- <tr>
 									<th class="empty" colspan="3"></th>
 									<th>SHIPING</th>
 									<th colspan="2" class="sub-total">50<img style="display: inline" width="15px"
@@ -89,7 +89,7 @@
 										<img style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt="">
 									</th>
-								</tr>
+								</tr> --}}
 							</tfoot>
 						</table>
 						<div class="pull-right">
@@ -118,7 +118,7 @@
 			if(confirm("Are you sure to remove this product from your cart?")){
 				var cartId = $(this).data();
 				$.get("{{route('delete.cart')}}",{cartId:cartId},function(data){
-				alert('Product Removed.');
+				// alert('Product Removed.');
 				$("#cart_table").load(location.href + ' #cart_table');
 				$("#cart_number").text(data[0]);
 				$("#cart_price").text(data[1]);

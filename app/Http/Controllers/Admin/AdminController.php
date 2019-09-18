@@ -6,7 +6,10 @@ use App\Helpers\AdminHelper;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Help;
+use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +23,12 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.index');
+        $numberOfProduct = Product::count();
+        $numberOfCategory = Category::count();
+        $numberOfOrder = count(Cart::select('user_identity')->where('status', 0)->where('hand_over', 0)->groupBy('user_identity')->get());
+        $numberOfCompleteOrder = count(Cart::select('user_identity')->where('status', 0)->where('hand_over', 1)->groupBy('user_identity')->get());
+
+        return view('admin.index', compact('numberOfProduct', 'numberOfCategory', 'numberOfOrder','numberOfCompleteOrder'));
     }
 
    

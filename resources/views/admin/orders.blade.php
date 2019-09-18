@@ -42,16 +42,19 @@
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px;">
                         @if ($orderCart->address($orderCart->user_identity)->confirm == 0)
-                        <a href="{{route('admin.action',['confirm',$orderCart->user_identity])}}"><span style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
+                        <a href="{{route('admin.action',['confirm',$orderCart->user_identity])}}"><span
+                                style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
                         @else
-                        <a onclick="return confirm('Are you sure?')" href="{{route('admin.reverse.action',['confirm',$orderCart->user_identity])}}"><span style="color:#ffffff;font-size: 20px"> <i class="fa fa-check"></i></span></a>
+                        <a onclick="return confirm('Are you sure?')"
+                            href="{{route('admin.reverse.action',['confirm',$orderCart->user_identity])}}"><span
+                                style="color:#ffffff;font-size: 20px"> <i class="fa fa-check"></i></span></a>
                         @endif
                     </span></td>
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px">
                         @if ($orderCart->address($orderCart->user_identity)->deliver == 0)
-                        <a href="{{route('admin.action',['deliver',$orderCart->user_identity])}}"><span style="color:red;font-size: 20px"> <i
-                                    class="fa fa-times"></i></span></a>
+                        <a href="{{route('admin.action',['deliver',$orderCart->user_identity])}}"><span
+                                style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
                         @else
                         <a onclick="return confirm('Are you sure?')"
                             href="{{route('admin.reverse.action',['deliver',$orderCart->user_identity])}}"><span
@@ -60,16 +63,21 @@
                     </span></td>
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px">
-                       @if ($orderCart->address($orderCart->user_identity)->hand_over == 0)
-                    <a href="{{route('admin.action',['hand_over',$orderCart->user_identity])}}"><span style="color:red;font-size: 20px"> <i
-                                class="fa fa-times"></i></span></a>
-                    @else
-                    <a onclick="return confirm('Are you sure?')"
-                        href="{{route('admin.reverse.action',['hand_over',$orderCart->user_identity])}}"><span
-                            style="color:#ffffff;font-size: 20px"> <i class="fa fa-check"></i></span></a>
-                    @endif
+                        @if ($orderCart->address($orderCart->user_identity)->hand_over == 0)
+                        <a href="{{route('admin.action',['hand_over',$orderCart->user_identity])}}"><span
+                                style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
+                        @else
+                        <a onclick="return confirm('Are you sure?')"
+                            href="{{route('admin.reverse.action',['hand_over',$orderCart->user_identity])}}"><span
+                                style="color:#ffffff;font-size: 20px"> <i class="fa fa-check"></i></span></a>
+                        @endif
                     </span></td>
-                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger" href="{{route('admin.delete.order',$orderCart->user_identity)}}">Delete Order</a></td>
+                <td>
+                    <a href="{{route('admin.order.view',$orderCart->user_identity)}}" class="btn btn-info">View</a>||
+                    <a onclick="return confirm('Are you sure?')" class="btn btn-danger"
+                        href="{{route('admin.delete.order',$orderCart->user_identity)}}">Delete Order</a>
+
+                </td>
             <tr>
                 <td></td>
                 <td></td>
@@ -77,6 +85,7 @@
                 <th colspan="2" scope="col">Image</th>
                 <th scope="col">quantity</th>
                 <th scope="col">price</th>
+                <th scope="col">Action</th>
             </tr>
             @php
             $total = 0;
@@ -90,6 +99,7 @@
                         src="{{asset('thumb_product_images/'.$item->product->displayImage->image)}}" alt=""></td>
                 <td>{{$item->quantity}}</td>
                 <td>{{$item->product->price}}</td>
+                <td><a class="btn btn-info" href="{{route('admin.product.view',$item->product->id)}}">View</a></td>
                 @php
                 $total += $item->quantity*$item->product->price;
                 @endphp
@@ -101,8 +111,20 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td><b>Total = {{$total+50}}</b></td>
+                <td><b>Shipping =
+                        @php
+                        $shipping = 0;
+                        if($orderCart->address($orderCart->user_identity)->division == "Dhaka"){
+                        $shipping = 60;
+                        }
+                        else{
+                        $shipping = 120;
+                        }
+                        echo $shipping;
+                        @endphp
+
+                    </b></td>
+                <td><b>Total = {{$total+$shipping}}</b></td>
             </tr>
             </tr>
             @endforeach

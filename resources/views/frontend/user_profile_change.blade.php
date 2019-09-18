@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <h4>Email</h4>
-                        <input required class="input" disabled value="{{$address->email}}" type="email" name="email"
+                        <input required class="input" disabled value="{{Auth::user()->email}}" type="email" name="email"
                             placeholder="Email">
                     </div>
                     <div class="form-group">

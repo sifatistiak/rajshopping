@@ -16,7 +16,7 @@
 						@if (Auth::check())
 						@else
 						<p>Already a customer ? <a href="{{route('login')}}">Login</a></p>
-						
+
 						@endif
 						<div class="section-title">
 							<h3 class="title">Billing Details</h3>
@@ -29,12 +29,7 @@
 								value="@if($address){{$address->name}}@else{{ old('name') }} @endif" type="text"
 								name="name" placeholder=" Name">
 						</div>
-						<div class="form-group">
-							<h4>Email</h4>
-							<input required class="input"
-								value="@if ($address){{$address->email}}@else{{ old('email') }} @endif"" type=" email"
-								name="email" placeholder="Email">
-						</div>
+
 						<div class="form-group">
 							<h4>Phone</h4>
 							<input required class="input"
@@ -43,7 +38,7 @@
 						</div>
 						<div class="form-group">
 							<h4>Devision</h4>
-							<select required name="division" class="form-control">
+							<select required id="division" name="division" class="form-control">
 								<option value="">Select Division</option>
 								<option @if ($address) @if ($address->division == "Dhaka") selected @endif @endif
 									value="Dhaka">Dhaka </option>
@@ -75,6 +70,10 @@
 								<label class="font-weak" for="register">Create Account?</label>
 								<div class="caption">
 									<div class="form-group">
+										<h4>Email</h4>
+										<input class="input" type="email" name="email" placeholder="Email">
+									</div>
+									<div class="form-group">
 										<h4>Password</h4>
 										<input class="input" type="password" name="password" placeholder="Password">
 									</div>
@@ -101,7 +100,15 @@
 							<label for="payments-1">Cash on Delivery</label>
 							<div class="caption">
 								<p>Please provide cash on receiving your product. Thank you.
-									<p>
+								</p><br><br>
+								<h4>
+									Shipping Charge inside Dhaka : 60 <img style="display: inline" width="15px"
+										src="{{asset('frontend/img/taka.png')}}" alt="">
+								</h4>
+								<h4>
+									Shipping Charge outside Dhaka : 120 <img style="display: inline" width="15px"
+										src="{{asset('frontend/img/taka.png')}}" alt="">
+								</h4>
 							</div>
 						</div>
 					</div>
@@ -175,14 +182,23 @@
 								<tr>
 									<th class="empty" colspan="3"></th>
 									<th>SHIPING</th>
-									<th colspan="2" class="sub-total">50<img style="display: inline" width="15px"
+									<th colspan="2" class="sub-total"><span id="shipping">
+											@if ($address)
+											@if ($address->division == "Dhaka")
+											60
+											@else
+											120
+											@endif
+											@endif
+
+										</span><img style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt=""></th>
 								</tr>
 								<tr>
 									<th class="empty" colspan="3"></th>
 									<th>TOTAL</th>
 									<th colspan="2" class="total">
-										<div style="display:inline" id="total">{{$total+50}}</div>
+										<div style="display:inline" id="total">{{$total}}</div>
 										<img style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt="">
 									</th>
@@ -210,4 +226,24 @@
 <!-- policy section -->
 @include('includes.policy')
 <!-- policy /section -->
+@endsection
+@section('script')
+<script>
+	$(document).ready(function(){
+			$("#division").change(function(e){
+				var division = $("#division").val();
+				var shipping = 0;
+				if(division == "Dhaka"){
+					shipping = 60;
+				}else{
+					shipping = 120;
+				}
+				$("#shipping").text(shipping);
+				var subTotal = parseInt($("#sub_total").text());
+				console.log(subTotal);
+				$("#total").text(subTotal+shipping);
+
+			});
+		});
+</script>
 @endsection

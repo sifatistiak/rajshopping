@@ -10,7 +10,7 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class)->with('reviews')->where('status', 1);
+        return $this->hasMany(Product::class)->with('reviews')->with('displayImage')->where('status', 1)->orderBy('created_at','desc');
     }
 
     public function searchProducts($term)

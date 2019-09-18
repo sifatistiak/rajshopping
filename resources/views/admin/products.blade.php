@@ -28,9 +28,10 @@
                 <td>{{$product->quantity}}</td>
                 <td><img height="60px" width="80px" src="{{asset('product_images/'.$product->displayImage->image)}}"
                         alt=""></td>
-
-                <td><a class="btn btn-primary" href="{{route('admin.edit.product.view',$product->id)}}">Edit</a>
-                    <a class="btn btn-danger" onclick="return confirm('Are you sure?')"
+                <td>
+                    <a href="{{route('admin.product.view',$product->id)}}">View || </a>
+                    <a href="{{route('admin.edit.product.view',$product->id)}}">Edit || </a>
+                    <a onclick="return confirm('Are you sure?')"
                         href="{{route('admin.delete.product',$product->id)}}">Delete</a>
                 </td>
             </tr>

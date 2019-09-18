@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function products()
     {
-        $products = Product::all();
+        $products = Product::with('category','displayImage')->orderBy('category_id')->get();
         return view('admin.products', compact('products'));
     }
 
@@ -51,7 +51,7 @@ class ProductController extends Controller
             $img = $request->file('display_image');
             $displayImageName = rand() . '.' . $img->getClientOriginalExtension();
             Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName);
-            Image::make($request->file('display_image'))->resize(750, 900)->save('main_product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(1000, 1200)->save('main_product_images/' . $displayImageName);
             Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName);
         }
         $productImage = new ProductImage();
@@ -66,7 +66,7 @@ class ProductController extends Controller
                 foreach ($request->images as $image) {
                     $imageName = rand() . '.' . $image->getClientOriginalExtension();
                     Image::make($image)->resize(500, 700)->save('product_images/' . $imageName);
-                    Image::make($image)->resize(750, 900)->save('main_product_images/' . $imageName);
+                    Image::make($image)->resize(1000, 1200)->save('main_product_images/' . $imageName);
                     Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName);
 
 
@@ -96,7 +96,7 @@ class ProductController extends Controller
             'desc' => 'string|required|max:65535',
             'category_id' => 'integer|required',
             'price' => 'integer|required|min:1',
-            'quantity' => 'integer|required|min:1',
+            'quantity' => 'integer|required|min:0',
             'image' => 'image',
             'display_image' => 'image',
         ]);
@@ -111,7 +111,7 @@ class ProductController extends Controller
             $displayImageName = rand() . '.' . $img->getClientOriginalExtension();
 
             Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName);
-            Image::make($request->file('display_image'))->resize(750, 900)->save('main_product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(1000, 1200)->save('main_product_images/' . $displayImageName);
             Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName);
 
             if (File::exists('product_images/' . $productDisplayImage->image)) {
@@ -152,7 +152,7 @@ class ProductController extends Controller
                 foreach ($request->images as $image) {
                     $imageName = rand() . '.' . $image->getClientOriginalExtension();
                     Image::make($image)->resize(500, 700)->save('product_images/' . $imageName);
-                    Image::make($image)->resize(750, 900)->save('main_product_images/' . $imageName);
+                    Image::make($image)->resize(1000, 1200)->save('main_product_images/' . $imageName);
                     Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName);
 
                     $productImage = new ProductImage();
@@ -168,7 +168,8 @@ class ProductController extends Controller
 
     public function deleteProduct($id)
     {
-        $cart = Cart::where('product_id', $id)->first();
+        $cart = Cart::where('product_id', $id)->where('hand_over', 0)->first();
+
         if ($cart) {
             return back()->with('error', 'Cannot Delete Product.Cart exist.');
         } else {
@@ -190,5 +191,21 @@ class ProductController extends Controller
 
             return back()->with('success', 'Product deleted successful.');
         }
+    }
+
+    public function viewProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $productImages = ProductImage::where('product_id', $id)->where('display_image_status', 0)->get();
+        $displayImage = ProductImage::where('product_id', $id)->where('display_image_status', 1)->first();
+        return view('admin.view_product', compact('product', 'productImages', 'displayImage'));
+    }
+
+    public function productByCategory(Request $request)
+    {
+        $categories = Category::all();
+        $categoryId = $request->category_id;
+        $products = Product::where('category_id',$categoryId)->with('displayImage','category')->orderBy('created_at','desc')->get();
+        return view('admin.product_by_category', compact('categories','categoryId','products'));
     }
 }

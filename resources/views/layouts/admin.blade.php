@@ -208,8 +208,7 @@ desired effect
           </li>
           {{-- Product --}}
           <li class="treeview 
-          @if ( Request::path() == 'admin/add_product'  ||
-                          Request::path() == 'admin/products' ) 
+          @if ( Request::path() == 'admin/add_product'  ||  Request::path() == 'admin/products' || Request::path() == 'admin/product_by_category') 
                     active @endif">
             <a href="#"><i class="fa fa-link"></i> <span>Product</span>
               <span class="pull-right-container">
@@ -218,9 +217,11 @@ desired effect
             </a>
             <ul class="treeview-menu">
               <li class="@if (Request::path() == 'admin/add_product' ) active @endif"><a
-                  href="{{route('admin.add.product.view')}}">Add product</a></li>
+                  href="{{route('admin.add.product.view')}}">Add Product</a></li>
               <li class="@if (Request::path() == 'admin/products' ) active @endif"><a
-                  href="{{route('admin.products')}}">Manage product</a></li>
+                  href="{{route('admin.products')}}">Manage all Product</a></li>
+              <li class="@if (Request::path() == 'admin/product_by_category' ) active @endif"><a
+                  href="{{route('admin.product.by.category')}}">Product by Category</a></li>
             </ul>
           </li>
           {{-- category --}}
@@ -245,16 +246,16 @@ desired effect
             @if ( Request::path() == 'admin/add_slider_image'  ||
                 Request::path() == 'admin/slider_images' ) 
           active @endif">
-            <a href="#"><i class="fa fa-link"></i> <span>Slider Image</span>
+            <a href="#"><i class="fa fa-link"></i> <span>Slide and Collection Image</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-right pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
               <li class="@if (Request::path() == 'admin/add_slider_image' ) active @endif"><a
-                  href="{{route('admin.add.slider.image.view')}}">Add Slider Image</a></li>
+                  href="{{route('admin.add.slider.image.view')}}">Add Image</a></li>
               <li class="@if (Request::path() == 'admin/slider_images' ) active @endif"><a
-                  href="{{route('admin.slider.images')}}">Manage Slider Image</a></li>
+                  href="{{route('admin.slider.images')}}">Manage Image</a></li>
             </ul>
           </li>
           <li class="@if (Request::path() == 'admin/orders' ) active @endif"><a href="{{route('admin.orders')}}"><i

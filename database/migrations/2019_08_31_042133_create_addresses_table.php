@@ -17,7 +17,6 @@ class CreateAddressesTable extends Migration
             $table->bigIncrements('id');
             $table->string('user_identity')->unique();
             $table->string('name');
-            $table->string('email');
             $table->string('phone');
             $table->string('division');
             $table->text('address');

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title','Orders')
-@section('header','Orders')
+@section('title','Complete Orders')
+@section('header','Complete Orders')
 @section('content')
 
 <div class="col-md-12">
@@ -36,8 +36,18 @@
                 <td><span
                         style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->created_at->toFormattedDateString()}}</span>
                 </td>
-                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger"
-                        href="{{route('admin.delete.order',$orderCart->user_identity)}}">Delete</a></td>
+                <td>
+                    @if ($orderCart->address($orderCart->user_identity)->confirm == 0 &&
+                    $orderCart->address($orderCart->user_identity)->deliver == 0 &&
+                    $orderCart->address($orderCart->user_identity)->hand_over == 0)
+                    <button disabled="disabled" class="btn btn-success">Saved</button>
+                    @else
+                    <a onclick="return confirm('Are you sure?')" class="btn btn-success"
+                        href="{{route('admin.save.complete.order',$orderCart->user_identity)}}">Save</a>
+                    @endif
+                    <a onclick="return confirm('Are you sure?')" class="btn btn-danger"
+                        href="{{route('admin.delete.complete.order',$orderCart->user_identity)}}">Delete</a>
+                </td>
             <tr>
                 <td></td>
                 <td></td>

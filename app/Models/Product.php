@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = ['title', 'desc', 'category_id', 'price', 'quantity', 'status'];
+    // protected $timestamp = False;
+    // public $timestamps = false;
 
     public function category()
     {
@@ -28,4 +30,9 @@ class Product extends Model
     {
         return $this->hasMany(Review::class)->where('status',1);
     }
+
+//     public function getUpdatedAtAttribute($value)
+// {
+//     // to Disable updated_at
+// }
 }

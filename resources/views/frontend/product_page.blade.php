@@ -11,8 +11,9 @@
 			<!--  Product Details -->
 			<div class="product product-details clearfix">
 				<div class="col-md-6">
+
 					<div id="product-main-view">
-						@foreach ($product->images as $image)
+						@foreach ($singleProduct->images as $image)
 						<div class="product-view">
 							<img src="{{asset('main_product_images/'.$image->image)}}" alt="">
 						</div>
@@ -20,7 +21,7 @@
 
 					</div>
 					<div id="product-view">
-						@foreach ($product->images as $image)
+						@foreach ($singleProduct->images as $image)
 						<div class="product-view">
 							<img src="{{asset('thumb_product_images/'.$image->image)}}" alt="">
 						</div>
@@ -33,11 +34,11 @@
 							<span>New</span>
 							<span class="sale">-10%</span>
 						</div>
-						<h2 class="product-name">{{$product->title}}</h2>
-						<h3 class="product-price">{{$product->price}}<img style="display: inline" width="15px"
+						<h2 class="product-name">{{$singleProduct->title}}</h2>
+						<h3 class="product-price">{{$singleProduct->price}}<img style="display: inline" width="15px"
 								src="{{asset('frontend/img/taka.png')}}" alt="">
 							<del class="product-old-price">@php
-								$price = $product->price;
+								$price = $singleProduct->price;
 								$oldPrice = round($price+$price*.1);
 								@endphp
 								{{$oldPrice}}<img style="display: inline" width="15px"
@@ -63,22 +64,22 @@
 							@endif
 							<a href="#review">{{count($reviews)}} Review(s) / Add Review</a>
 
-						</div>
-						<p><strong>Availability:</strong> @if ($product->quantity > 0)
+						</div><br>
+						<p><strong>Availability:</strong> @if ($singleProduct->quantity > 0)
 							In Stock
 							@else
 							Not Available
 							@endif</p>
-						<p><strong>Category:</strong> {{$product->category->name }} </p>
-						<p>{!!$product->desc!!}</p>
+						<p><strong>Category:</strong> {{$singleProduct->category->name }} </p>
+						<p>{!!$singleProduct->desc!!}</p><br>
 
 
 						<div class="product-btns">
 
-							<a href="{{route('checkout',encrypt($product->id))}}" class="primary-btn"><i
+							<a href="{{route('checkout',encrypt($singleProduct->id))}}" class="primary-btn"><i
 									class="fa fa-shopping-basket"></i> Buy Now
 							</a>
-							<button id="add_to_cart" value="{{$product->id}}" class="primary-btn add_to_cart"><i
+							<button id="add_to_cart" value="{{$singleProduct->id}}" class="primary-btn add_to_cart"><i
 									class="fa fa-shopping-cart"></i> Add to
 								Cart</button>
 						</div>
@@ -93,7 +94,7 @@
 						<div class="tab-content">
 							<div id="tab1" class="tab-pane fade in ">
 								<p>
-									{!!$product->desc!!}
+									{!!$singleProduct->desc!!}
 								</p>
 							</div>
 							<div id="tab2" class="tab-pane fade in active">
@@ -131,11 +132,12 @@
 									<div class="col-md-6">
 										<h4 class="text-uppercase">Write Your Review</h4>
 										@include('includes.message')
-										
+
 										<form class="review-form" action="{{route('add.review')}}" method="POST">
 											@csrf
-											<input type="hidden" required name="product_id" value="{{$product->id}}" />
-											
+											<input type="hidden" required name="product_id"
+												value="{{$singleProduct->id}}" />
+
 											<div class="form-group">
 												<textarea class="input" required name="message"
 													placeholder="Your review"></textarea>
@@ -144,16 +146,16 @@
 												<div class="input-rating">
 													<strong class="text-uppercase">Your Rating: </strong>
 													<div class="stars">
-														<input type="radio" id="star5"  name="rating"
-															value="5" /><label for="star5"></label>
-														<input type="radio" id="star4"  name="rating"
-															value="4" /><label for="star4"></label>
-														<input type="radio" id="star3"  name="rating"
-															value="3" /><label for="star3"></label>
-														<input type="radio" id="star2"  name="rating"
-															value="2" /><label for="star2"></label>
-														<input type="radio" id="star1"  name="rating"
-															value="1" /><label for="star1"></label>
+														<input type="radio" id="star5" name="rating" value="5" /><label
+															for="star5"></label>
+														<input type="radio" id="star4" name="rating" value="4" /><label
+															for="star4"></label>
+														<input type="radio" id="star3" name="rating" value="3" /><label
+															for="star3"></label>
+														<input type="radio" id="star2" name="rating" value="2" /><label
+															for="star2"></label>
+														<input type="radio" id="star1" name="rating" value="1" /><label
+															for="star1"></label>
 													</div>
 												</div>
 											</div>
@@ -163,7 +165,8 @@
 									@else
 									<div class="col-md-6">
 										<h4 class="text-uppercase">Write Your Review</h4>
-										<h4>Only register user can write reviews. <a class="primary-color" href="{{route('register')}}"> Register Here</a></h4>
+										<h4>Only register user can write reviews. <a class="primary-color"
+												href="{{route('register')}}"> Register Here</a></h4>
 									</div>
 
 									@endif
@@ -207,9 +210,12 @@
 			@if (count($products)>0)
 			@foreach ($products as $product)
 
+			@if($product->id == $singleProduct->id)
+			@else
 			<div class="col-md-3 col-sm-6 col-xs-6">
 				@include('includes.product')
 			</div>
+			@endif
 			<!-- /Product Single -->
 			@endforeach
 			@else
@@ -224,10 +230,4 @@
 </div>
 <!-- /section -->
 
-@endsection
-
-@section('script')
-<script>
-
-</script>
 @endsection

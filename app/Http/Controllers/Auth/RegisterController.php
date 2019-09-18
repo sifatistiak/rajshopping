@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Session;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -69,15 +70,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user =  User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'status' => 1,
-            'password' => Hash::make($data['password']),
-        ]);
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'status' => 1,
+                'password' => Hash::make($data['password']),
+                ]);
         $address = new Address();
         $address->user_identity = $user->id;
         $address->name = $data['name'];
-        $address->email = $data['email'];
         $address->phone = $data['phone'];
         $address->division = $data['division'];
         $address->address = $data['address'];

@@ -26,7 +26,6 @@ class ShoppingController extends Controller
         if ($cart) {
             $cart->quantity = $cart->quantity + 1;
         } else {
-
             $cart = new Cart();
             $cart->user_identity = $userIdentity;
             $cart->product_id = $productId;
@@ -43,7 +42,6 @@ class ShoppingController extends Controller
 
     public function deleteCart(Request $request)
     {
-
         $cartId = $request->cartId;
         $cart = Cart::where('id', $cartId)->first();
         // return $cart;
@@ -100,7 +98,6 @@ class ShoppingController extends Controller
             if ($cart) {
                 $cart->quantity = $cart->quantity + 1;
             } else {
-
                 $cart = new Cart();
                 $cart->user_identity = $userIdentity;
                 $cart->product_id = $productId;
@@ -124,10 +121,6 @@ class ShoppingController extends Controller
 
         // create account in only address table
         if ($request->password == "") {
-            $this->validate($request, [
-                'email' => ['required', 'string', 'email', 'max:255'],
-            ]);
-
             // create
             if ($request->user_identity == "") {
                 $address = new Address();
@@ -143,13 +136,20 @@ class ShoppingController extends Controller
             }
             $address->user_identity = $userIdentity;
             $address->name = $request->name;
-            $address->email = $request->email;
             $address->phone = $request->phone;
             $address->division = $request->division;
             $address->address = $request->address;
             $address->save();
+
+            foreach ($request->carts as $cartId) {
+                $cart = Cart::where('id', $cartId)->first();
+                $cart->status = 0;
+                $cart->save();
+            }
+
+
             $msg = "<h3>Your Order has been placed. We will contact you soon. Thank You.</h3>";
-        } else { //user table enty create account
+        } else { //user table entry create account
             $this->validate($request, [
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -164,19 +164,23 @@ class ShoppingController extends Controller
             $address = new Address();
             $address->user_identity = $user->id;
             $address->name = $request['name'];
-            $address->email = $request['email'];
             $address->phone = $request['phone'];
             $address->division = $request['division'];
             $address->address = $request['address'];
             $address->save();
             Auth::loginUsingId($user->id);
+
+            //change the user identity as user created account
+            foreach ($request->carts as $cartId) {
+                $cart = Cart::where('id', $cartId)->first();
+                $cart->user_identity = Auth::id();
+                $cart->status = 0;
+                $cart->save();
+            }
+
             $msg = "<h3>Your account has been created and  Order has been placed. We will contact you soon. Thank You.</h3>";
         }
-        foreach ($request->carts as $cartId) {
-            $cart = Cart::where('id', $cartId)->first();
-            $cart->status = 0;
-            $cart->save();
-        }
+        
         return redirect()->route('checkout')->with('success', $msg);
     }
 

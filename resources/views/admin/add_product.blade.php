@@ -10,14 +10,20 @@
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Title</label>
-                <input value="{{old('title')}}" type="text" max="255" class="form-control" placeholder="Enter Product Title" name="title" autofocus
+                <input value="{{old('title')}}Firdous Ombre - 19" type="text" max="255" class="form-control" placeholder="Enter Product Title" name="title" autofocus
                     required>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Description</label>
-                <textarea name="desc" rows="10" class="form-control" required>{{old('desc')}}</textarea>
+                <textarea name="desc" rows="10" class="form-control" required>{{old('desc')}}
+<p><strong> DIGITAL PRINTED LAWN SHIRT 3.18M<br>
+DIGITAL PRINTED BAMBERG CHIFFON DUPATTA 2.5M<br>
+COTTONTROUSER 2.5M<br>
+2PCS ORGANZA EMB DAMAN MOTIFS-4PCS ORGANZA EMB TROUSER MOTIFS </strong></p>
+<p><strong>Quality </strong>- Best Quality Ensure</p>
+<p><strong>Look</strong> - As like the picture</p></textarea>
             </div>
         </div>
         <div class="box-body">
@@ -33,14 +39,14 @@
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Quantity</label>
-                <input value="{{old('quantity')}}" type="number" class="form-control" placeholder="Enter Product Title" name="quantity" min="1"
+                <input value="{{old('quantity')}}1" type="number" class="form-control" placeholder="Enter Product Quantity" name="quantity" min="1"
                     required>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Price</label>
-                <input value="{{old('price')}}" type="number" class="form-control" placeholder="Enter Product Title" name="price" min="1"
+                <input value="{{old('price')}}4300" type="number" class="form-control" placeholder="Enter Product Price" name="price" min="1"
                     required>
             </div>
         </div>

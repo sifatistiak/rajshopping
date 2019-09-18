@@ -27,7 +27,6 @@ Route::middleware(['onlyAjaxRequest'])->group(function () {
     Route::get('/change_quantity', 'Frontend\ShoppingController@changeQuantity')->name('change.quantity');
 
     Route::get('/delete_cart', 'Frontend\ShoppingController@deleteCart')->name('delete.cart');
-
 });
 Route::post('/add_review', 'Frontend\ReviewController@addReview')->name('add.review');
 
@@ -92,13 +91,19 @@ Route::prefix('admin')->group(function () {
         Route::post('add_product', 'Admin\ProductController@addProduct')->name('add.product');
         Route::get('edit_product/{id}', 'Admin\ProductController@editProductView')->name('edit.product.view');
         Route::post('edit_product/{id}', 'Admin\ProductController@editProduct')->name('edit.product');
+        Route::get('view_product/{id}', 'Admin\ProductController@viewProduct')->name('product.view');
+        Route::get('product_by_category/{id?}', 'Admin\ProductController@productByCategory')->name('product.by.category');
+        
 
         // order
         Route::get('orders', 'Admin\OrderController@orders')->name('orders');
         Route::get('action/{action}/{user_identity}', 'Admin\OrderController@action')->name('action');
         Route::get('reverse/{action}/{user_identity}', 'Admin\OrderController@reverseAction')->name('reverse.action');
+        Route::get('order/{id}', 'Admin\OrderController@orderView')->name('order.view');
 
         Route::get('delete_order/{user_identity}', 'Admin\OrderController@deleteOrder')->name('delete.order');
+        Route::get('delete_complete_order/{user_identity}', 'Admin\OrderController@deleteCompleteOrder')->name('delete.complete.order');
+        Route::get('save_complete_order/{user_identity}', 'Admin\OrderController@saveCompleteOrder')->name('save.complete.order');
         Route::get('completed_orders', 'Admin\OrderController@completedOrders')->name('completed.orders');
         
         //reviews

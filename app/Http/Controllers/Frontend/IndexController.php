@@ -15,10 +15,12 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $sliderImages = SliderImage::orderBy('created_at', 'desc')->get();
-
+        $sliderImages = SliderImage::where('type', 'slider')->orderBy('created_at', 'desc')->get();
+        $threeCollections = SliderImage::where('type', 'collection')->orderBy('created_at', 'desc')->take(3)->get();
+        $twoCollections = SliderImage::where('type', 'collection')->orderBy('created_at', 'desc')->skip(3)->take(2)->get();
+        $bigCollection = SliderImage::where('type', 'big_collection')->first();
         $categoryProducts = Category::with('products')->orderBy('created_at', 'desc')->get();
-        return view('frontend.index', compact('sliderImages', 'categoryProducts'));
+        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'threeCollections', 'twoCollections', 'bigCollection'));
     }
 
     public function products($id)
@@ -56,10 +58,10 @@ class IndexController extends Controller
         } catch (Exception $e) {
             return back();
         }
-        $product = Product::findOrFail($productId);
-        $reviews = Review::where('product_id', $product->id)->where('status',1)->paginate(6);
-        $products = Product::where('category_id', $product->category_id)->orderBy('created_at', 'desc')->paginate(12);
-        return view('frontend.product_page', compact('product', 'reviews', 'products'));
+        $singleProduct = Product::findOrFail($productId);
+        $reviews = Review::where('product_id', $singleProduct->id)->where('status', 1)->paginate(6);
+        $products = Product::where('category_id', $singleProduct->category_id)->orderBy('created_at', 'desc')->paginate(9);
+        return view('frontend.product_page', compact('singleProduct', 'reviews', 'products'));
     }
 
     public function search(Request $request)

@@ -14,19 +14,22 @@
                     </div>
                     <div class="form-group">
                         <h4>Name</h4>
-                        <input required class="input" type="text" name="name" placeholder=" Name">
+                        <input required value="{{old('name')}}" class="input" type="text" name="name"
+                            placeholder=" Name">
                     </div>
                     <div class="form-group">
                         <h4>Email</h4>
-                        <input required class="input" type="email" name="email" placeholder="You don't have to confirm your email.">
+                        <input required value="{{old('email')}}" class="input" type="email" name="email"
+                            placeholder="You don't have to confirm your email.">
                     </div>
                     <div class="form-group">
                         <h4>Phone</h4>
-                        <input required class="input" type="number" name="phone" placeholder="Phone">
+                        <input required value="{{old('phone')}}" class="input" type="number" name="phone"
+                            placeholder="Phone">
                     </div>
                     <div class="form-group">
                         <h4>Devision</h4>
-                        <select required name="division" class="form-control">
+                        <select required value="{{old('division')}}" name="division" class="form-control">
                             <option value="">Select Division</option>
                             <option value="Dhaka">Dhaka</option>
                             <option value="Barishal">Barishal</option>
@@ -41,7 +44,7 @@
                     <div class="form-group">
                         <h4>Shipping Address</h4>
                         <textarea required class="form-control" rows="5" placeholder="Your Shipping Address"
-                            name="address"></textarea>
+                            name="address">{{old('address')}}</textarea>
                     </div>
                     <div class="form-group">
                         <h4>Password</h4>

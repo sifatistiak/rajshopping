@@ -42,7 +42,7 @@ class CategoryController extends Controller
             Category::findOrFail($id)->delete();
             return back()->with('success', 'Category deleted successful.');
         } catch (Exception $e) {
-            return back()->with('error', 'Something wrong! Foreign key constraint violation.');
+            return back()->with('error', 'Something wrong! Foreign key constraint violation.Product Exist.');
         }
     }
 }

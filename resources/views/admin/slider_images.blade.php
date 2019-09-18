@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th scope="col">Sl.</th>
+                <th scope="col">Type</th>
                 <th scope="col">Image</th>
                 <th scope="col">Action</th>
             </tr>
@@ -17,8 +18,10 @@
 
             <tr>
                 <td>{{$loop->index+1}}</td>
+                <td>{{$sliderImage->type}}</td>
                 <td><img width="100px" height="60px" src="{{asset('slider_images/'.$sliderImage->image)}}" alt=""></td>
-                <td><a class="btn btn-danger" onclick="confirm('Are you sure ?')" href="{{route('admin.delete.slider.image',$sliderImage->id)}}">Delete</a></td>
+                <td><a class="btn btn-danger" onclick="return confirm('Are you sure ?')"
+                        href="{{route('admin.delete.slider.image',$sliderImage->id)}}">Delete</a></td>
             </tr>
             @endforeach
         </tbody>
