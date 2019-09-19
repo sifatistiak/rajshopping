@@ -23,6 +23,7 @@ class CreateAddressesTable extends Migration
             $table->boolean('confirm')->default(0);
             $table->boolean('deliver')->default(0);
             $table->boolean('hand_over')->default(0);
+            $table->boolean('order_count')->default(1);
             $table->timestamps();
         });
     }

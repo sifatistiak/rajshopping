@@ -3,9 +3,8 @@
 @section('header','Dashboard')
 @section('content')
 
-This is dashbord
-<h3>Number Of Category : {{$numberOfCategory}}</h3>
-<h3>Number Of Product : {{$numberOfProduct}}</h3>
-<h3>Number Of Order : {{$numberOfOrder}}</h3>
-<h3>Number Of Complete Order : {{$numberOfCompleteOrder}}</h3>
+<h3>Category : {{$numberOfCategory}}</h3>
+<h3>Product : {{$numberOfProduct}}</h3>
+<h3>Order : {{$numberOfOrder}}</h3>
+<h3>Complete Order (approximately): {{$numberOfCompleteOrder}}</h3>
 @endsection

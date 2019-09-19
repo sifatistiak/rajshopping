@@ -25,9 +25,9 @@ class OrderController extends Controller
     {
         $address = Address::where('user_identity', $userIdentity)->first();
         
-        $carts = Cart::where('user_identity', $userIdentity)->where('status', 0)->get();
+        $carts = Cart::where('user_identity', $userIdentity)->where('status', 0)->where('hand_over', 0)->get();
 
-        return view('admin.order_view', compact('address','carts'));
+        return view('admin.order_view', compact('address', 'carts'));
     }
 
     public function action($action, $userIdentity)
@@ -36,16 +36,20 @@ class OrderController extends Controller
         $address->$action = 1;
         
         if ($action == "hand_over") {
-            if($address->confirm == 1 && $address->deliver == 1){
+            if ($address->confirm == 1 && $address->deliver == 1) {
                 $carts = Cart::where('user_identity', $userIdentity)->get();
                 foreach ($carts as $cart) {
                     $cart->hand_over = 1;
                     $cart->save();
                 }
-            }else{
+            } else {
                 $address->$action = 0;
-                return back()->with('error','Confirm and deliver first.');
+                return back()->with('error', 'Confirm and deliver first.');
             }
+
+            $address->confirm = 0;
+            $address->deliver = 0;
+            $address->hand_over = 0;
         }
         $address->save();
         return back();
@@ -71,7 +75,7 @@ class OrderController extends Controller
         foreach ($carts as $cart) {
             $cart->delete();
         }
-        $address = Address::where('user_identity',$userIdentity)->first();
+        $address = Address::where('user_identity', $userIdentity)->first();
         $address->confirm = 0;
         $address->deliver = 0;
         $address->hand_over = 0;
@@ -79,7 +83,7 @@ class OrderController extends Controller
         return back();
     }
 
-     public function completedOrders()
+    public function completedOrders()
     {
         $orderCarts = Cart::select('user_identity')->where('status', 0)->where('hand_over', 1)->groupBy('user_identity')->get();
         return view('admin.completed_orders', compact('orderCarts'));
@@ -90,7 +94,7 @@ class OrderController extends Controller
         foreach ($carts as $cart) {
             $cart->delete();
         }
-        $address = Address::where('user_identity',$userIdentity)->first();
+        $address = Address::where('user_identity', $userIdentity)->first();
         $address->confirm = 0;
         $address->deliver = 0;
         $address->hand_over = 0;
@@ -99,14 +103,11 @@ class OrderController extends Controller
     }
     public function saveCompleteOrder($userIdentity)
     {
-        $address = Address::where('user_identity',$userIdentity)->first();
+        $address = Address::where('user_identity', $userIdentity)->first();
         $address->confirm = 0;
         $address->deliver = 0;
         $address->hand_over = 0;
         $address->save();
         return back();
     }
-    
-
-   
 }

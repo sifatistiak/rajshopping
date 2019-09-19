@@ -10,8 +10,9 @@ class Cart extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class)->with('displayImage');
     }
+
 
     public function address($userIdentity)
     {
@@ -19,7 +20,11 @@ class Cart extends Model
     }
     public function orderProduct($userIdentity)
     {
+        return Cart::where('user_identity', $userIdentity)->where('status', 0)->where('hand_over', 0)->get();
+    }
 
-        return Cart::where('user_identity', $userIdentity)->where('status', 0)->get();
+    public function completeOrderProduct($userIdentity)
+    {
+        return Cart::where('user_identity', $userIdentity)->where('status', 0)->where('hand_over', 1)->get();
     }
 }

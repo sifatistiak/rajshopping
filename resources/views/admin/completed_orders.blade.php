@@ -12,6 +12,7 @@
                 <th scope="col">Phone</th>
                 <th scope="col">Division</th>
                 <th scope="col">Address</th>
+                <th scope="col">Order count</th>
                 <th scope="col">Order At</th>
                 <th scope="col">Action</th>
             </tr>
@@ -33,18 +34,12 @@
                 <td><span
                         style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->address}}</span>
                 </td>
+                <td><span style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->order_count}}</span>
+                </td>
                 <td><span
                         style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->created_at->toFormattedDateString()}}</span>
                 </td>
                 <td>
-                    @if ($orderCart->address($orderCart->user_identity)->confirm == 0 &&
-                    $orderCart->address($orderCart->user_identity)->deliver == 0 &&
-                    $orderCart->address($orderCart->user_identity)->hand_over == 0)
-                    <button disabled="disabled" class="btn btn-success">Saved</button>
-                    @else
-                    <a onclick="return confirm('Are you sure?')" class="btn btn-success"
-                        href="{{route('admin.save.complete.order',$orderCart->user_identity)}}">Save</a>
-                    @endif
                     <a onclick="return confirm('Are you sure?')" class="btn btn-danger"
                         href="{{route('admin.delete.complete.order',$orderCart->user_identity)}}">Delete</a>
                 </td>
@@ -59,7 +54,7 @@
             @php
             $total = 0;
             @endphp
-            @foreach ($orderCart->orderProduct($orderCart->user_identity) as $item)
+            @foreach ($orderCart->completeOrderProduct($orderCart->user_identity) as $item)
             <tr>
                 <td></td>
                 <td></td>

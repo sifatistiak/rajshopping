@@ -33,7 +33,7 @@
                     <!-- section title -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h2 class="title">Search Result for "{{$term}}"</h2>
+                            <h2 class="title">Search Result </h2>
                         </div>
                     </div>
                     <!-- section title -->
@@ -49,6 +49,7 @@
                     <!-- /Product Single -->
                     @endforeach
                     @foreach ($categories as $category)
+
                     @foreach ($category->searchProducts($term) as $product)
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         @include('includes.product')

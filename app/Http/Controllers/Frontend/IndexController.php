@@ -31,7 +31,7 @@ class IndexController extends Controller
             return back();
         }
         $category = Category::findOrFail($categoryId);
-        $products = Product::where('category_id', $categoryId)->orderBy('created_at', 'desc')->paginate(12);
+        $products = Product::where('category_id', $categoryId)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(12);
         return view('frontend.products', compact('products', 'category'));
     }
 
@@ -60,7 +60,7 @@ class IndexController extends Controller
         }
         $singleProduct = Product::findOrFail($productId);
         $reviews = Review::where('product_id', $singleProduct->id)->where('status', 1)->paginate(6);
-        $products = Product::where('category_id', $singleProduct->category_id)->orderBy('created_at', 'desc')->paginate(9);
+        $products = Product::where('category_id', $singleProduct->category_id)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(9);
         return view('frontend.product_page', compact('singleProduct', 'reviews', 'products'));
     }
 
@@ -83,7 +83,7 @@ class IndexController extends Controller
     public function searchPage(Request $request)
     {
         $term = $request->search;
-        $products = Product::where('title', 'LIKE', '%' . $term . '%')->paginate(8);
+        $products = Product::where('title', 'LIKE', '%' . $term . '%')->with('reviews','displayImage')->paginate(12);
         $categories = Category::where('name', 'LIKE', '%' . $term . '%')->get();
         return view('frontend.search_page', compact('products', 'categories', 'term'));
     }

@@ -131,7 +131,7 @@
 									$userIdentity = Request::ip();
 									}
 									$carts =
-									App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->get();
+									App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->with('product')->get();
 									@endphp
 									<div id="carts">
 										@foreach ($carts as $cart)

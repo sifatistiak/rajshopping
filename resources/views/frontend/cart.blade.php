@@ -30,7 +30,7 @@
 								@php
 								$total = 0;
 								@endphp
-								@foreach ($carts as $cart)
+								@foreach($carts as $cart)
 
 								<tr class="rows">
 									<td class="thumb"><img

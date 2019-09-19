@@ -73,7 +73,6 @@
 						<p><strong>Category:</strong> {{$singleProduct->category->name }} </p>
 						<p>{!!$singleProduct->desc!!}</p><br>
 
-
 						<div class="product-btns">
 
 							<a href="{{route('checkout',encrypt($singleProduct->id))}}" class="primary-btn"><i

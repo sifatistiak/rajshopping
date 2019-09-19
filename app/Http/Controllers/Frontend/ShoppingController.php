@@ -68,7 +68,7 @@ class ShoppingController extends Controller
         } else {
             $userIdentity = $request->ip();
         }
-        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->get();
+        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->with('product')->get();
 
         return view('frontend.cart', compact('carts'));
     }
@@ -106,7 +106,7 @@ class ShoppingController extends Controller
         }
 
         $address = Address::where('user_identity', $userIdentity)->first();
-        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->get();
+        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->with('product')->get();
         return view('frontend.checkout', compact('carts', 'address'));
     }
 
@@ -124,6 +124,7 @@ class ShoppingController extends Controller
             // create
             if ($request->user_identity == "") {
                 $address = new Address();
+                $address->order_count = 1;
                 $userIdentity = $request->ip();
             } else {
                 // update
@@ -133,6 +134,7 @@ class ShoppingController extends Controller
                     $userIdentity = $request->user_identity;
                 }
                 $address = Address::where('user_identity', $userIdentity)->first();
+                $address->order_count = $address->order_count+1;
             }
             $address->user_identity = $userIdentity;
             $address->name = $request->name;
@@ -162,6 +164,7 @@ class ShoppingController extends Controller
                 'password' => Hash::make($request['password']),
             ]);
             $address = new Address();
+            $address->order_count = 1;
             $address->user_identity = $user->id;
             $address->name = $request['name'];
             $address->phone = $request['phone'];

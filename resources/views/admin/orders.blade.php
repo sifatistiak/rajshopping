@@ -13,6 +13,7 @@
                 <th scope="col">Division</th>
                 <th scope="col">Address</th>
                 <th scope="col">Order At</th>
+                <th scope="col">Order Count</th>
                 <th scope="col">Confirm</th>
                 <th scope="col">Deliver</th>
                 <th scope="col">Hand Over</th>
@@ -34,11 +35,16 @@
                         style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->division}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->address}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{str_limit($orderCart->address($orderCart->user_identity)->address,12)}}</span>
                 </td>
                 <td><span
                         style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->created_at->toFormattedDateString()}}</span>
                 </td>
+
+                <td><span
+                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->order_count}}</span>
+                </td>
+
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px;">
                         @if ($orderCart->address($orderCart->user_identity)->confirm == 0)
@@ -75,7 +81,7 @@
                 <td>
                     <a href="{{route('admin.order.view',$orderCart->user_identity)}}" class="btn btn-info">View</a>||
                     <a onclick="return confirm('Are you sure?')" class="btn btn-danger"
-                        href="{{route('admin.delete.order',$orderCart->user_identity)}}">Delete Order</a>
+                        href="{{route('admin.delete.order',$orderCart->user_identity)}}">Delete</a>
 
                 </td>
             <tr>
