@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title','Categories')
-@section('header','Categories')
+@section('title','Reviews')
+@section('header','Reviews')
 @section('content')
 
 <div class="col-md-9">
@@ -29,7 +29,8 @@
                 <td>{{$review->email}}</td>
                 <td>{{$review->message}}</td>
                 <td>{{$review->rating}}</td>
-                <td><a class="btn btn-danger" href="{{route('admin.change.review.status',$review->id)}}">Status {{$review->status}}</a></td>
+                <td><a class="btn btn-danger" href="{{route('admin.change.review.status',$review->id)}}">Status {{$review->status}}</a>
+                 || <a class="btn btn-danger" href="{{route('admin.delete.review',$review->id)}}">Delete</a></<a>
             </tr>
             @endforeach
         </tbody>

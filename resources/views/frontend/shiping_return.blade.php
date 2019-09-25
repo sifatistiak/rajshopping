@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 @section('title','About Us')
 @section('content')
-Shipping and return
+
+<div class="container">@include('includes.policy')</div>
 
 @endsection

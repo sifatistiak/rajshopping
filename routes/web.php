@@ -109,6 +109,7 @@ Route::prefix('admin')->group(function () {
         //reviews
         Route::get('reviews', 'Admin\ReviewHelpController@reviews')->name('reviews');
         Route::get('change_review_status/{id}', 'Admin\ReviewHelpController@changeReviewStatus')->name('change.review.status');
+        Route::get('delete_review/{id}', 'Admin\ReviewHelpController@deleteReview')->name('delete.review');
 
         //helps
         Route::get('helps', 'Admin\ReviewHelpController@helps')->name('helps');

@@ -1,8 +1,7 @@
 <div class="product product-single">
     <div class="product-thumb">
         <a href="{{route('product',encrypt($product->id))}}" class="main-btn quick-view"><i
-                class="fa fa-search-plus"></i> Quick
-            view</a>
+                class="fa fa-search-plus"></i>Quick view</a>
         <img src="{{asset('product_images/'.$product->displayImage->image)}}" alt="">
     </div>
     <div class="product-body">
@@ -31,7 +30,7 @@
             Not rated
         </div>
         @endif
-        <h2 class="product-name"><a href="#">{{$product->title}}</a></h2>
+        <h2 class="product-name"><a href="{{route('product',encrypt($product->id))}}">{{$product->title}}</a></h2>
         <div class="product-btns">
             <a href="{{route('checkout',encrypt($product->id))}}" class="primary-btn">Buy Now</a>
             <button id="add_to_cart" value="{{$product->id}}" class="primary-btn add_to_cart"></i> Add

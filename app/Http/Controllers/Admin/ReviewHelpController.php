@@ -41,4 +41,13 @@ class ReviewHelpController extends Controller
         $review->save();
         return back()->with('success','Review Status Changed.');
     }
+
+    public function deleteReview($id)
+    {
+         $review = Review::findOrFail($id);
+         $review->delete();
+         return back()->with('success', 'Review Deleted.');
+
+
+    }
 }

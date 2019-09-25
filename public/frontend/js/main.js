@@ -209,6 +209,7 @@ jQuery(document).ready(function ($) {
     var ww = document.body.clientWidth;
     if (ww < 700) {
       $('#header').removeClass('header1');
+      $('#search').removeClass('header-search1');
       $('#navigation').removeClass('navigation');
     }
   };

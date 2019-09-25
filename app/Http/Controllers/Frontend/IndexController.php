@@ -10,6 +10,8 @@ use App\Models\Review;
 use App\Models\SliderImage;
 use Exception;
 use Auth;
+use Illuminate\Support\Facades\Cache;
+
 
 class IndexController extends Controller
 {
@@ -19,7 +21,14 @@ class IndexController extends Controller
         $threeCollections = SliderImage::where('type', 'collection')->orderBy('created_at', 'desc')->take(3)->get();
         $twoCollections = SliderImage::where('type', 'collection')->orderBy('created_at', 'desc')->skip(3)->take(2)->get();
         $bigCollection = SliderImage::where('type', 'big_collection')->first();
-        $categoryProducts = Category::with('products')->orderBy('created_at', 'desc')->get();
+
+        // cache()->forget('categoryProducts');
+        // dd(cache('categoryProducts'));
+        // $categoryProducts = Category::with('products')->orderBy('created_at', 'desc')->get();
+
+         $categoryProducts = Cache::rememberForever('categoryProducts', function () {
+            return Category::with('products')->orderBy('created_at', 'desc')->get();
+        });
         return view('frontend.index', compact('sliderImages', 'categoryProducts', 'threeCollections', 'twoCollections', 'bigCollection'));
     }
 
@@ -83,7 +92,7 @@ class IndexController extends Controller
     public function searchPage(Request $request)
     {
         $term = $request->search;
-        $products = Product::where('title', 'LIKE', '%' . $term . '%')->with('reviews','displayImage')->paginate(12);
+        $products = Product::where('title', 'LIKE', '%' . $term . '%')->with('reviews', 'displayImage')->paginate(12);
         $categories = Category::where('name', 'LIKE', '%' . $term . '%')->get();
         return view('frontend.search_page', compact('products', 'categories', 'term'));
     }

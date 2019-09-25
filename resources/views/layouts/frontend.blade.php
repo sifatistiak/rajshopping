@@ -5,6 +5,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="This is a three piece market place for women. We are providing best quality three piece at low cost. We deliver our product very fast.">
+	 <meta name="keywords" content = "3 piece, shalwar kameez, best 3 piece, three piece">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>@yield('title')</title>
@@ -64,13 +66,18 @@
 					<!-- Logo -->
 					<div class="header-logo">
 						<a class="logo" href="{{route('index')}}">
-							<img src="{{asset('frontend/img/logo.png')}}" alt="">
+							<img height="75px" width="110px" src="{{asset('frontend/img/logo1.png')}}" alt="">
 						</a>
 					</div>
 					<!-- /Logo -->
 
 					<!-- Search -->
-					<div class="header-search">
+					<style>
+					.header-search1{
+						margin-left: 136px;
+					}
+					</style>
+					<div id="search" class="header-search header-search1">
 
 						<form id="searchForm" action="{{route('search.page')}}" method="get">
 							{{-- @csrf --}}
@@ -224,7 +231,12 @@
 		">
 					<span class="category-header">Categories <i class="fa fa-list"></i></span>
 					<ul class="category-list">
-						@foreach (App\Models\Category::orderBy('created_at', 'desc')->get() as $category)
+						@php
+							$categories = Cache::rememberForever('categories', function () {
+							return	App\Models\Category::orderBy('created_at', 'desc')->get();
+							});
+						@endphp
+						@foreach ($categories as $category)
 						<li><a href="{{route('products',encrypt($category->id))}}">{{$category->name}}</a></li>
 						@endforeach
 					</ul>
@@ -347,7 +359,7 @@
 						Copyright &copy;
 						<script>
 							document.write(new Date().getFullYear());
-						</script> All rights reserved @Touhedul Islam
+						</script> All rights reserved @KaporBD . Technology Partner <a style="color:#f8694a" href="http://skoder.co" target="_blank">Skoder</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<!-- /footer copyright -->

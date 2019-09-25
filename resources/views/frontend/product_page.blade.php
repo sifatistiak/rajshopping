@@ -127,7 +127,6 @@
 
 										</div>
 									</div>
-									@if(Auth::check())
 									<div class="col-md-6">
 										<h4 class="text-uppercase">Write Your Review</h4>
 										@include('includes.message')
@@ -138,8 +137,12 @@
 												value="{{$singleProduct->id}}" />
 
 											<div class="form-group">
+											<input placeholder="Your Name" value="{{old('name')}}" required class="input" type="text"	name="name" />
+											</div>
+
+											<div class="form-group">
 												<textarea class="input" required name="message"
-													placeholder="Your review"></textarea>
+													placeholder="Your review">{{old('message')}}</textarea>
 											</div>
 											<div class="form-group">
 												<div class="input-rating">
@@ -161,14 +164,7 @@
 											<button class="primary-btn">Submit</button>
 										</form>
 									</div>
-									@else
-									<div class="col-md-6">
-										<h4 class="text-uppercase">Write Your Review</h4>
-										<h4>Only register user can write reviews. <a class="primary-color"
-												href="{{route('register')}}"> Register Here</a></h4>
-									</div>
 
-									@endif
 								</div>
 
 
