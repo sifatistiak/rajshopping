@@ -101,6 +101,13 @@ class OrderController extends Controller
         $address->save();
         return back();
     }
+
+    public function deleteOrderProduct($orderProductId)
+    {
+        Cart::destroy($orderProductId);
+        return back()->with('success','Cart deleted');
+    }
+
     public function saveCompleteOrder($userIdentity)
     {
         $address = Address::where('user_identity', $userIdentity)->first();

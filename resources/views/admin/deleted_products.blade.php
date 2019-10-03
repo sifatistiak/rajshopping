@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title','Products')
-@section('header','Products')
+@section('title','Deleted Products')
+@section('header','Deleted Products')
 @section('content')
 <div class="col-md-12">
     <table class="table table-hover table-bordered table-striped">
@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($products as $product)
+            @foreach ($deletedProducts as $product)
 
             <tr>
                 <td>{{$loop->index+1}}</td>
@@ -29,10 +29,10 @@
                 <td><img height="60px" width="80px" src="{{asset('product_images/'.$product->displayImage->image)}}"
                         alt=""></td>
                 <td>
-                    <a href="{{route('admin.product.view',$product->id)}}">View || </a>
-                    <a href="{{route('admin.edit.product.view',$product->id)}}">Edit || </a>
                     <a onclick="return confirm('Are you sure?')"
-                        href="{{route('admin.delete.product',$product->id)}}">Soft Delete</a>
+                        href="{{route('admin.restore.product',$product->id)}}">Restore </a> || 
+                    <a onclick="return confirm('Are you sure?')"
+                        href="{{route('admin.force.delete.product',$product->id)}}">Force Delete</a>
                 </td>
             </tr>
             @endforeach

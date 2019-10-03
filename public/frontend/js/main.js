@@ -207,10 +207,11 @@
 jQuery(document).ready(function ($) {
   var alterClass = function () {
     var ww = document.body.clientWidth;
-    if (ww < 700) {
+    if (ww < 950) {
       $('#header').removeClass('header1');
       $('#search').removeClass('header-search1');
       $('#navigation').removeClass('navigation');
+      $('#logoPosition').removeClass('logoPosition');
     }
   };
   $(window).resize(function () {

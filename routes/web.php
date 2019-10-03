@@ -74,9 +74,16 @@ Route::prefix('admin')->group(function () {
 
         //category
         Route::get('categories', 'Admin\CategoryController@categories')->name('categories');
+        Route::get('deleted_categories', 'Admin\CategoryController@deletedCategories')->name('deleted.categories');
         Route::get('delete_category/{id}', 'Admin\CategoryController@deleteCategory')->name('delete.category');
+
+        Route::get('restore_category/{id}', 'Admin\CategoryController@restoreCategory')->name('restore.category');
+        Route::get('force_delete_category/{id}', 'Admin\CategoryController@forceDeleteCategory')->name('force.delete.category');
         Route::get('add_category', 'Admin\CategoryController@addCategoryView')->name('add.category.view');
         Route::post('add_category', 'Admin\CategoryController@addCategory')->name('add.category');
+
+        Route::get('edit_category/{id}', 'Admin\CategoryController@editCategoryView')->name('edit.category.view');
+        Route::post('edit_category', 'Admin\CategoryController@editCategory')->name('edit.category');
 
         //slider_image
         Route::get('slider_images', 'Admin\SliderImageController@sliderImages')->name('slider.images');
@@ -86,13 +93,18 @@ Route::prefix('admin')->group(function () {
 
         //product
         Route::get('products', 'Admin\ProductController@products')->name('products');
+        Route::get('deleted_products', 'Admin\ProductController@deletedProducts')->name('deleted.products');
         Route::get('delete_product/{id}', 'Admin\ProductController@deleteProduct')->name('delete.product');
+        Route::get('restore_product/{id}', 'Admin\ProductController@restoreProduct')->name('restore.product');
+        Route::get('force_delete_product/{id}', 'Admin\ProductController@forceDeleteProduct')->name('force.delete.product');
         Route::get('add_product', 'Admin\ProductController@addProductView')->name('add.product.view');
         Route::post('add_product', 'Admin\ProductController@addProduct')->name('add.product');
         Route::get('edit_product/{id}', 'Admin\ProductController@editProductView')->name('edit.product.view');
         Route::post('edit_product/{id}', 'Admin\ProductController@editProduct')->name('edit.product');
         Route::get('view_product/{id}', 'Admin\ProductController@viewProduct')->name('product.view');
         Route::get('product_by_category/{id?}', 'Admin\ProductController@productByCategory')->name('product.by.category');
+
+
         
 
         // order
@@ -102,6 +114,9 @@ Route::prefix('admin')->group(function () {
         Route::get('order/{id}', 'Admin\OrderController@orderView')->name('order.view');
 
         Route::get('delete_order/{user_identity}', 'Admin\OrderController@deleteOrder')->name('delete.order');
+
+        Route::get('delete_order_product/{orderProductId}', 'Admin\OrderController@deleteOrderProduct')->name('delete.order.product');
+
         Route::get('delete_complete_order/{user_identity}', 'Admin\OrderController@deleteCompleteOrder')->name('delete.complete.order');
         Route::get('save_complete_order/{user_identity}', 'Admin\OrderController@saveCompleteOrder')->name('save.complete.order');
         Route::get('completed_orders', 'Admin\OrderController@completedOrders')->name('completed.orders');

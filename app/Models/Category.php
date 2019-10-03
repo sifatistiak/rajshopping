@@ -3,14 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    protected $fillable = ['name'];
+    use SoftDeletes;
 
+    protected $fillable = ['name','priority'];
+    
     public function products()
     {
-        return $this->hasMany(Product::class)->with('reviews')->with('displayImage')->where('status', 1)->orderBy('created_at','desc');
+        return $this->hasMany(Product::class)->select('id','title', 'desc', 'category_id', 'price', 'quantity', 'status')->with('reviews')->with('displayImage')->where('status', 1)->orderBy('created_at','desc');
     }
 
     // protected $dispatchesEvents;

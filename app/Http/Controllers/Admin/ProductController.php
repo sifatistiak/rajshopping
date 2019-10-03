@@ -21,10 +21,58 @@ class ProductController extends Controller
 
     public function products()
     {
-        $products = Product::with('category','displayImage')->orderBy('category_id')->get();
+        $products = Product::with('category', 'displayImage')->orderBy('created_at', 'desc')->get();
+
         return view('admin.products', compact('products'));
     }
+    public function deletedProducts()
+    {
+        $deletedProducts = Product::onlyTrashed()->with('category', 'displayImage')->orderBy('created_at', 'desc')->get();
+        return view('admin.deleted_products', compact('deletedProducts'));
+    }
 
+    public function restoreProduct($id)
+    {
+        $product = Product::withTrashed()->where('id', $id)->first();
+
+        //restore the category first
+        $category = Category::withTrashed()->where('id', $product->category_id)->first();
+        if ($category->trashed()) {
+            return back()->with('error', 'Restore the category first. Category is '.$category->name);
+        }else{
+            $product->restore();
+            return back()->with('success', 'Product Restore successful.');
+        }
+
+
+    }
+
+    public function forceDeleteProduct($id)
+    {
+        $cart = Cart::where('product_id', $id)->where('hand_over', 0)->first();
+
+        if ($cart) {
+            return back()->with('error', 'Cannot Delete Product.Cart exist.');
+        } else {
+            $product = Product::withTrashed()->where('id', $id)->first();
+            $productImages = ProductImage::where('product_id', $id)->get();
+            foreach ($productImages as $productImage) {
+                if (File::exists('product_images/' . $productImage->image)) {
+                    File::delete('product_images/' . $productImage->image);
+                }
+                if (File::exists('main_product_images/' . $productImage->image)) {
+                    File::delete('main_product_images/' . $productImage->image);
+                }
+                if (File::exists('thumb_product_images/' . $productImage->image)) {
+                    File::delete('thumb_product_images/' . $productImage->image);
+                }
+                $productImage->delete();
+            }
+            $product->forceDelete();
+
+            return back()->with('success', 'Product deleted successful.');
+        }
+    }
     public function addProductView()
     {
         $categories = Category::all();
@@ -168,29 +216,9 @@ class ProductController extends Controller
 
     public function deleteProduct($id)
     {
-        $cart = Cart::where('product_id', $id)->where('hand_over', 0)->first();
-
-        if ($cart) {
-            return back()->with('error', 'Cannot Delete Product.Cart exist.');
-        } else {
-            $product = Product::findOrFail($id);
-            $productImages = ProductImage::where('product_id', $id)->get();
-            foreach ($productImages as $productImage) {
-                if (File::exists('product_images/' . $productImage->image)) {
-                    File::delete('product_images/' . $productImage->image);
-                }
-                if (File::exists('main_product_images/' . $productImage->image)) {
-                    File::delete('main_product_images/' . $productImage->image);
-                }
-                if (File::exists('thumb_product_images/' . $productImage->image)) {
-                    File::delete('thumb_product_images/' . $productImage->image);
-                }
-                $productImage->delete();
-            }
-            $product->delete();
-
-            return back()->with('success', 'Product deleted successful.');
-        }
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return back()->with('success', 'Product is soft deleted.');
     }
 
     public function viewProduct($id)
@@ -205,7 +233,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $categoryId = $request->category_id;
-        $products = Product::where('category_id',$categoryId)->with('displayImage','category')->orderBy('created_at','desc')->get();
-        return view('admin.product_by_category', compact('categories','categoryId','products'));
+        $products = Product::where('category_id', $categoryId)->with('displayImage', 'category')->orderBy('created_at', 'desc')->get();
+        return view('admin.product_by_category', compact('categories', 'categoryId', 'products'));
     }
 }

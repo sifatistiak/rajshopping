@@ -17,7 +17,11 @@ class CategoryObserver
     {
         cache()->forget('categories');
         Cache::rememberForever('categories', function () {
-            return	Category::orderBy('created_at', 'desc')->get();
+            return	Category::orderBy('priority', 'desc')->get();
+        });
+        cache()->forget('categoryProducts');
+        Cache::rememberForever('categoryProducts', function () {
+            return Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
         });
     }
 
@@ -31,7 +35,12 @@ class CategoryObserver
     {
         cache()->forget('categories');
         Cache::rememberForever('categories', function () {
-            return	Category::orderBy('created_at', 'desc')->get();
+            return	Category::orderBy('priority', 'desc')->get();
+        });
+        
+        cache()->forget('categoryProducts');
+        Cache::rememberForever('categoryProducts', function () {
+            return Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
         });
     }
 
@@ -45,7 +54,12 @@ class CategoryObserver
     {
         cache()->forget('categories');
         Cache::rememberForever('categories', function () {
-            return	Category::orderBy('created_at', 'desc')->get();
+            return	Category::orderBy('priority', 'desc')->get();
+        });
+        
+        cache()->forget('categoryProducts');
+        Cache::rememberForever('categoryProducts', function () {
+            return Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
         });
     }
 

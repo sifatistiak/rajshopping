@@ -15,6 +15,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8"><br>
                 <button onclick="window.print();"></button>
+                <h1>KaporBD.com</h1><br><br>
                 <table class="table table-striped">
                     <tr>
                         <td>
@@ -76,7 +77,7 @@
                             <tr class="rows">
 
                                 <td class="details">
-                                    <p>{{$cart->product->title}}</p>
+                                    <p><b>{{$cart->product->title}}</b></p>
                                 </td>
                                 <td class="text-center product_price"><strong>{{$cart->product->price}} <img
                                             style="display: inline" width="15px"

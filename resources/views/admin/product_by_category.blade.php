@@ -51,7 +51,7 @@
                     <a href="{{route('admin.product.view',$product->id)}}">View || </a>
                     <a href="{{route('admin.edit.product.view',$product->id)}}">Edit || </a>
                     <a onclick="return confirm('Are you sure?')"
-                        href="{{route('admin.delete.product',$product->id)}}">Delete</a>
+                        href="{{route('admin.delete.product',$product->id)}}">Soft Delete</a>
                 </td>
             </tr>
             @endforeach

@@ -23,31 +23,34 @@
         <tbody>
             @foreach ($orderCarts as $orderCart)
 
+            @php
+                $userIdentiy = $orderCart->address($orderCart->user_identity)
+            @endphp
             <tr style="background: #3c8dbc">
                 <td>{{$loop->index+1}}</td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->name}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->name}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->phone}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->phone}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->division}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->division}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{str_limit($orderCart->address($orderCart->user_identity)->address,12)}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{str_limit($userIdentiy->address,12)}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->created_at->toFormattedDateString()}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->created_at->toFormattedDateString()}}</span>
                 </td>
 
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->order_count}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->order_count}}</span>
                 </td>
 
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px;">
-                        @if ($orderCart->address($orderCart->user_identity)->confirm == 0)
+                        @if ($userIdentiy->confirm == 0)
                         <a href="{{route('admin.action',['confirm',$orderCart->user_identity])}}"><span
                                 style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
                         @else
@@ -58,7 +61,7 @@
                     </span></td>
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px">
-                        @if ($orderCart->address($orderCart->user_identity)->deliver == 0)
+                        @if ($userIdentiy->deliver == 0)
                         <a href="{{route('admin.action',['deliver',$orderCart->user_identity])}}"><span
                                 style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
                         @else
@@ -69,7 +72,7 @@
                     </span></td>
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px">
-                        @if ($orderCart->address($orderCart->user_identity)->hand_over == 0)
+                        @if ($userIdentiy->hand_over == 0)
                         <a href="{{route('admin.action',['hand_over',$orderCart->user_identity])}}"><span
                                 style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
                         @else
@@ -91,23 +94,39 @@
                 <th colspan="2" scope="col">Image</th>
                 <th scope="col">quantity</th>
                 <th scope="col">price</th>
+                <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
             @php
             $total = 0;
+            $orderProducts = $orderCart->orderProduct($orderCart->user_identity);
             @endphp
-            @foreach ($orderCart->orderProduct($orderCart->user_identity) as $item)
+            @foreach ($orderProducts as $orderProduct)
+            @php
+                $product = $orderProduct->product;
+            @endphp
             <tr>
                 <td></td>
                 <td></td>
-                <td>{{$item->product->title}}</td>
+                <td>{{$product->title}}</td>
                 <td colspan="2"><img height="80px" width="100px"
-                        src="{{asset('thumb_product_images/'.$item->product->displayImage->image)}}" alt=""></td>
-                <td>{{$item->quantity}}</td>
-                <td>{{$item->product->price}}</td>
-                <td><a class="btn btn-info" href="{{route('admin.product.view',$item->product->id)}}">View</a></td>
+                        src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" alt=""></td>
+                <td>{{$orderProduct->quantity}}</td>
+                <td>{{$product->price}}</td>
+                <td>
+                    @if($product->deleted_at == NULL)
+                    <button class="btn btn-success"> Active</button>
+                    @else
+                    <button class="btn btn-danger">Soft Deleted</button>
+                    @endif
+                
+                </td>
+                <td colspan="2">
+                    <a class="btn btn-info" href="{{route('admin.product.view',$product->id)}}">View</a>
+                     || <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('admin.delete.order.product',$orderProduct->id)}}">Delete</a>
+                </td>
                 @php
-                $total += $item->quantity*$item->product->price;
+                $total += $orderProduct->quantity*$product->price;
                 @endphp
             </tr>
             @endforeach
@@ -120,7 +139,7 @@
                 <td><b>Shipping =
                         @php
                         $shipping = 0;
-                        if($orderCart->address($orderCart->user_identity)->division == "Dhaka"){
+                        if($userIdentiy->division == "Dhaka"){
                         $shipping = 60;
                         }
                         else{

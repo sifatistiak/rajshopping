@@ -7,10 +7,12 @@ use App\Events\ProductDeleted;
 use App\Events\ProductUpdated;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     protected $fillable = ['title', 'desc', 'category_id', 'price', 'quantity', 'status'];
+    use SoftDeletes;
     // protected $timestamp = False;
     // public $timestamps = false;
 
@@ -22,12 +24,12 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)->withTrashed();
     }
 
     public function displayImage()
     {
-        return $this->hasOne(ProductImage::class)->where('display_image_status', '1');
+        return $this->hasOne(ProductImage::class)->select('id','product_id','image')->where('display_image_status', '1');
     }
 
     public function images()
@@ -37,8 +39,10 @@ class Product extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class)->where('status',1);
+        return $this->hasMany(Review::class)->select('id','name','message','rating','status','product_id')->where('status',1);
     }
+
+    
 
 //     public function getUpdatedAtAttribute($value)
 // {

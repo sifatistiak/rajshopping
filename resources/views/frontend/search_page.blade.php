@@ -39,7 +39,7 @@
                     <!-- section title -->
 
                     <!-- Product Single -->
-                    @if (count($products)>0 || count($categoryProducts)>0)
+                    @if (count($products)>0 || count($categories)>0)
 
                     @foreach ($products as $product)
 

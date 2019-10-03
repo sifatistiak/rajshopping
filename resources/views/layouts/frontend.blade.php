@@ -5,8 +5,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="This is a three piece market place for women. We are providing best quality three piece at low cost. We deliver our product very fast.">
-	 <meta name="keywords" content = "3 piece, shalwar kameez, best 3 piece, three piece">
+	<meta name="description"
+		content="This is a three piece market place for women. We are providing best quality three piece at low cost. We deliver our product very fast.">
+	<meta name="keywords" content="3 piece, shalwar kameez, best 3 piece, three piece">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>@yield('title')</title>
@@ -60,32 +61,37 @@
 			}
 		</style>
 
-		<div id="header" class="navbar-default header1">
+		<div id="header"  class="navbar-default header1">
 			<div class="container">
 				<div class="pull-left">
 					<!-- Logo -->
-					<div class="header-logo">
-						<a class="logo" href="{{route('index')}}">
-							<img height="75px" width="110px" src="{{asset('frontend/img/logo1.png')}}" alt="">
+					<style>
+						.logoPosition{
+							position: absolute;
+						}
+					</style>
+					<div id="logoPosition"  class="header-logo logoPosition">
+						<a class="logo"  href="{{route('index')}}">
+							<img  height="75px" width="95px" src="{{asset('frontend/img/logo2.png')}}" alt="">
 						</a>
 					</div>
 					<!-- /Logo -->
 
 					<!-- Search -->
 					<style>
-					.header-search1{
-						margin-left: 136px;
-					}
+						.header-search1 {
+							margin-left: 270px;
+						}
 					</style>
 					<div id="search" class="header-search header-search1">
 
 						<form id="searchForm" action="{{route('search.page')}}" method="get">
 							{{-- @csrf --}}
-							<input id="search" name="search" required class="input search-input" type="text"
+							<input id="search_box" name="search_key" required class="input search-input" type="text"
 								placeholder="Enter your keyword">
 
 							<button class="search-btn"><i class="fa fa-search"></i></button>
-						</form>
+						</form> 
 					</div>
 					<!-- /Search -->
 				</div>
@@ -150,8 +156,11 @@
 											<div class="product-body">
 												<h3 class="product-price">{{$cart->product->price}} <span
 														class="qty">x{{$cart->quantity}}</span></h3>
-												<h2 class="product-name"><a href="#">{{$cart->product->title}}</a>
+												<h2 class="product-name"><a href="{{route('product',encrypt($cart->product->id))}}">{{$cart->product->title}}</a>
 												</h2>
+												@if($cart->product->deleted_at != NULL)
+												<strong style="color:red"> This Product is out of stock.</strong>
+												@endif
 											</div>
 										</div>
 										@endforeach
@@ -232,9 +241,10 @@
 					<span class="category-header">Categories <i class="fa fa-list"></i></span>
 					<ul class="category-list">
 						@php
-							$categories = Cache::rememberForever('categories', function () {
-							return	App\Models\Category::orderBy('created_at', 'desc')->get();
-							});
+						// cache()->forget('categories');
+						$categories = Cache::rememberForever('categories', function () {
+						return App\Models\Category::orderBy('priority', 'desc')->get();
+						});
 						@endphp
 						@foreach ($categories as $category)
 						<li><a href="{{route('products',encrypt($category->id))}}">{{$category->name}}</a></li>
@@ -359,7 +369,8 @@
 						Copyright &copy;
 						<script>
 							document.write(new Date().getFullYear());
-						</script> All rights reserved @KaporBD . Technology Partner <a style="color:#f8694a" href="http://skoder.co" target="_blank">Skoder</a>
+						</script> All rights reserved @KaporBD . Technology Partner <a style="color:#f8694a"
+							href="http://skoder.co" target="_blank">Skoder</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<!-- /footer copyright -->
@@ -375,7 +386,13 @@
 	{{-- <script src="{{asset('frontend/js/jquery.min.js')}}"></script> --}}
 	<!-- jQuery 3 -->
 	<script src="{{asset('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	{{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
+
+	{{--automomplete--}}
+	<script src="{{ asset('frontend/js/jquery.easy-autocomplete.min.js') }}" defer></script>
+	{{-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script> --}}
+
 	<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('frontend/js/slick.min.js')}}"></script>
 	<script src="{{asset('frontend/js/nouislider.min.js')}}"></script>
@@ -384,13 +401,47 @@
 
 	<script>
 		$( function() {
-		    $( "#search" ).autocomplete({
-			  source: "{{route('search')}}",
-			  select: function( event, ui ) {
-				  $("#searchForm").submit();			 
-				 }
-		    });
-		  } );
+		    // $( "#search" ).autocomplete({
+			//   source: "{{route('search')}}",
+
+			//   select: function( event, ui ) {
+			// 	  $("#searchForm").submit();			 
+			// 	 }
+		    // });
+		});
+
+		//autocomplete
+		$(document).ready(function (e) {
+		// csrf
+		$.ajaxSetup({
+		headers: {
+		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+		});
+		// autocomplete
+		var options = {
+		
+		url: "/search",
+		
+		getValue: "title",
+		
+		list: {
+			match: {
+			enabled: true
+			},
+			onClickEvent: function () {
+			$("#search_form").submit();
+			},
+			onKeyEnterEvent: function () {
+			$("#search_form").submit();
+			}
+		},
+		theme: "funky"
+		
+		};
+		$("#search_box").easyAutocomplete(options);
+		
+	});
 	</script>
 	@include('scripts.add_to_cart')
 	@yield('script')

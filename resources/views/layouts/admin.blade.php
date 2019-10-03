@@ -208,7 +208,7 @@ desired effect
           </li>
           {{-- Product --}}
           <li class="treeview 
-          @if ( Request::path() == 'admin/add_product'  ||  Request::path() == 'admin/products' || Request::path() == 'admin/product_by_category') 
+          @if ( Request::path() == 'admin/add_product'  ||  Request::path() == 'admin/products' || Request::path() == 'admin/product_by_category' || Request::path() == 'admin/deleted_products')
                     active @endif">
             <a href="#"><i class="fa fa-link"></i> <span>Product</span>
               <span class="pull-right-container">
@@ -222,12 +222,15 @@ desired effect
                   href="{{route('admin.products')}}">Manage all Product</a></li>
               <li class="@if (Request::path() == 'admin/product_by_category' ) active @endif"><a
                   href="{{route('admin.product.by.category')}}">Product by Category</a></li>
+              <li class="@if (Request::path() == 'admin/deleted_products' ) active @endif"><a
+                  href="{{route('admin.deleted.products')}}">Deleted Products</a></li>
             </ul>
           </li>
           {{-- category --}}
           <li class="treeview 
               @if ( Request::path() == 'admin/add_category'  ||
-                Request::path() == 'admin/categories' ) 
+                Request::path() == 'admin/categories' || 
+                Request::path() == 'admin/deleted_categories' ) 
           active @endif">
             <a href="#"><i class="fa fa-link"></i> <span>Category</span>
               <span class="pull-right-container">
@@ -239,6 +242,8 @@ desired effect
                   href="{{route('admin.add.category.view')}}">Add Category</a></li>
               <li class="@if (Request::path() == 'admin/categories' ) active @endif"><a
                   href="{{route('admin.categories')}}">Manage Category</a></li>
+              <li class="@if (Request::path() == 'admin/deleted_categories' ) active @endif"><a
+                  href="{{route('admin.deleted.categories')}}">Deleted Category</a></li>
             </ul>
           </li>
           {{-- slider Image --}}

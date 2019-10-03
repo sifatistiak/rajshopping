@@ -385,15 +385,15 @@ textarea.input {
 }
 
 .header-search > form .search-input {
-    padding-left: 20px;
-    padding-right: 130px;
+    padding-left: 12px;
+    padding-right: 150px;
 }
 
 .header-search > form .search-categories {
     position: absolute;
     left: 0px;
     top: 0px;
-    width: 135px;
+    width: 225px;
 }
 
 .header-search > form .search-btn {

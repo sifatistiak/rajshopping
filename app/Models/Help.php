@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Help extends Model
 {
     protected $fillable = ['email','message','feedback'];
+    
 }

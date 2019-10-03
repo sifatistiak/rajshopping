@@ -18,7 +18,6 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->string('name');
-            $table->string('email');
             $table->text('message');
             $table->integer('rating');
             $table->boolean('status')->default(1);

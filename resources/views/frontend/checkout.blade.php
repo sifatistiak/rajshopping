@@ -144,8 +144,12 @@
 									</td>
 									<input type="hidden" name="carts[]" value="{{$cart->id}}">
 									<td class="details">
-										<a href="#">{{$cart->product->title}}</a>
+										<a href="{{route('product',encrypt($cart->product->title))}}">{{$cart->product->title}}</a>
+										@if($cart->product->deleted_at != NULL)
+										<strong style="color:red"> This Product is out of stock.</strong>
+										@endif
 									</td>
+
 									<td class="text-center product_price"><strong>{{$cart->product->price}} <img
 												style="display: inline" width="15px"
 												src="{{asset('frontend/img/taka.png')}}" alt=""></strong></td>

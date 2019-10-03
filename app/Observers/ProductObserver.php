@@ -33,7 +33,8 @@ class ProductObserver
     {
         cache()->forget('categoryProducts');
         Cache::rememberForever('categoryProducts', function () {
-            return Category::with('products')->orderBy('created_at', 'desc')->get();
+            return Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
+
         });
 
     }
@@ -48,7 +49,8 @@ class ProductObserver
     {
         cache()->forget('categoryProducts');
         Cache::rememberForever('categoryProducts', function () {
-            return Category::with('products')->orderBy('created_at', 'desc')->get();
+            return Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
+
         });
 
     }

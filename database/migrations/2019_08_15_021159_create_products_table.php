@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->boolean('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

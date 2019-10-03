@@ -19,7 +19,6 @@
         </thead>
         <tbody>
             @foreach ($orderCarts as $orderCart)
-
             <tr style="background: #3c8dbc">
                 <td>{{$loop->index+1}}</td>
                 <td><span
@@ -39,6 +38,8 @@
                 <td><span
                         style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->created_at->toFormattedDateString()}}</span>
                 </td>
+               
+                
                 <td>
                     <a onclick="return confirm('Are you sure?')" class="btn btn-danger"
                         href="{{route('admin.delete.complete.order',$orderCart->user_identity)}}">Delete</a>
