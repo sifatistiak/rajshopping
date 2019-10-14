@@ -37,7 +37,7 @@ class SliderImageController extends Controller
 
         if ($request->hasFile('image')) {
             $img = $request->file('image');
-            $imageName = rand() . '.' . $img->getClientOriginalExtension();
+            $imageName = uniqid() . '.' . $img->getClientOriginalExtension();
         }
         
         $sliderImage = new SliderImage();
@@ -45,13 +45,13 @@ class SliderImageController extends Controller
 
         if ($request->type == "slider") {
             $sliderImage->type = "slider";
-            Image::make($request->file('image'))->resize(1200, 675)->save('slider_images/' . $imageName);
+            Image::make($request->file('image'))->resize(1200, 675)->save('slider_images/' . $imageName,30);
         } elseif ($request->type == "big_collection") {
             $sliderImage->type = "big_collection";
-            Image::make($request->file('image'))->resize(1440, 1080)->save('slider_images/' . $imageName);
+            Image::make($request->file('image'))->resize(1440, 1080)->save('slider_images/' . $imageName,30);
         } else {
             $sliderImage->type = "collection";
-            Image::make($request->file('image'))->resize(720, 540)->save('slider_images/' . $imageName);
+            Image::make($request->file('image'))->resize(720, 540)->save('slider_images/' . $imageName,30);
         }
         $sliderImage->save();
         return back()->with('success', 'Image created successful.');

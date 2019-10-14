@@ -87,6 +87,7 @@ class ProductController extends Controller
             'category_id' => 'integer|required',
             'price' => 'integer|required|min:1',
             'quantity' => 'integer|required|min:1',
+            'discount' => 'integer|required',
             'image' => 'image',
             'display_image' => 'required|image',
         ]);
@@ -97,10 +98,10 @@ class ProductController extends Controller
         // Single display image save
         if ($request->hasFile('display_image')) {
             $img = $request->file('display_image');
-            $displayImageName = rand() . '.' . $img->getClientOriginalExtension();
-            Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName);
+            $displayImageName = uniqid() . '.' . $img->getClientOriginalExtension();
+            Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName,30);
             Image::make($request->file('display_image'))->resize(1000, 1200)->save('main_product_images/' . $displayImageName);
-            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName,30);
         }
         $productImage = new ProductImage();
         $productImage->product_id = $product->id;
@@ -112,10 +113,10 @@ class ProductController extends Controller
         if (is_array($request->images)) {
             if (count($request->images) > 0) {
                 foreach ($request->images as $image) {
-                    $imageName = rand() . '.' . $image->getClientOriginalExtension();
-                    Image::make($image)->resize(500, 700)->save('product_images/' . $imageName);
+                    $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+                    Image::make($image)->resize(500, 700)->save('product_images/' . $imageName,30);
                     Image::make($image)->resize(1000, 1200)->save('main_product_images/' . $imageName);
-                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName);
+                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName,30);
 
 
                     $productImage = new ProductImage();
@@ -145,6 +146,7 @@ class ProductController extends Controller
             'category_id' => 'integer|required',
             'price' => 'integer|required|min:1',
             'quantity' => 'integer|required|min:0',
+            'discount' => 'integer|required',
             'image' => 'image',
             'display_image' => 'image',
         ]);
@@ -156,11 +158,11 @@ class ProductController extends Controller
         if ($request->hasFile('display_image')) {
             $productDisplayImage = ProductImage::where('product_id', $id)->where('display_image_status', 1)->first();
             $img = $request->file('display_image');
-            $displayImageName = rand() . '.' . $img->getClientOriginalExtension();
+            $displayImageName = uniqid() . '.' . $img->getClientOriginalExtension();
 
-            Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName,30);
             Image::make($request->file('display_image'))->resize(1000, 1200)->save('main_product_images/' . $displayImageName);
-            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName);
+            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName,30);
 
             if (File::exists('product_images/' . $productDisplayImage->image)) {
                 File::delete('product_images/' . $productDisplayImage->image);
@@ -198,10 +200,10 @@ class ProductController extends Controller
                 }
                 //add new images
                 foreach ($request->images as $image) {
-                    $imageName = rand() . '.' . $image->getClientOriginalExtension();
-                    Image::make($image)->resize(500, 700)->save('product_images/' . $imageName);
+                    $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+                    Image::make($image)->resize(500, 700)->save('product_images/' . $imageName,30);
                     Image::make($image)->resize(1000, 1200)->save('main_product_images/' . $imageName);
-                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName);
+                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName,30);
 
                     $productImage = new ProductImage();
                     $productImage->product_id = $product->id;

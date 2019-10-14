@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Salwar Kameez')
+@section('title','Cart')
 @section('content')
 <!-- section -->
 <div class="section">
@@ -31,18 +31,20 @@
 								$total = 0;
 								@endphp
 								@foreach($carts as $cart)
-
+								@php
+									$product = $cart->product;
+								@endphp
 								<tr class="rows">
 									<td class="thumb"><img
-											src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
+											src="{{asset('thumb_product_images/'.$product->displayImage->image)}}"
 											alt=""></td>
 									<td class="details">
-										<a href="{{route('product',encrypt($cart->product->id))}}">{{$cart->product->title}}</a>
-										@if($cart->product->deleted_at != NULL)
+										<a href="{{$product->mypath()}}">{{$product->title}}</a>
+										@if($product->deleted_at != NULL)
 										<strong style="color:red"> This Product is out of stock.</strong>
 										@endif
 									</td>
-									<td class="text-center product_price"><strong>{{$cart->product->price}} <img
+									<td class="text-center product_price"><strong>{{$product->price}} <img
 												style="display: inline" width="15px"
 												src="{{asset('frontend/img/taka.png')}}" alt=""></strong></td>
 
@@ -54,10 +56,10 @@
 									{{-- price --}}
 									<td class="total1 text-center"><strong class="primary-color">
 											@php
-											$total += $cart->product->price * $cart->quantity;
+											$total += $product->price * $cart->quantity;
 											@endphp
 											<div style="display:inline" class="view">
-												{{$cart->product->price * $cart->quantity}}
+												{{$product->price * $cart->quantity}}
 											</div>
 											<img style="display: inline" width="15px"
 												src="{{asset('frontend/img/taka.png')}}" alt=""></strong></td>

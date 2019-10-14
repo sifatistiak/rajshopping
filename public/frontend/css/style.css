@@ -328,6 +328,11 @@ textarea.input {
 	02 -> HEADER
 ========================================================== = */
 
+/* #header {
+    padding-top: 15px;
+    padding-bottom: 5px;
+} */
+
 #header {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -495,7 +500,7 @@ textarea.input {
 ========================================================== = */
 
 .navigation {
-    margin-top: 85px;
+    /* margin-top: 85px; */
     background-color: #30323a;
 }
 

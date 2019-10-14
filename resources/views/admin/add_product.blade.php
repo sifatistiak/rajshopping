@@ -45,6 +45,13 @@ COTTONTROUSER 2.5M<br>
         </div>
         <div class="box-body">
             <div class="form-group">
+                <label for="exampleInputEmail1">Discount</label>
+                <input value="{{old('discount')}}10" type="number" class="form-control" placeholder="Enter Product discount" name="discount"
+                    required>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
                 <label for="exampleInputEmail1">Price</label>
                 <input value="{{old('price')}}4300" type="number" class="form-control" placeholder="Enter Product Price" name="price" min="1"
                     required>

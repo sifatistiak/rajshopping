@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Salwar Kameez')
+@section('title','Product')
 @section('content')
 
 <!-- section -->
@@ -32,15 +32,15 @@
 					<div class="product-body">
 						<div class="product-label">
 							<span>New</span>
-							<span class="sale">-10%</span>
+							<span class="sale">-{{$singleProduct->discount}}%</span>
 						</div>
 						<h2 class="product-name">{{$singleProduct->title}}</h2>
 						<h3 class="product-price">{{$singleProduct->price}}<img style="display: inline" width="15px"
 								src="{{asset('frontend/img/taka.png')}}" alt="">
 							<del class="product-old-price">@php
-								$price = $singleProduct->price;
-								$oldPrice = round($price+$price*.1);
-								@endphp
+							$price = $singleProduct->price;
+							$oldPrice = round($price+($price*$singleProduct->discount/100));
+							@endphp
 								{{$oldPrice}}<img style="display: inline" width="15px"
 									src="{{asset('frontend/img/taka.png')}}" alt="">
 							</del></h3>
@@ -79,8 +79,9 @@
 									class="fa fa-shopping-basket"></i> Buy Now
 							</a>
 							<button id="add_to_cart" value="{{$singleProduct->id}}" class="primary-btn add_to_cart"><i
-									class="fa fa-shopping-cart"></i> Add to
-								Cart</button>
+									class="fa fa-shopping-cart"></i>
+									Add to Cart
+									</button>
 						</div>
 					</div>
 				</div>

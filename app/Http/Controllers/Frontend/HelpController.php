@@ -17,8 +17,8 @@ class HelpController extends Controller
     {
         $this->validate($request, [
             'email' => 'required|string|email|max:255',
-            'message' => 'nullable|string|max:10000',
-            'feedback' => 'required|integer'
+            'message' => 'nullable|string|max:65000',
+            'feedback' => 'nullable|integer'
         ]);
         $help = new Help;
         $help->email = $request->email;

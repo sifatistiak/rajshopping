@@ -118,10 +118,10 @@
                                         @php
                                         $shipping = 0;
                                         if($address->division == "Dhaka"){
-                                        $shipping = 60;
+                                        $shipping = 0;
                                         }
                                         else{
-                                        $shipping = 120;
+                                        $shipping = 50;
                                         }
                                         echo $shipping;
                                         @endphp

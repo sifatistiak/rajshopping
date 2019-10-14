@@ -17,7 +17,7 @@ class CreateHelpsTable extends Migration
             $table->bigIncrements('id');
             $table->string('email');
             $table->text('message')->nullable();
-            $table->integer('feedback');
+            $table->integer('feedback')->nullable();
             $table->timestamps();
         });
     }

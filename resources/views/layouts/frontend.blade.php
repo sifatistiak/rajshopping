@@ -41,6 +41,16 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149462793-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-149462793-1');
+	</script>
+
 
 </head>
 
@@ -61,18 +71,19 @@
 			}
 		</style>
 
-		<div id="header"  class="navbar-default header1">
+		{{-- <div id="header" class="navbar-default header1"> --}}
+		<div id="header">
 			<div class="container">
 				<div class="pull-left">
 					<!-- Logo -->
 					<style>
-						.logoPosition{
+						.logoPosition {
 							position: absolute;
 						}
 					</style>
-					<div id="logoPosition"  class="header-logo logoPosition">
-						<a class="logo"  href="{{route('index')}}">
-							<img  height="75px" width="95px" src="{{asset('frontend/img/logo2.png')}}" alt="">
+					<div id="logoPosition" class="header-logo logoPosition">
+						<a class="logo" href="{{route('index')}}">
+							<img height="75px" width="95px" src="{{asset('frontend/img/logo2.png')}}" alt="">
 						</a>
 					</div>
 					<!-- /Logo -->
@@ -91,7 +102,7 @@
 								placeholder="Enter your keyword">
 
 							<button class="search-btn"><i class="fa fa-search"></i></button>
-						</form> 
+						</form>
 					</div>
 					<!-- /Search -->
 				</div>
@@ -156,7 +167,8 @@
 											<div class="product-body">
 												<h3 class="product-price">{{$cart->product->price}} <span
 														class="qty">x{{$cart->quantity}}</span></h3>
-												<h2 class="product-name"><a href="{{route('product',encrypt($cart->product->id))}}">{{$cart->product->title}}</a>
+												<h2 class="product-name"><a
+														href="{{route('product',encrypt($cart->product->id))}}">{{$cart->product->title}}</a>
 												</h2>
 												@if($cart->product->deleted_at != NULL)
 												<strong style="color:red"> This Product is out of stock.</strong>
@@ -247,7 +259,7 @@
 						});
 						@endphp
 						@foreach ($categories as $category)
-						<li><a href="{{route('products',encrypt($category->id))}}">{{$category->name}}</a></li>
+						<li><a href="{{$category->mypath()}}">{{$category->name}}</a></li>
 						@endforeach
 					</ul>
 
@@ -260,12 +272,12 @@
 	</div>
 	<!-- /NAVIGATION -->
 
-	<div class="container">
+	{{-- <div class="container">
 		<div class="row">
 
 
 		</div>
-	</div>
+	</div> --}}
 	@yield('content')
 
 
@@ -337,8 +349,9 @@
 						<h3 class="footer-header">Customer Service</h3>
 						<ul class="list-links">
 							<li><a href="/about_us">About Us</a></li>
-							<li><a href="{{route('help')}}">Help Us</a></li>
-							<li><a href="/shiping_return">Shiping & Return</a></li>
+							<li><a href="{{route('help')}}">Give Feedback</a></li>
+							<li><a href="{{route('shiping.return')}}">Shiping & Return</a></li>
+							<li><a href="{{route('privacy.policy')}}">Privacy Policy</a></li>
 						</ul>
 					</div>
 				</div>
@@ -349,8 +362,9 @@
 					<div class="footer">
 						<h3 class="footer-header">Contact Us</h3>
 						<ul class="list-links">
+							<li><a href="{{route('quick.contact')}}">Quick Contact</a></li>
 							<li><a href="#">Call us +880 1833996321</a></li>
-							<li><a href="#">Email us</a> - touhedulislam46@gmail.com</li>
+							<li><a href="#">Email us</a> - support@kaporbd.com</li>
 						</ul>
 
 

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $fillable = ['title', 'desc', 'category_id', 'price', 'quantity', 'status'];
+    protected $fillable = ['title', 'desc', 'category_id', 'price', 'quantity','discount', 'status'];
     use SoftDeletes;
     // protected $timestamp = False;
     // public $timestamps = false;
@@ -21,6 +21,18 @@ class Product extends Model
     //     'updated' => ProductUpdated::class,
     //     'deleted' => ProductDeleted::class,
     // ];
+
+    // override
+    //  public function getRouteKeyName()
+    // {
+    //     return 'title';
+    // }
+
+    public function mypath()
+    {
+        // return url("/product/{$this->id}-".str_slug($this->title, '-'));
+        return route('newproduct', [$this->id,str_slug($this->title, '-')]);
+    }
 
     public function category()
     {

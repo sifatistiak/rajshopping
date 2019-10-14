@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Products')
+@section('title','Category Products')
 @section('content')
 <!-- section -->
 <div class="section">

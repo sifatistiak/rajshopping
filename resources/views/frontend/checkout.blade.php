@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Salwar Kameez')
+@section('title','Checkout')
 @section('content')
 <!-- section -->
 <div class="section">
@@ -102,11 +102,10 @@
 								<p>Please provide cash on receiving your product. Thank you.
 								</p><br><br>
 								<h4>
-									Shipping Charge inside Dhaka : 60 <img style="display: inline" width="15px"
-										src="{{asset('frontend/img/taka.png')}}" alt="">
+									Free delivery inside Dhaka
 								</h4>
 								<h4>
-									Shipping Charge outside Dhaka : 120 <img style="display: inline" width="15px"
+									Shipping Charge outside Dhaka : 50 <img style="display: inline" width="15px"
 										src="{{asset('frontend/img/taka.png')}}" alt="">
 								</h4>
 							</div>
@@ -144,7 +143,7 @@
 									</td>
 									<input type="hidden" name="carts[]" value="{{$cart->id}}">
 									<td class="details">
-										<a href="{{route('product',encrypt($cart->product->title))}}">{{$cart->product->title}}</a>
+										<a href="{{$cart->product->mypath()}}">{{$cart->product->title}}</a>
 										@if($cart->product->deleted_at != NULL)
 										<strong style="color:red"> This Product is out of stock.</strong>
 										@endif
@@ -189,9 +188,9 @@
 									<th colspan="2" class="sub-total"><span id="shipping">
 											@if ($address)
 											@if ($address->division == "Dhaka")
-											60
+											0
 											@else
-											120
+											50
 											@endif
 											@endif
 
@@ -238,13 +237,12 @@
 				var division = $("#division").val();
 				var shipping = 0;
 				if(division == "Dhaka"){
-					shipping = 60;
+					shipping = 0;
 				}else{
-					shipping = 120;
+					shipping = 50;
 				}
 				$("#shipping").text(shipping);
 				var subTotal = parseInt($("#sub_total").text());
-				console.log(subTotal);
 				$("#total").text(subTotal+shipping);
 
 			});

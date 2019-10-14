@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-
+@section('title','User')
 @section('content')
 <div class="container">
     <div class="row">

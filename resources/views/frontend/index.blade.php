@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Salwar Kameez')
+@section('title','KaporBd - 3 piece for women')
 @section('content')
 <!-- Slide HOME -->
 <div id="home">
@@ -39,7 +39,8 @@
 			@foreach($threeCollections as $threeCollection)
 			<!-- banner -->
 			<div class="col-md-4 col-sm-6">
-				<a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[$loop->index]->id))}}">
+				{{-- <a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[$loop->index]->id))}}"> --}}
+				<a class="banner banner-1" href="{{$categoryProducts[$loop->index]->mypath()}}">
 					<img src="{{asset('slider_images/'.$threeCollection->image)}}" alt="">
 					<div class="banner-caption text-center">
 						<h2 class="white-color">NEW COLLECTION</h2>
@@ -57,9 +58,10 @@
 </div>
 <!-- / section -->
 <!-- Cateory 1 section -->
-
-@foreach ($categoryProducts as $categoryProduct)
-@if (count($categoryProduct->products)>0)
+{{-- {{count($categoryProducts)}} --}}
+{{-- @foreach ($categoryProducts as $categoryProduct) --}}
+@for($i=0; $i<3; $i++)
+@if (count($categoryProducts[$i]->products)>0)
 
 <div class="section-category">
 	<!-- container -->
@@ -69,11 +71,11 @@
 			<!-- section title -->
 			<div class="col-md-12">
 				<div class="section-title">
-					<a href=" {{route('products',encrypt($categoryProduct->id))}} ">
-						<h2 class="title">{{$categoryProduct->name}}</h2>
+					<a  href="{{$categoryProducts[$i]->mypath()}}">
+						<h2 class="title">{{$categoryProducts[$i]->name}}</h2>
 					</a>
 					<div class="pull-right">
-						<a href=" {{route('products',encrypt($categoryProduct->id))}} ">
+						<a  href="{{$categoryProducts[$i]->mypath()}}">
 							<h3 style="color: #F8694A" class="title">View All</h3>
 						</a>
 						<div class="product-slick-dots-1 custom-dots">
@@ -88,7 +90,7 @@
 				<div class="row">
 					<div id="product-slick-1" class="product-slick">
 						<!-- Product Single -->
-						@foreach ($categoryProduct->products as $product)
+						@foreach ($categoryProducts[$i]->products as $product)
 						@include('includes.product')
 						@endforeach
 						<!-- /Product Single -->
@@ -104,7 +106,8 @@
 	<!-- /container -->
 </div>
 @endif
-@endforeach
+@endfor
+{{-- @endforeach --}}
 <!-- /Cateory 1 section -->
 
 
@@ -123,9 +126,9 @@
 					<img src="{{asset('slider_images/'.$bigCollection->image)}}" alt="">
 					@endif
 					<div class="banner-caption text-center">
-						<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 10%
+						<h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to {{$discount}}%
 								OFF</span></h1>
-						<a href=" {{route('products',encrypt($categoryProducts[3]->id))}}" class="primary-btn">Shop
+						<a href="{{$categoryProducts[3]->mypath()}}" class="primary-btn">Shop
 							Now</a>
 					</div>
 				</div>
@@ -135,7 +138,7 @@
 			@foreach($twoCollections as $twoCollection)
 			<!-- banner -->
 			<div class="col-md-4 col-sm-6">
-				<a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[$loop->index+4]->id))}}">
+				<a class="banner banner-1" href="{{$categoryProducts[$loop->index+4]->mypath()}}">
 					<img src="{{asset('slider_images/'.$twoCollection->image)}}" alt="">
 					<div class="banner-caption text-center">
 					</div>
@@ -150,6 +153,53 @@
 	<!-- /container -->
 </div>
 <!-- /section -->
+
+<!-- section -->
+@for($i=3; $i<count($categoryProducts); $i++) 
+@if (count($categoryProducts[$i]->products)>0)
+<div class="section section-grey">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- section title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<a href="{{$categoryProducts[$i]->mypath()}}">
+						<h2 class="title">{{$categoryProducts[$i]->name}}</h2>
+					</a>
+					<div class="pull-right">
+						<a href="{{$categoryProducts[$i]->mypath()}}">
+							<h3 style="color: #F8694A" class="title">View All</h3>
+						</a>
+						<div class="product-slick-dots-1 custom-dots">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- section title -->
+			@php
+				$productCount = count($categoryProducts[$i]->products);
+				if($productCount > 8){
+					$productCount = 8;
+				}
+			@endphp
+			@for ($j = 0; $j<$productCount; $j++)
+			@php
+				$product = $categoryProducts[$i]->products[$j];
+			@endphp
+				<div class="col-md-3 col-sm-6 col-xs-6">
+				@include('includes.product')
+				</div>
+			@endfor
+			<!-- Product Single -->
+		
+		</div>
+		<!-- /row -->
+	</div>
+</div>
+@endif
+@endfor
 
 
 @endsection

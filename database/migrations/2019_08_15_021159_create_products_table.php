@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->integer('price');
             $table->integer('quantity');
+            $table->integer('discount');
             $table->boolean('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

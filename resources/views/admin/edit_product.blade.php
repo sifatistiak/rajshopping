@@ -43,6 +43,13 @@
         </div>
         <div class="box-body">
             <div class="form-group">
+                <label for="exampleInputEmail1">Discount</label>
+                <input value="{{$product->discount}}" type="number" class="form-control"
+                    placeholder="Enter Product Title" name="discount" min="0" required>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
                 <label for="exampleInputEmail1">Price</label>
                 <input value="{{$product->price}}" type="number" class="form-control" placeholder="Enter Product Title"
                     name="price" min="1" required>
