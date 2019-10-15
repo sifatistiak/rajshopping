@@ -347,7 +347,7 @@
 					<div class="footer">
 						<h3 class="footer-header">Customer Service</h3>
 						<ul class="list-links">
-							<li><a href="/about_us">About Us</a></li>
+							<li><a href="{{route('about.us')}}">About Us</a></li>
 							<li><a href="{{route('help')}}">Give Feedback</a></li>
 							<li><a href="{{route('shiping.return')}}">Shiping & Return</a></li>
 							<li><a href="{{route('privacy.policy')}}">Privacy Policy</a></li>
