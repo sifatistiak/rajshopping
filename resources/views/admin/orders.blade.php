@@ -115,9 +115,9 @@
                 <td>{{$product->price}}</td>
                 <td>
                     @if($product->deleted_at == NULL)
-                    <button class="btn btn-success"> Active</button>
+                    <button class="btn btn-success" disabled> Active</button>
                     @else
-                    <button class="btn btn-danger">Soft Deleted</button>
+                    <button class="btn btn-danger" disabled>Soft Deleted</button>
                     @endif
                 
                 </td>

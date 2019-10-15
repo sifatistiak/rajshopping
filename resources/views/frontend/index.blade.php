@@ -94,8 +94,6 @@
 						@include('includes.product')
 						@endforeach
 						<!-- /Product Single -->
-
-
 					</div>
 				</div>
 			</div>

@@ -83,7 +83,7 @@
 					</style>
 					<div id="logoPosition" class="header-logo logoPosition">
 						<a class="logo" href="{{route('index')}}">
-							<img height="75px" width="95px" src="{{asset('frontend/img/logo2.png')}}" alt="">
+							<img src="{{asset('frontend/img/logo.jpg')}}" alt="">
 						</a>
 					</div>
 					<!-- /Logo -->
@@ -98,8 +98,7 @@
 
 						<form id="searchForm" action="{{route('search.page')}}" method="get">
 							{{-- @csrf --}}
-							<input id="search_box" name="search_key" required class="input search-input" type="text"
-								placeholder="Enter your keyword">
+							<input id="search_box" name="search_key" required class="input search-input" type="text" placeholder="Enter your keyword">
 
 							<button class="search-btn"><i class="fa fa-search"></i></button>
 						</form>

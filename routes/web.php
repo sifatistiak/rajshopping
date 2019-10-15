@@ -1,7 +1,6 @@
 <?php
 
 // FrontendController
-
 Route::get('/', 'Frontend\IndexController@index')->name('index');
 Route::get('/products/{id}', 'Frontend\IndexController@products')->name('products');
 
