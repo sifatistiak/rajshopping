@@ -498,9 +498,9 @@ textarea.input {
 /*=========================================================
 	03 -> NAVIGATION
 ========================================================== = */
-
+/* Menu change */
 .navigation {
-    /* margin-top: 85px; */
+    margin-top: 85px;
     background-color: #30323a;
 }
 

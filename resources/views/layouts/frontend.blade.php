@@ -50,7 +50,7 @@
 
   gtag('config', 'UA-149462793-1');
 	</script>
-
+	<script src="{{asset('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
 
 </head>
 
@@ -71,8 +71,8 @@
 			}
 		</style>
 
-		{{-- <div id="header" class="navbar-default header1"> --}}
-		<div id="header">
+		<div id="header" class="navbar-default header1">
+			{{-- <div id="header"> --}}
 			<div class="container">
 				<div class="pull-left">
 					<!-- Logo -->
@@ -83,7 +83,7 @@
 					</style>
 					<div id="logoPosition" class="header-logo logoPosition">
 						<a class="logo" href="{{route('index')}}">
-							<img src="{{asset('frontend/img/logo.jpg')}}" alt="">
+							<img src="{{asset('frontend/img/main-logo.png')}}" alt="">
 						</a>
 					</div>
 					<!-- /Logo -->
@@ -98,7 +98,8 @@
 
 						<form id="searchForm" action="{{route('search.page')}}" method="get">
 							{{-- @csrf --}}
-							<input id="search_box" name="search_key" required class="input search-input" type="text" placeholder="Enter your keyword">
+							<input id="search_box" name="search_key" required class="input search-input" type="text"
+								placeholder="Enter your keyword">
 
 							<button class="search-btn"><i class="fa fa-search"></i></button>
 						</form>
@@ -264,11 +265,37 @@
 
 				</div>
 				<!-- /category nav -->
+				<!-- menu nav -->
+				<div class="menu-nav">
+					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+					<ul class="menu-list">
+						<li><a href="{{route('index')}}">Home</a></li>
+						<li>
+							@if(Request::path() == '/')
+							<a href="#shop">Shop</a>
+							@else
+							<a href="{{route('index')}}#shop">Shop</a>
+							@endif
+						</li>
+						<li><a href="{{route('about.us')}}">About</a></li>
+						<li><a href="{{route('help')}}">Feedback</a></li>
+						<li><a href="{{route('quick.contact')}}">Contact</a></li>
+					</ul>
+				</div>
 
 			</div>
 		</div>
 		<!-- /container -->
 	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function ($) {
+		var alterClass = function () {
+		var ww = document.body.clientWidth;
+		if (ww < 950) { $('#header').removeClass('header1'); $('#search').removeClass('header-search1');
+			$('#navigation').removeClass('navigation'); $('#logoPosition').removeClass('logoPosition'); } };
+			$(window).resize(function () { alterClass(); }); alterClass(); });
+	</script>
+
 	<!-- /NAVIGATION -->
 
 	{{-- <div class="container">
@@ -398,7 +425,6 @@
 	<!-- jQuery Plugins -->
 	{{-- <script src="{{asset('frontend/js/jquery.min.js')}}"></script> --}}
 	<!-- jQuery 3 -->
-	<script src="{{asset('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
 	{{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
 
 	{{--automomplete--}}

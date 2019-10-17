@@ -28,9 +28,9 @@
 	</div>
 </div>
 <!-- /Slide HOME -->
-<br><br>
+
 <!--  section -->
-<div class="section">
+<div id="shop" class="section">
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
@@ -60,7 +60,7 @@
 					<p style="text-align: justify;">Pathao helps us to deliver your product at your home. They provide fast delivery. Pathao is our fast, safe and secure delivery partner.</p>	
 				</a>
 				
-			</div>
+			</div><br><br><br>
 			<!-- /banner -->
 			<!-- banner -->
 			<div class="col-md-4 col-sm-6">
@@ -68,8 +68,8 @@
 					<img src="{{asset('frontend/img/cash.jpg')}}" alt="">
 					<div class="banner-caption text-center">
 						{{-- <h2 class="white-color">NEW COLLECTION</h2> --}}
-					</div><br>
-				<h3>Safe Payment System</h3>
+					</div><br><br>
+				<h3 style="margin-top:13px">Safe Payment System</h3>
 					<p style="text-align: justify;"> We receive cash when we deliver your product so that you don't have to worry about your money. We also return your cash if any accident occurs.</p>
 				</a><br>
 				

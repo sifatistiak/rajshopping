@@ -37,7 +37,7 @@ Route::post('/add-review', 'Frontend\ReviewController@addReview')->name('add.rev
 
 
 //Give feed back and help User side
-Route::get('help', 'Frontend\HelpController@helpPage')->name('help');
+Route::get('feedback', 'Frontend\HelpController@helpPage')->name('help');
 Route::post('submit-help', 'Frontend\HelpController@submitHelp')->name('submit.help');
 
 Route::get('/about-us', 'Frontend\IndexController@aboutUs')->name('about.us');

@@ -95,7 +95,7 @@ desired effect
                       <a href="#">
                         <div class="pull-left">
                           <!-- User Image -->
-                          <img src="{{asset('admin/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
+                          <img src="{{asset('yqw/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
                         </div>
                         <!-- Message title and timestamp -->
                         <h4>
@@ -144,14 +144,14 @@ desired effect
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="{{asset('admin/dist/img/user.jpg')}}" class="user-image" alt="User Image">
+                <img src="{{asset('yqw/dist/img/user.jpg')}}" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">{{Auth::user()->name}} </span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="{{asset('admin/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
+                  <img src="{{asset('yqw/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
 
                   <p>
                     {{Auth::user()->name}}
@@ -188,7 +188,7 @@ desired effect
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="{{asset('admin/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
+            <img src="{{asset('yqw/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p>{{Auth::user()->name}}</p>
@@ -203,12 +203,12 @@ desired effect
         <ul class="sidebar-menu" data-widget="tree">
           <!-- Optionally, you can add icons to the links -->
           <li>{{Request::path()}} </li>
-          <li class="@if (Request::path() == 'admin/index') active @endif">
+          <li class="@if (Request::path() == 'yqw/index') active @endif">
             <a href="{{route('admin.index')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
           </li>
           {{-- Product --}}
           <li class="treeview 
-          @if ( Request::path() == 'admin/add-product'  ||  Request::path() == 'admin/products' || Request::path() == 'admin/product-by-category' || Request::path() == 'admin/deleted-products'|| Request::is('admin/view-product/*'))
+          @if ( Request::path() == 'yqw/add-product'  ||  Request::path() == 'yqw/products' || Request::path() == 'yqw/product-by-category' || Request::path() == 'yqw/deleted-products'|| Request::is('yqw/view-product/*') || Request::is('yqw/edit-product/*'))
                     active @endif">
             <a href="#"><i class="fa fa-link"></i> <span>Product</span>
               <span class="pull-right-container">
@@ -216,21 +216,21 @@ desired effect
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class="@if (Request::path() == 'admin/add-product' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/add-product' ) active @endif"><a
                   href="{{route('admin.add.product.view')}}">Add Product</a></li>
-              <li class="@if (Request::path() == 'admin/products' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/products' ) active @endif"><a
                   href="{{route('admin.products')}}">Manage all Product</a></li>
-              <li class="@if (Request::path() == 'admin/product-by-category' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/product-by-category' ) active @endif"><a
                   href="{{route('admin.product.by.category')}}">Product by Category</a></li>
-              <li class="@if (Request::path() == 'admin/deleted-products' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/deleted-products' ) active @endif"><a
                   href="{{route('admin.deleted.products')}}">Deleted Products</a></li>
             </ul>
           </li>
           {{-- category --}}
           <li class="treeview 
-              @if ( Request::path() == 'admin/add-category'  ||
-                Request::path() == 'admin/categories' || Request::is('admin/edit-category/*')||
-                Request::path() == 'admin/deleted-categories' ) 
+              @if ( Request::path() == 'yqw/add-category'  ||
+                Request::path() == 'yqw/categories' || Request::is('yqw/edit-category/*')||
+                Request::path() == 'yqw/deleted-categories' ) 
           active @endif">
             <a href="#"><i class="fa fa-link"></i> <span>Category</span>
               <span class="pull-right-container">
@@ -238,18 +238,18 @@ desired effect
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class="@if (Request::path() == 'admin/add-category' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/add-category' ) active @endif"><a
                   href="{{route('admin.add.category.view')}}">Add Category</a></li>
-              <li class="@if (Request::path() == 'admin/categories' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/categories' ) active @endif"><a
                   href="{{route('admin.categories')}}">Manage Category</a></li>
-              <li class="@if (Request::path() == 'admin/deleted-categories' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/deleted-categories' ) active @endif"><a
                   href="{{route('admin.deleted.categories')}}">Deleted Category</a></li>
             </ul>
           </li>
           {{-- slider Image --}}
           <li class="treeview 
-            @if ( Request::path() == 'admin/add-slider-image'  || Request::is('admin/orders')||
-                Request::path() == 'admin/slider-images' ) 
+            @if ( Request::path() == 'yqw/add-slider-image'  || Request::is('yqw/orders')||
+                Request::path() == 'yqw/slider-images' ) 
           active @endif">
             <a href="#"><i class="fa fa-link"></i> <span>Slide and Collection Image</span>
               <span class="pull-right-container">
@@ -257,23 +257,23 @@ desired effect
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class="@if (Request::path() == 'admin/add-slider-image' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/add-slider-image' ) active @endif"><a
                   href="{{route('admin.add.slider.image.view')}}">Add Image</a></li>
-              <li class="@if (Request::path() == 'admin/slider-images' ) active @endif"><a
+              <li class="@if (Request::path() == 'yqw/slider-images' ) active @endif"><a
                   href="{{route('admin.slider.images')}}">Manage Image</a></li>
             </ul>
           </li>
-          <li class="@if (Request::path() == 'admin/orders' ) active @endif"><a href="{{route('admin.orders')}}"><i
+          <li class="@if (Request::path() == 'yqw/orders' ) active @endif"><a href="{{route('admin.orders')}}"><i
                 class="fa fa-link"></i> <span>Orders</span></a></li>
 
-          <li class="@if (Request::path() == 'admin/completed-orders' ) active @endif"><a
+          <li class="@if (Request::path() == 'yqw/completed-orders' ) active @endif"><a
               href="{{route('admin.completed.orders')}}"><i class="fa fa-link"></i> <span>Complete Orders</span></a>
           </li>
-          <li class="@if (Request::path() == 'admin/reviews' ) active @endif"><a href="{{route('admin.reviews')}}"><i
+          <li class="@if (Request::path() == 'yqw/reviews' ) active @endif"><a href="{{route('admin.reviews')}}"><i
                 class="fa fa-link"></i> <span>Reviews</span></a>
           </li>
 
-          <li class="@if (Request::path() == 'admin/helps' ) active @endif"><a href="{{route('admin.helps')}}"><i
+          <li class="@if (Request::path() == 'yqw/helps' ) active @endif"><a href="{{route('admin.helps')}}"><i
                 class="fa fa-link"></i> <span>Helps</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->

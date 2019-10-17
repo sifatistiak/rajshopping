@@ -32,7 +32,7 @@
 					<div class="product-body">
 						<div class="product-label">
 							<span>New</span>
-							<span class="sale">-{{$singleProduct->discount}}%</span>
+							<span class="sale">{{$singleProduct->discount}}% OFF</span>
 						</div>
 						<h2 class="product-name">{{$singleProduct->title}}</h2>
 						<h3 class="product-price">{{$singleProduct->price}}<img style="display: inline" width="15px"

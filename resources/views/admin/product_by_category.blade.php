@@ -9,6 +9,9 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Category</label>
                 <select required name="category_id" class="form-control">
+                    @if ($categoryId)
+                    <option value="{{$category->id}}"> {{$category->name}} </option>
+                    @endif
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}"> {{$category->name}} </option>
                     @endforeach

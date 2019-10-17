@@ -235,7 +235,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $categoryId = $request->category_id;
+        $category = Category::where('id',$categoryId)->first();
         $products = Product::where('category_id', $categoryId)->with('displayImage', 'category')->orderBy('created_at', 'desc')->get();
-        return view('admin.product_by_category', compact('categories', 'categoryId', 'products'));
+        return view('admin.product_by_category', compact('category','categories', 'categoryId', 'products'));
     }
 }

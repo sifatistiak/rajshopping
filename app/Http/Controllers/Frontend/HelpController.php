@@ -16,16 +16,18 @@ class HelpController extends Controller
     public function submitHelp(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|string|email|max:255',
+            'name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:191',
             'message' => 'nullable|string|max:65000',
             'feedback' => 'nullable|integer'
         ]);
         $help = new Help;
+        $help->name = $request->name;
         $help->email = $request->email;
         $help->message = $request->message;
         $help->feedback = $request->feedback;
         $help->save();
-        return back()->with('success','Thanks for your feedback');
+        return back()->with('success','Submit successful . Thank You!');
 
     }
 }

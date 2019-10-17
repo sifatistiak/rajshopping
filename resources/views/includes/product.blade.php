@@ -1,7 +1,7 @@
 <div class="product product-single">
     <div class="product-thumb">
         <div class="product-label">
-            <span>-{{$product->discount}}%</span>
+            <span>{{$product->discount}}%</span>
         </div>
         <a href="{{$product->mypath()}}" class="main-btn quick-view"><i
                 class="fa fa-search-plus"></i>Quick view</a>
