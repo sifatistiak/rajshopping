@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Cart;
+use App\Models\Product;
 use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
@@ -92,8 +93,33 @@ class ShoppingController extends Controller
             $userIdentity = $request->ip();
         }
         //buy now button work
-        if ($request->id) {
-            $productId = decrypt($request->id);
+        // if ($request->id) {
+        //     $productId = decrypt($request->id);
+        //     $cart = Cart::where('product_id', $productId)->where('user_identity', $userIdentity)->where('status', 1)->first();
+        //     if ($cart) {
+        //         $cart->quantity = $cart->quantity + 1;
+        //     } else {
+        //         $cart = new Cart();
+        //         $cart->user_identity = $userIdentity;
+        //         $cart->product_id = $productId;
+        //     }
+        //     $cart->save();
+        // }
+
+        $address = Address::where('user_identity', $userIdentity)->first();
+        $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->with('product')->get();
+        return view('frontend.checkout', compact('carts', 'address'));
+    }
+
+    public function buyNow(Product $product)
+    {
+            $productId = $product->id;
+            $userIdentity = "";
+            if (Auth::check()) {
+                $userIdentity = Auth::user()->id;
+            } else {
+                $userIdentity = request()->ip();
+            }
             $cart = Cart::where('product_id', $productId)->where('user_identity', $userIdentity)->where('status', 1)->first();
             if ($cart) {
                 $cart->quantity = $cart->quantity + 1;
@@ -103,7 +129,6 @@ class ShoppingController extends Controller
                 $cart->product_id = $productId;
             }
             $cart->save();
-        }
 
         $address = Address::where('user_identity', $userIdentity)->first();
         $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->with('product')->get();
@@ -113,9 +138,10 @@ class ShoppingController extends Controller
     public function placeOrder(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:191'],
             'phone' => ['required', 'starts_with:01', 'digits:11'],
-            'division' => ['required', 'string', 'max:255'],
+            'division' => ['required', 'string', 'max:191'],
+            'city' => ['required', 'string', 'max:191'],
             'address' => ['required', 'string', 'max:65535'],
         ]);
 
@@ -141,6 +167,7 @@ class ShoppingController extends Controller
             $address->phone = $request->phone;
             $address->division = $request->division;
             $address->address = $request->address;
+            $address->city = $request->city;
             $address->save();
 
             foreach ($request->carts as $cartId) {
@@ -153,7 +180,7 @@ class ShoppingController extends Controller
             $msg = "<h3>Your Order has been placed. We will contact you soon. Thank You.</h3>";
         } else { //user table entry create account
             $this->validate($request, [
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
@@ -170,6 +197,7 @@ class ShoppingController extends Controller
             $address->phone = $request['phone'];
             $address->division = $request['division'];
             $address->address = $request['address'];
+            $address->city = $request['city'];
             $address->save();
             Auth::loginUsingId($user->id);
 

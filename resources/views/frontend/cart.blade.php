@@ -35,9 +35,9 @@
 									$product = $cart->product;
 								@endphp
 								<tr class="rows">
-									<td class="thumb"><img
-											src="{{asset('thumb_product_images/'.$product->displayImage->image)}}"
-											alt=""></td>
+									<td class="thumb"><a href="{{$product->mypath()}}"><img
+											src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" height="80px" width="100px"
+											alt=""></a></td>
 									<td class="details">
 										<a href="{{$product->mypath()}}">{{$product->title}}</a>
 										@if($product->deleted_at != NULL)

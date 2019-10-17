@@ -15,47 +15,56 @@
         <div class="row justify-content-center">
             <div class="col-md-8"><br>
                 <button onclick="window.print();"></button>
-                <h1>KaporBD.com</h1><br><br>
+                <h1 style="font-size:100px">KaporBD.com</h1><br><hr><br>
+                <h1>Customer Details</h1><br><br>
                 <table class="table table-striped">
                     <tr>
                         <td>
-                            <h3>Name</h3>
+                            <h2>Name : </h2>
                         </td>
                         <td>
-                            <h3>{{$address->name}}</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3>Phone</h3>
-                        </td>
-                        <td>
-                            <h3>{{$address->phone}}</h3>
+                            <h2>{{$address->name}}</h2>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h3>Division</h3>
+                            <h2>Phone : </h2>
                         </td>
                         <td>
-                            <h3>{{$address->division}}</h3>
+                            <h2>{{$address->phone}}</h2>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h3>Address</h3>
+                            <h2>Division: </h2>
                         </td>
                         <td>
-                            <h3>{{$address->address}}</h3>
+                            <h2>{{$address->division}}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2>City: </h2>
+                        </td>
+                        <td>
+                            <h2>{{$address->city}}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2>Address:</h2>
+                        </td>
+                        <td>
+                            <h2>{{$address->address}}</h2>
                         </td>
                     </tr>
                 </table>
             </div>
 
             <div class="col-md-10">
-                <div class="order-summary clearfix">
+                <div class="order-summary clearfix"><br><br><br>
                     <div class="section-title">
-                        <h3 class="title">Ordered Product</h3>
+                        <h2 class="title">Ordered Product</h2>
                     </div>
                     @if (count($carts)>0)
                     <table id="cart_table" class="shopping-cart-table table">

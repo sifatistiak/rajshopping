@@ -28,9 +28,61 @@
 	</div>
 </div>
 <!-- /Slide HOME -->
-<br>
+<br><br>
 <!--  section -->
 <div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- banner -->
+			<div class="col-md-4 col-sm-6">
+				<a class="banner1 banner-1"><br><br><br>
+					<img height="150px" src="{{asset('frontend/img/delivery.jpg')}}" alt="">
+					<div class="banner-caption text-center">
+						{{-- <h2 class="white-color">NEW COLLECTION</h2> --}}
+					</div><br>
+					
+					<h3>Free Delivery in Dhaka</h3>
+					<p style="text-align: justify;">We provide free delivery within Dhaka city and 50tk for outside of Dhaka. We deliver our product within 24-48 hours in Dhaka city and 48-72 hours outside of Dhaka. </p>
+				</a>
+				
+			</div>
+			<!-- /banner -->
+			<!-- banner -->
+			<div class="col-md-4 col-sm-6">
+				<a class="banner1 banner-1">
+					<img src="{{asset('frontend/img/pathao.jpg')}}" alt="">
+					<div class="banner-caption text-center">
+						{{-- <h2 class="white-color">NEW COLLECTION</h2> --}}
+					</div><br>
+				<h3 >Our Delivery Partner</h3>
+					<p style="text-align: justify;">Pathao helps us to deliver your product at your home. They provide fast delivery. Pathao is our fast, safe and secure delivery partner.</p>	
+				</a>
+				
+			</div>
+			<!-- /banner -->
+			<!-- banner -->
+			<div class="col-md-4 col-sm-6">
+				<a class="banner1 banner-1">
+					<img src="{{asset('frontend/img/cash.jpg')}}" alt="">
+					<div class="banner-caption text-center">
+						{{-- <h2 class="white-color">NEW COLLECTION</h2> --}}
+					</div><br>
+				<h3>Safe Payment System</h3>
+					<p style="text-align: justify;"> We receive cash when we deliver your product so that you don't have to worry about your money. We also return your cash if any accident occurs.</p>
+				</a><br>
+				
+			</div>
+			<!-- /banner -->
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- / section -->
+<!--  section -->
+<div style="margin-top:-80px" class="section">
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
@@ -39,7 +91,8 @@
 			@foreach($threeCollections as $threeCollection)
 			<!-- banner -->
 			<div class="col-md-4 col-sm-6">
-				{{-- <a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[$loop->index]->id))}}"> --}}
+				{{-- <a class="banner banner-1" href="{{route('products',encrypt($categoryProducts[$loop->index]->id))}}">
+				--}}
 				<a class="banner banner-1" href="{{$categoryProducts[$loop->index]->mypath()}}">
 					<img src="{{asset('slider_images/'.$threeCollection->image)}}" alt="">
 					<div class="banner-caption text-center">
@@ -57,6 +110,7 @@
 	<!-- /container -->
 </div>
 <!-- / section -->
+
 <!-- Cateory 1 section -->
 {{-- {{count($categoryProducts)}} --}}
 {{-- @foreach ($categoryProducts as $categoryProduct) --}}

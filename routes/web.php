@@ -12,7 +12,9 @@ Route::get('/search', 'Frontend\IndexController@search')->name('search');
 Route::get('/search-page', 'Frontend\IndexController@searchPage')->name('search.page');
 Route::post('/sort-by-price', 'Frontend\IndexController@sortByPrice')->name('sort.by.price');
 Route::get('/cart', 'Frontend\ShoppingController@cart')->name('cart');
-Route::get('/checkout/{id?}', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
+// Route::get('/checkout/{id?}', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
+Route::get('/checkout', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
+Route::get('/buy-now/{product}-{slug}', 'Frontend\ShoppingController@buyNow')->name('buy.now');
 Route::post('/place-order', 'Frontend\ShoppingController@placeOrder')->name('place.order');
 Route::get('/thanks', 'Frontend\ShoppingController@thanks')->name('thanks');
 
@@ -51,7 +53,7 @@ Auth::routes();
 
 
 //admin Login, logout, forget password routes
-Route::prefix('admin')->group(function () {
+Route::prefix('yqw')->group(function () {
     Route::name('admin.')->group(function () {
         Route::get('login', 'Auth\Admin\LoginController@showLoginForm')->name('login');
         Route::post('login', 'Auth\Admin\LoginController@login');
@@ -71,7 +73,7 @@ Route::prefix('admin')->group(function () {
 });
 
 //admin  routes
-Route::prefix('admin')->group(function () {
+Route::prefix('yqw')->group(function () {
     Route::name('admin.')->group(function () {
         //change password
         Route::get('change-password', 'Admin\AdminController@changePasswordView')->name('change.password.view');

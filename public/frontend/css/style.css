@@ -829,6 +829,17 @@ textarea.input {
     margin-bottom: 15px;
 }
 
+.banner1 {
+    display: block;
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.banner1 > img {
+    width: 80%;
+}
+
 .banner > img {
     width: 100%;
 }

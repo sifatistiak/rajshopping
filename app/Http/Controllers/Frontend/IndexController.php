@@ -37,6 +37,7 @@ class IndexController extends Controller
         // return $categoryProducts;
         return view('frontend.index', compact('sliderImages', 'categoryProducts', 'threeCollections', 'twoCollections', 'bigCollection','discount'));
     }
+    
 
     public function products($id)
     {

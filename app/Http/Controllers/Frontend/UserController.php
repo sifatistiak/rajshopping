@@ -27,9 +27,10 @@ class UserController extends Controller
     public function userProfileChange(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:191'],
             'phone' => ['required', 'starts_with:01', 'digits:11'],
-            'division' => ['required', 'string', 'max:255'],
+            'division' => ['required', 'string', 'max:191'],
+            'city' => ['required', 'string', 'max:191'],
             'address' => ['required', 'string', 'max:65535'],
         ]);
 
@@ -40,6 +41,7 @@ class UserController extends Controller
         $address->name = $request->name;
         $address->phone = $request->phone;
         $address->division = $request->division;
+        $address->city = $request->city;
         $address->address = $request->address;
         $address->save();
         $userProfile->name = $request->name;

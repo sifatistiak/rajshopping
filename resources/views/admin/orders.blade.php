@@ -11,6 +11,7 @@
                 <th scope="col">name</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Division</th>
+                <th scope="col">City</th>
                 <th scope="col">Address</th>
                 <th scope="col">Order At</th>
                 <th scope="col">Order Count</th>
@@ -36,6 +37,9 @@
                 </td>
                 <td><span
                         style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->division}}</span>
+                </td>
+                <td><span
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->city}}</span>
                 </td>
                 <td><span
                         style="color:#FFFFFF;font-size: 20px">{{str_limit($userIdentiy->address,12)}}</span>
