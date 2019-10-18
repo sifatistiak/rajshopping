@@ -42,7 +42,7 @@ Route::post('submit-help', 'Frontend\HelpController@submitHelp')->name('submit.h
 
 Route::get('/about-us', 'Frontend\IndexController@aboutUs')->name('about.us');
 
-Route::get('/shiping-return', 'Frontend\IndexController@shipingReturn')->name('shiping.return');
+Route::get('/terms-and-conditions', 'Frontend\IndexController@shipingReturn')->name('shiping.return');
 Route::get('/privacy-policy', 'Frontend\IndexController@privacyPolicy')->name('privacy.policy');
 Route::get('/quick-contact', 'Frontend\IndexController@quickContact')->name('quick.contact');
 

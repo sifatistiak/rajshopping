@@ -2,11 +2,14 @@
 @section('title','Privacy Policy')
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row"><br>
+            <div class="col-md-10">
+                <div class="section-title">
+                        <h2 class="title">Privacy Policy</h2>
+                </div>
+             </div>
         <div class="col-md-10">
             
-<h1 style="line-height: 1.38; margin-top: 24pt; margin-bottom: 6t;"><strong><span
-            style="font-size: 23pt; font-family: Arial; color: #000000; background-color: transparent; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Privacy Policy&nbsp;</span></strong></h1>
 <p style="line-height: 1.38; margin-top: 30pt; margin-bottom: 0pt;"><span
         style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Welcome to the KaporBD.com . We respect your privacy and want to protect your personal information. To learn more, please read this Privacy Policy.</span></p>
 <p>&nbsp;</p>
@@ -34,7 +37,7 @@
 </p>
 <p>&nbsp;</p>
 <p style="line-height: 1.38; margin-top: 3pt;"><span
-        style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">We may pass your name and address on to a third party in order to make delivery of the product to you (for example to our courier or supplier). You must only submit to us the Appinformation which is accurate and not misleading and you must keep it up to date and inform us of changes.</span></p>
+        style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">We may pass your name and address on to a third party in order to make delivery of the product to you (for example to our courier or supplier). You must only submit to us the App information which is accurate and not misleading and you must keep it up to date and inform us of changes.</span></p>
 <p>&nbsp;</p>
 <p style="line-height: 1.38; margin-top: 3pt;"><span
         style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Your actual order details may be stored with us but for security reasons cannot be retrieved directly by us. However, you may access this information by logging into your account. Here you can view the details of your orders that have been completed, those which are open and those which are shortly to be dispatched.</span></p>

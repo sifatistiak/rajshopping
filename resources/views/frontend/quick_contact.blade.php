@@ -6,7 +6,13 @@
     <div class="container">
         <div class="row"><br>
             <div class="col-md-8">
-                @include('includes.message')
+                <div class="section-title">
+                    <h2 class="title">Contact <span style="margin-left:9px"> </span> Us</h2>
+                </div>
+            </div>
+            <div class="col-md-8">
+                
+                @include('includes.message')<br>
                 <form data-parsley-validate method="POST" action="{{route('submit.help')}}">
                     @csrf
                     <div class="form-group">

@@ -160,15 +160,17 @@
 									<div id="carts">
 										@foreach ($carts as $cart)
 										<div class="product product-widget">
+											<a href="{{$cart->product->mypath()}}">
 											<div class="product-thumb">
 												<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
 													alt="">
 											</div>
+											</a>
 											<div class="product-body">
 												<h3 class="product-price">{{$cart->product->price}} <span
 														class="qty">x{{$cart->quantity}}</span></h3>
 												<h2 class="product-name"><a
-														href="{{route('product',encrypt($cart->product->id))}}">{{$cart->product->title}}</a>
+														href="{{$cart->product->mypath()}}">{{$cart->product->title}}</a>
 												</h2>
 												@if($cart->product->deleted_at != NULL)
 												<strong style="color:red"> This Product is out of stock.</strong>
@@ -321,22 +323,20 @@
 					<div class="footer">
 						<!-- footer logo -->
 						<div class="footer-logo">
-							<a class="logo" href="#">
-								<img src="{{asset('frontend/img/logo.png')}}" alt="">
+							<a class="logo" href="">
+								<img src="{{asset('frontend/img/main-logo.png')}}" alt="">
 							</a>
 						</div>
 						<!-- /footer logo -->
 
-						<p>This is a trust worthy platform. Anyone from bangladesh can buy product from this e-commerce
-							site.</p>
+						<p style="margin-top:-25px">A trust worthy e-commerce platform to buy product from anywhere in Bangladesh.</p>
 
 						<!-- footer social -->
 						<ul class="footer-social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							<li><a target="_blank" href="https://facebook.com/kapor.com.bd"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com/BdKapor" target="_blank"><i class="fa fa-twitter"></i></a></li>
+							{{-- {{-- <li><a href="#"><i class="fa fa-instagram"></i></a></li> --}}
+							<li><a target="_blank" href="https://www.youtube.com/channel/UCREk65vSf7WSoPq7yMhCmfg"><i class="fa fa-youtube"></i></a></li>
 						</ul>
 						<!-- /footer social -->
 					</div>
@@ -376,7 +376,7 @@
 						<ul class="list-links">
 							<li><a href="{{route('about.us')}}">About Us</a></li>
 							<li><a href="{{route('help')}}">Give Feedback</a></li>
-							<li><a href="{{route('shiping.return')}}">Shiping & Return</a></li>
+							<li><a href="{{route('shiping.return')}}">Terms and Conditions</a></li>
 							<li><a href="{{route('privacy.policy')}}">Privacy Policy</a></li>
 						</ul>
 					</div>
@@ -409,7 +409,7 @@
 						Copyright &copy;
 						<script>
 							document.write(new Date().getFullYear());
-						</script> All rights reserved @KaporBD . Technology Partner <a style="color:#f8694a"
+						</script> All rights reserved <a href="{{route('index')}}">@KaporBD</a> . Technology Partner <a style="color:#f8694a"
 							href="http://skoder.co" target="_blank">Skoder</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
