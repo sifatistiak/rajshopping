@@ -11,6 +11,7 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>@yield('title')</title>
+	<link rel="icon" type="image/png" href="{{asset('frontend/img/logo.jpg')}}">
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -98,8 +99,7 @@
 
 						<form id="searchForm" action="{{route('search.page')}}" method="get">
 							{{-- @csrf --}}
-							<input id="search_box" name="search_key" required class="input search-input" type="text"
-								placeholder="Enter your keyword">
+							<input id="search_box" name="search_key" required class="input search-input" type="text" placeholder="Enter Your Keyword">
 
 							<button class="search-btn"><i class="fa fa-search"></i></button>
 						</form>
@@ -162,8 +162,7 @@
 										<div class="product product-widget">
 											<a href="{{$cart->product->mypath()}}">
 											<div class="product-thumb">
-												<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
-													alt="">
+												<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}" alt="">
 											</div>
 											</a>
 											<div class="product-body">
@@ -273,11 +272,7 @@
 					<ul class="menu-list">
 						<li><a href="{{route('index')}}">Home</a></li>
 						<li>
-							@if(Request::path() == '/')
-							<a href="#shop">Shop</a>
-							@else
-							<a href="{{route('index')}}#shop">Shop</a>
-							@endif
+							<a href="{{route('shop')}}">Shop</a>
 						</li>
 						<li><a href="{{route('about.us')}}">About</a></li>
 						<li><a href="{{route('help')}}">Feedback</a></li>

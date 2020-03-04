@@ -35,9 +35,8 @@
 									$product = $cart->product;
 								@endphp
 								<tr class="rows">
-									<td class="thumb"><a href="{{$product->mypath()}}"><img
-											src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" height="80px" width="100px"
-											alt=""></a></td>
+									<td class="thumb"><a href="{{$product->mypath()}}">
+										<img src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" height="80px" width="100px"	alt=""></a></td>
 									<td class="details">
 										<a href="{{$product->mypath()}}">{{$product->title}}</a>
 										@if($product->deleted_at != NULL)
@@ -124,6 +123,7 @@
 				var cartId = $(this).data();
 				$.get("{{route('delete.cart')}}",{cartId:cartId},function(data){
 				// alert('Product Removed.');
+				console.log(data);
 				$("#cart_table").load(location.href + ' #cart_table');
 				$("#cart_number").text(data[0]);
 				$("#cart_price").text(data[1]);

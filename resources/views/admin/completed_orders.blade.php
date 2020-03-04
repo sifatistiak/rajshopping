@@ -19,24 +19,27 @@
         </thead>
         <tbody>
             @foreach ($orderCarts as $orderCart)
+            @php
+            $userIdentity = $orderCart->address($orderCart->user_identity)
+            @endphp
             <tr style="background: #3c8dbc">
                 <td>{{$loop->index+1}}</td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->name}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->name}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->phone}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->phone}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->division}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->division}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->address}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->address}}</span>
                 </td>
-                <td><span style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->order_count}}</span>
+                <td><span style="color:#FFFFFF;font-size: 20px">{{$userIdentity->order_count}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$orderCart->address($orderCart->user_identity)->created_at->toFormattedDateString()}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->created_at->toFormattedDateString()}}</span>
                 </td>
                
                 
@@ -75,8 +78,20 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td><b>Total = {{$total+50}}</b></td>
+                <td><b>Shipping =
+                        @php
+                        $shipping = 0;
+                       if($userIdentity->division == "Dhaka"){
+                        $shipping = 0;
+                        }
+                        else{
+                        $shipping = 50;
+                        }
+                        echo $shipping;
+                        @endphp
+                
+                    </b></td>
+                <td><b>Total = {{$total+$shipping}}</b></td>
             </tr>
             </tr>
             @endforeach

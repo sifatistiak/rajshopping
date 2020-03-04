@@ -40,6 +40,9 @@
 							<del class="product-old-price">@php
 							$price = $singleProduct->price;
 							$oldPrice = round($price+($price*$singleProduct->discount/100));
+							while ($oldPrice % 10 != 0) {
+							$oldPrice +=1;
+							}
 							@endphp
 								{{$oldPrice}}<img style="display: inline" width="15px"
 									src="{{asset('frontend/img/taka.png')}}" alt="">
@@ -78,7 +81,7 @@
 							<a href="{{$singleProduct->buyNow()}}" class="primary-btn"><i
 									class="fa fa-shopping-basket"></i> Buy Now
 							</a>
-							<button id="add_to_cart" value="{{$singleProduct->id}}" class="primary-btn add_to_cart"><i
+							<button style="margin-left:5px" id="add_to_cart" value="{{$singleProduct->id}}" class="primary-btn add_to_cart"><i
 									class="fa fa-shopping-cart"></i>
 									Add to Cart
 									</button>

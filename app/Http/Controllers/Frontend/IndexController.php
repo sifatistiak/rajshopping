@@ -13,7 +13,6 @@ use Auth;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 
-
 class IndexController extends Controller
 {
     public function index()
@@ -30,12 +29,19 @@ class IndexController extends Controller
 
         
         $categoryProducts = Cache::rememberForever('categoryProducts', function () {
-            return Category::select('name','id')->with('products')->orderBy('priority', 'desc')->get();
+            return Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
         });
 
 
         // return $categoryProducts;
-        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'threeCollections', 'twoCollections', 'bigCollection','discount'));
+        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'threeCollections', 'twoCollections', 'bigCollection', 'discount'));
+    }
+
+
+    public function shop()
+    {
+        $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(24);
+        return view('frontend.shop', compact('products'));
     }
     
 
@@ -47,12 +53,12 @@ class IndexController extends Controller
             return back();
         }
         $category = Category::findOrFail($categoryId);
-        $products = Product::select('id','title', 'desc', 'category_id', 'price', 'quantity','discount', 'status')->where('category_id', $categoryId)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(12);
+        $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('category_id', $categoryId)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(12);
         return view('frontend.products', compact('products', 'category'));
     }
     public function categoryProducts(Category $category)
     {
-        $products = Product::select('id','title', 'desc', 'category_id', 'price', 'quantity','discount', 'status')->where('category_id', $category->id)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(12);
+        $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('category_id', $category->id)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(12);
         return view('frontend.products', compact('products', 'category'));
     }
 
@@ -63,14 +69,24 @@ class IndexController extends Controller
             'filter' => 'required|integer'
         ]);
         $filter = $request->filter;
-        $categoryId = $request->category_id;
-        $category = Category::findOrFail($categoryId);
-        if ($filter == 1) {
-            $products = Product::select('id','title', 'desc', 'category_id', 'price', 'quantity','discount', 'status')->where('category_id', $categoryId)->orderBy('price', 'desc')->get();
+        if ($request->category_id) {
+            $categoryId = $request->category_id;
+            $category = Category::findOrFail($categoryId);
+            if ($filter == 1) {
+                $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('category_id', $categoryId)->orderBy('price', 'desc')->get();
+            } else {
+                $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('category_id', $categoryId)->orderBy('price', 'asc')->get();
+            }
+            return view('frontend.sort_by_price_product', compact('products', 'category', 'filter'));
         } else {
-            $products = Product::select('id','title', 'desc', 'category_id', 'price', 'quantity','discount', 'status')->where('category_id', $categoryId)->orderBy('price', 'asc')->get();
+            if ($filter == 1) {
+                $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->orderBy('price', 'desc')->get();
+            } else {
+                $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->orderBy('price', 'asc')->get();
+            }
+            return view('frontend.sort_by_price_all', compact('products', 'filter'));
         }
-        return view('frontend.sort_by_price_product', compact('products', 'category', 'filter'));
+        
     }
 
     public function product($id)
@@ -82,7 +98,7 @@ class IndexController extends Controller
         }
         $singleProduct = Product::findOrFail($productId);
         $reviews = Review::where('product_id', $singleProduct->id)->where('status', 1)->paginate(6);
-        $products = Product::select('id','title', 'desc', 'category_id', 'price', 'quantity','discount', 'status')->where('category_id', $singleProduct->category_id)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(9);
+        $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('category_id', $singleProduct->category_id)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(9);
         return view('frontend.product_page', compact('singleProduct', 'reviews', 'products'));
     }
 
@@ -112,13 +128,12 @@ class IndexController extends Controller
         if ($request->ajax()) {
             return response()->json($products);
         }
-
     }
 
     public function searchPage(Request $request)
     {
         $term = $request->search_key;
-        $products = Product::select('id','title', 'desc', 'category_id', 'price', 'quantity','discount', 'status')->where('title', 'LIKE', '%' . $term . '%')->with('reviews', 'displayImage')->paginate(12);
+        $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('title', 'LIKE', '%' . $term . '%')->with('reviews', 'displayImage')->paginate(12);
         $categories = Category::where('name', 'LIKE', '%' . $term . '%')->get();
         return view('frontend.search_page', compact('products', 'categories', 'term'));
     }
@@ -141,7 +156,4 @@ class IndexController extends Controller
     {
         return view('frontend.quick_contact');
     }
-
-
-    
 }

@@ -95,7 +95,7 @@ desired effect
                       <a href="#">
                         <div class="pull-left">
                           <!-- User Image -->
-                          <img src="{{asset('yqw/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
+                          <img src="{{asset('admin/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
                         </div>
                         <!-- Message title and timestamp -->
                         <h4>
@@ -144,14 +144,14 @@ desired effect
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="{{asset('yqw/dist/img/user.jpg')}}" class="user-image" alt="User Image">
+                <img src="{{asset('admin/dist/img/user.jpg')}}" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">{{Auth::user()->name}} </span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="{{asset('yqw/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
+                  <img src="{{asset('admin/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
 
                   <p>
                     {{Auth::user()->name}}
@@ -188,7 +188,7 @@ desired effect
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="{{asset('yqw/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
+            <img src="{{asset('admin/dist/img/user.jpg')}}" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p>{{Auth::user()->name}}</p>
@@ -248,7 +248,7 @@ desired effect
           </li>
           {{-- slider Image --}}
           <li class="treeview 
-            @if ( Request::path() == 'yqw/add-slider-image'  || Request::is('yqw/orders')||
+            @if ( Request::path() == 'yqw/add-slider-image'  || 
                 Request::path() == 'yqw/slider-images' ) 
           active @endif">
             <a href="#"><i class="fa fa-link"></i> <span>Slide and Collection Image</span>

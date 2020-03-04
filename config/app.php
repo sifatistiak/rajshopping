@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'KaporBD'),
+    'name' => env('APP_NAME', 'app'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://kaporbd.com'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => 'base64:fprFwCb8Prfgzea7WwFIGsnQvEjTONU6L7qFFSbcgyM=',
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 

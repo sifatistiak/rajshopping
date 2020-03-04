@@ -3,11 +3,12 @@
 // FrontendController
 Route::get('/', 'Frontend\IndexController@index')->name('index');
 Route::get('/products/{id}', 'Frontend\IndexController@products')->name('products');
+Route::get('/shop', 'Frontend\IndexController@shop')->name('shop');
 
 Route::get('/category-products/{category}-{slug}', 'Frontend\IndexController@categoryProducts')->name('category.products');
 
 Route::get('/product/{product}-{slug}', 'Frontend\IndexController@newproduct')->name('newproduct');
-Route::get('/idproduct/{id}', 'Frontend\IndexController@product')->name('product');
+Route::get('/product/{id}', 'Frontend\IndexController@product')->name('product');
 Route::get('/search', 'Frontend\IndexController@search')->name('search');
 Route::get('/search-page', 'Frontend\IndexController@searchPage')->name('search.page');
 Route::post('/sort-by-price', 'Frontend\IndexController@sortByPrice')->name('sort.by.price');

@@ -13,6 +13,9 @@
             @php
             $price = $product->price;
             $oldPrice = round($price+($price*$product->discount/100));
+            while ($oldPrice % 10 != 0) {
+                $oldPrice +=1;
+            }
             @endphp
             <del class="product-old-price">{{$oldPrice}}<span><img style="display: inline" width="15px" src="{{asset('frontend/img/taka.png')}}" alt=""></span></del>
         </h3>
@@ -40,10 +43,9 @@
         {{-- <h2 class="product-name"><a href="{{route('nproduct',[$product->id,slug('title')])}}">{{$product->title}}</a></h2> --}}
         <h2 class="product-name"><a href="{{$product->mypath()}}">{{$product->title}}</a></h2>
         <div class="product-btns">
-            <a href="{{$product->buyNow()}}" class="primary-btn">Buy Now</a>
-            {{-- <a href="{{route('checkout',encrypt($product->id))}}" class="primary-btn">Buy Now</a> --}}
-            <button id="add_to_cart" value="{{$product->id}}" class="primary-btn add_to_cart"></i> Add
-                to Cart</button>
+            <a href="{{$product->buyNow()}}" class="primary-btn">Buy Now </a>
+            <button style="margin-left:5px" id="add_to_cart" value="{{$product->id}}" class="primary-btn add_to_cart"></i> Add
+                to Cart </button>
         </div>
     </div>
 </div>

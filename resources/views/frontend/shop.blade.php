@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Category Products')
+@section('title','All Products')
 @section('content')
 <!-- section -->
 <div class="section">
@@ -26,7 +26,7 @@
 									<option @isset($filter) @if ($filter==0) selected @endif @endisset value="0">Low
 										to High</option>
 								</select>
-								<input type="hidden" name="category_id" value="{{$category->id}}">
+								{{-- <input type="hidden" name="category_id" value="{{$category->id}}"> --}}
 								<button type="submit" class="main-btn icon-btn"><i
 										class="fa fa-arrow-down"></i></button>
 							</form>
@@ -46,8 +46,8 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<a href="">
-								<h2 class="title">{{$category->name}}</h2>
+							<a>
+								<h2 class="title">All Products</h2>
 							</a>
 						</div>
 					</div>
@@ -90,7 +90,7 @@
 									<option @isset($filter) @if ($filter==0) selected @endif @endisset value="0">Low
 										to High</option>
 								</select>
-								<input type="hidden" name="category_id" value="{{$category->id}}">
+								{{-- <input type="hidden" name="category_id" value="{{$category->id}}"> --}}
 								<button type="submit" class="main-btn icon-btn"><i
 										class="fa fa-arrow-down"></i></button>
 							</form>

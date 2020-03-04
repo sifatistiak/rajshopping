@@ -29,7 +29,7 @@
                 <td>{{$review->email}}</td>
                 <td>{{$review->message}}</td>
                 <td>{{$review->rating}}</td>
-                <td><a class="btn btn-danger" href="{{route('admin.change.review.status',$review->id)}}">Status {{$review->status}}</a>
+                <td><a class="btn btn-default" href="{{route('admin.change.review.status',$review->id)}}">Status {{$review->status}}</a>
                  || <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('admin.delete.review',$review->id)}}">Delete</a></<a>
             </tr>
             @endforeach

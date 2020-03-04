@@ -25,36 +25,36 @@
             @foreach ($orderCarts as $orderCart)
 
             @php
-                $userIdentiy = $orderCart->address($orderCart->user_identity)
+                $userIdentity = $orderCart->address($orderCart->user_identity)
             @endphp
             <tr style="background: #3c8dbc">
                 <td>{{$loop->index+1}}</td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->name}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->name}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->phone}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->phone}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->division}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->division}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->city}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->city}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{str_limit($userIdentiy->address,12)}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{str_limit($userIdentity->address,12)}}</span>
                 </td>
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->created_at->toFormattedDateString()}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->created_at->toFormattedDateString()}}</span>
                 </td>
 
                 <td><span
-                        style="color:#FFFFFF;font-size: 20px">{{$userIdentiy->order_count}}</span>
+                        style="color:#FFFFFF;font-size: 20px">{{$userIdentity->order_count}}</span>
                 </td>
 
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px;">
-                        @if ($userIdentiy->confirm == 0)
+                        @if ($userIdentity->confirm == 0)
                         <a href="{{route('admin.action',['confirm',$orderCart->user_identity])}}"><span
                                 style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
                         @else
@@ -65,7 +65,7 @@
                     </span></td>
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px">
-                        @if ($userIdentiy->deliver == 0)
+                        @if ($userIdentity->deliver == 0)
                         <a href="{{route('admin.action',['deliver',$orderCart->user_identity])}}"><span
                                 style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
                         @else
@@ -76,7 +76,7 @@
                     </span></td>
                 <td>
                     <span style="color:#FFFFFF;font-size: 20px">
-                        @if ($userIdentiy->hand_over == 0)
+                        @if ($userIdentity->hand_over == 0)
                         <a href="{{route('admin.action',['hand_over',$orderCart->user_identity])}}"><span
                                 style="color:red;font-size: 20px"> <i class="fa fa-times"></i></span></a>
                         @else
@@ -125,7 +125,7 @@
                     @endif
                 
                 </td>
-                <td colspan="2">
+                <td colspan="3">
                     <a class="btn btn-info" href="{{route('admin.product.view',$product->id)}}">View</a>
                      || <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('admin.delete.order.product',$orderProduct->id)}}">Delete</a>
                 </td>
@@ -143,7 +143,7 @@
                 <td><b>Shipping =
                         @php
                         $shipping = 0;
-                        if($userIdentiy->division == "Dhaka"){
+                        if($userIdentity->division == "Dhaka"){
                         $shipping = 0;
                         }
                         else{

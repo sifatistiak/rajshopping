@@ -9,7 +9,7 @@
                 $("#no_product_added").hide();
                 $("#view_cart").show();
                 $("#carts").load(location.href + " #carts");
-alert('Product has added to cart.');
+                alert('Product has added to cart.');
             });
         });
     });

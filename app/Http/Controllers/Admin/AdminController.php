@@ -27,10 +27,14 @@ class AdminController extends Controller
         $numberOfProduct = Product::count();
         $numberOfCategory = Category::count();
         $numberOfOrder = count(Cart::select('user_identity')->where('status', 0)->where('hand_over', 0)->groupBy('user_identity')->get());
-        $orderCounts = Address::select('order_count')->get();
+        
         $numberOfCompleteOrder = 0;
-        foreach($orderCounts as $orderCount){
-            $numberOfCompleteOrder += $orderCount->order_count;
+
+        $orderCarts = Cart::select('user_identity')->where('status', 0)->where('hand_over', 1)->groupBy('user_identity')->get();
+
+        foreach($orderCarts as $orderCart){
+            $userIdentity = $orderCart->address($orderCart->user_identity);
+            $numberOfCompleteOrder += $userIdentity->order_count;
         }
         return view('admin.index', compact('numberOfProduct', 'numberOfCategory', 'numberOfOrder','numberOfCompleteOrder'));
     }

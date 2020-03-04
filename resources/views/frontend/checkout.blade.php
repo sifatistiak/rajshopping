@@ -213,9 +213,7 @@
 								@endphp
 
 								<tr class="rows">
-									<td class="thumb"><a href="{{$product->mypath()}}"><img
-												src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" height="80px" width="100px"
-												alt=""></a></td>
+									<td class="thumb"><a href="{{$product->mypath()}}"><img src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" height="80px" width="100px" alt=""></a></td>
 									<input type="hidden" name="carts[]" value="{{$cart->id}}">
 									<td class="details">
 										<a href="{{$cart->product->mypath()}}">{{$cart->product->title}}</a>

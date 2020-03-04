@@ -53,7 +53,7 @@ class ShoppingController extends Controller
         } else {
             $userIdentity = $request->ip();
         }
-        $userCart = Cart::where('user_identity', $userIdentity)->count();
+        $userCart = Cart::where('user_identity', $userIdentity)->where('status', 1)->count();
         $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->get();
         $price = 0;
         foreach ($carts as $cart) {
