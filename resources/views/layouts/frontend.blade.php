@@ -222,8 +222,8 @@
 							<div class="header-btns-icon">
 								<i class="fa fa-sign-in"></i>
 							</div>
-							<strong><a href="{{route('login')}}" class="text-uppercase">Login</a> / <a
-									href="{{route('register')}}" class="text-uppercase">Join</a></strong>
+							<strong><a href="{{route('login')}}" class="text-uppercase">Sign In</a> / <a
+									href="{{route('register')}}" class="text-uppercase">Create Account</a></strong>
 						</li>
 						@endif
 						<!-- /Account -->
@@ -245,38 +245,16 @@
 		<!-- container -->
 		<div class="container">
 			<div id="responsive-nav">
-				<!-- category nav -->
-				<div class="category-nav 
-			@if(Request::path() != '/')
-			show-on-click
-			@endif
-		">
-					<span class="category-header">Categories <i class="fa fa-list"></i></span>
-					<ul class="category-list">
-						@php
-						// cache()->forget('categories');
-						$categories = Cache::rememberForever('categories', function () {
-						return App\Models\Category::orderBy('priority', 'desc')->get();
-						});
-						@endphp
-						@foreach ($categories as $category)
-						<li><a href="{{$category->mypath()}}">{{$category->name}}</a></li>
-						@endforeach
-					</ul>
-
-				</div>
-				<!-- /category nav -->
 				<!-- menu nav -->
 				<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list">
-						<li><a href="{{route('index')}}">Home</a></li>
-						<li>
-							<a href="{{route('shop')}}">Shop</a>
-						</li>
-						<li><a href="{{route('about.us')}}">About</a></li>
-						<li><a href="{{route('help')}}">Feedback</a></li>
-						<li><a href="{{route('quick.contact')}}">Contact</a></li>
+                        @php
+                            $categories =  App\Models\Category::orderBy('priority', 'asc')->get();
+                        @endphp
+                        @foreach ($categories as $category)
+                            <li><a href="{{$category->mypath()}}">{{$category->name}}</a></li>
+                        @endforeach
 					</ul>
 				</div>
 
@@ -439,7 +417,7 @@
 			//   source: "{{route('search')}}",
 
 			//   select: function( event, ui ) {
-			// 	  $("#searchForm").submit();			 
+			// 	  $("#searchForm").submit();
 			// 	 }
 		    // });
 		});
@@ -454,11 +432,11 @@
 		});
 		// autocomplete
 		var options = {
-		
+
 		url: "/search",
-		
+
 		getValue: "title",
-		
+
 		list: {
 			match: {
 			enabled: true
@@ -471,10 +449,10 @@
 			}
 		},
 		theme: "funky"
-		
+
 		};
 		$("#search_box").easyAutocomplete(options);
-		
+
 	});
 	</script>
 	@include('scripts.add_to_cart')

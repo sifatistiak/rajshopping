@@ -20,21 +20,19 @@ class IndexController extends Controller
         // Artisan::call('down');
         $sliderImages = SliderImage::select('image')->where('type', 'slider')->orderBy('created_at', 'desc')->get();
         $threeCollections = SliderImage::select('image')->where('type', 'collection')->orderBy('created_at', 'desc')->take(3)->get();
-        $twoCollections = SliderImage::select('image')->where('type', 'collection')->orderBy('created_at', 'desc')->skip(3)->take(2)->get();
+        $twoCollections = SliderImage::select('image')->where('type', 'collection')->orderBy('created_at', 'desc')->limit(1)->get();
         $bigCollection = SliderImage::select('image')->where('type', 'big_collection')->first();
         $discount = Product::max('discount');
         // cache()->forget('categoryProducts');
         // dd(cache('categoryProducts'));
         // $categoryProducts = Category::with('products')->orderBy('created_at', 'desc')->get();
 
-        
-        $categoryProducts = Cache::rememberForever('categoryProducts', function () {
-            return Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
-        });
-
+        $categoryProducts = Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
+        $allProducts = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->with('reviews', 'displayImage')->orderBy('updated_at', 'desc')->limit(10)->get();
+        $hotProducts = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->where('status', 1)->with('reviews', 'displayImage')->orderBy('updated_at', 'desc')->limit(10)->get();
 
         // return $categoryProducts;
-        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'threeCollections', 'twoCollections', 'bigCollection', 'discount'));
+        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'allProducts', 'hotProducts', 'threeCollections', 'twoCollections', 'bigCollection', 'discount'));
     }
 
 
@@ -43,7 +41,7 @@ class IndexController extends Controller
         $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(24);
         return view('frontend.shop', compact('products'));
     }
-    
+
 
     public function products($id)
     {
@@ -86,7 +84,7 @@ class IndexController extends Controller
             }
             return view('frontend.sort_by_price_all', compact('products', 'filter'));
         }
-        
+
     }
 
     public function product($id)
@@ -142,7 +140,7 @@ class IndexController extends Controller
     {
         return view('frontend.about_us');
     }
-    
+
     public function shipingReturn()
     {
         return view('frontend.shiping_return');
