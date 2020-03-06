@@ -269,9 +269,9 @@ textarea.input {
     padding-top: 30px;
     padding-bottom: 30px;
 }
-.section-category {
-    /* margin-top: -10px; */
-}
+/* .section-category {
+    margin-top: -10px;
+} */
 
 .section-grey {
     background: #f6f7f8;
@@ -371,10 +371,10 @@ textarea.input {
     margin-right: 15px;
 }
 
-.header-logo .logo > img {
-    /* width: 100%; */
-    /* max-height: 70px; */
-}
+/* .header-logo .logo > img {
+    width: 100%;
+    max-height: 70px;
+} */
 
 /*----------------------------*\
 	Search header
