@@ -90,6 +90,14 @@ Route::prefix('yqw')->group(function () {
         Route::get('change-password', 'Admin\AdminController@changePasswordView')->name('change.password.view');
         Route::post('change-password', 'Admin\AdminController@changePassword')->name('change.password');
 
+        // CUOPON
+        Route::get('delete-coupon/{id}', 'Admin\CouponController@deleteCoupon')->name('delete.coupon');
+        Route::get('add-coupon', 'Admin\CouponController@addCouponView')->name('add.coupon.view');
+        Route::post('add-coupon', 'Admin\CouponController@addCoupon')->name('add.coupon');
+        Route::get('coupon', 'Admin\CouponController@Coupon')->name('coupon');
+        Route::get('edit-coupon/{id}', 'Admin\CouponController@editCouponView')->name('edit.coupon.view');
+        Route::post('edit-coupon', 'Admin\CouponController@editCoupon')->name('edit.coupon');
+
         //category
         Route::get('categories', 'Admin\CategoryController@categories')->name('categories');
         Route::get('deleted-categories', 'Admin\CategoryController@deletedCategories')->name('deleted.categories');

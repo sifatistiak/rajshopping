@@ -208,6 +208,23 @@ desired effect
                   href="{{route('admin.deleted.sub-categories')}}">Deleted Sub Category</a></li>
             </ul>
           </li>
+          {{--COUPON --}}
+          <li class="treeview
+              @if ( Request::path() == 'yqw/add-coupon'  ||
+                Request::path() == 'yqw/coupon' || Request::is('yqw/edit-coupon/*') ) active @endif">
+            <a href="#"><i class="fa fa-link"></i> <span>Coupon</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="@if (Request::path() == 'yqw/add-coupon' ) active @endif"><a
+                  href="{{route('admin.add.coupon.view')}}">Add coupon</a></li>
+              <li class="@if (Request::path() == 'yqw/coupon' ) active @endif"><a
+                  href="{{route('admin.coupon')}}">Manage coupon</a></li>
+
+            </ul>
+          </li>
           {{-- slider Image --}}
           <li class="treeview
             @if ( Request::path() == 'yqw/add-slider-image'  ||
