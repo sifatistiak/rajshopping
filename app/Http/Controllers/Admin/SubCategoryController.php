@@ -20,12 +20,13 @@ class SubCategoryController extends Controller
     public function subCategories()
     {
         $subcategories = SubCategory::withCount('products')->orderBy('priority', 'desc')->get();
-        return view('admin.subcategories', compact('categories'));
+        $categories = Category::all();
+        return view('admin.subcategories', compact('subcategories', 'categories'));
     }
 
     public function deletedSubCategories()
     {
-        $deletedsubCategories = Category::onlyTrashed()->get();
+        $deletedsubCategories = SubCategory::onlyTrashed()->get();
         return view('admin.deleted_sub-categories', compact('deletedsubCategories'));
     }
 
@@ -47,20 +48,23 @@ class SubCategoryController extends Controller
         SubCategory::create($request->all());
         return back()->with('success', 'SubCategory created successful.');
     }
-    public function editCategoryView($id)
+    public function editSubCategoryView($id)
     {
         $subcategory = SubCategory::findOrFail($id);
-        return view('admin.edit_sub-category', compact('subcategory'));
+        $categories = Category::all();
+        return view('admin.edit_sub-category', compact('subcategory', 'categories'));
     }
 
     public function editSubCategory(Request $request)
     {
         $this->validate($request, [
+            'category_id' => 'required',
             'name' => 'string|required|max:255',
             'priority' => 'required|integer'
         ]);
 
         $subcategory = SubCategory::findOrFail($request->id);
+        $subcategory->category_id = $request->category_id;
         $subcategory->name = $request->name;
         $subcategory->priority = $request->priority;
         $subcategory->save();

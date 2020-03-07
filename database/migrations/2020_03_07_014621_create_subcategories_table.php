@@ -19,6 +19,7 @@ class CreateSubcategoriesTable extends Migration
             $table->string('name');
             $table->integer('priority');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -32,4 +32,9 @@ class SubCategory extends Model
     {
         return $this->hasMany(Product::class)->where('title', $term);
     }
+    
+    public function category()
+    {
+        return $this->belongsTo(Category::class)->select('id','name');
+    }
 }

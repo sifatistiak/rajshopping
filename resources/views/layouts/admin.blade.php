@@ -191,18 +191,18 @@ desired effect
                 Request::path() == 'yqw/sub-categories' || Request::is('yqw/edit-sub-category/*')||
                 Request::path() == 'yqw/deleted-sub-categories' )
           active @endif">
-            <a href="#"><i class="fa fa-link"></i> <span>sub-Category</span>
+            <a href="#"><i class="fa fa-link"></i> <span>Sub Category</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-right pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
               <li class="@if (Request::path() == 'yqw/add-sub-category' ) active @endif"><a
-                  href="{{route('admin.add.sub-category.view')}}">Add sub- Category</a></li>
-              {{-- <li class="@if (Request::path() == 'yqw/sub-categories' ) active @endif"><a
-                  href="{{route('admin.sub-categories')}}">Manage sub- Category</a></li>
+                  href="{{route('admin.add.sub-category.view')}}">Add Sub Category</a></li>
+              <li class="@if (Request::path() == 'yqw/sub-categories' ) active @endif"><a
+                  href="{{route('admin.sub-categories')}}">Manage Sub Category</a></li>
               <li class="@if (Request::path() == 'yqw/sub-deleted-categories' ) active @endif"><a
-                  href="{{route('admin.deleted.sub-categories')}}">Deleted sub- Category</a></li> --}}
+                  href="{{route('admin.deleted.sub-categories')}}">Deleted sub- Category</a></li>
             </ul>
           </li>
           {{-- slider Image --}}

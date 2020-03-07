@@ -45,6 +45,11 @@ class Product extends Model
         return $this->belongsTo(Category::class)->withTrashed();
     }
 
+    public function subCategory()
+    {
+        return $this->belongsTo(SubCategory::class)->withTrashed();
+    }
+
     public function displayImage()
     {
         return $this->hasOne(ProductImage::class)->select('id','product_id','image')->where('display_image_status', '1');
@@ -60,7 +65,7 @@ class Product extends Model
         return $this->hasMany(Review::class)->select('id','name','message','rating','status','product_id')->where('status',1);
     }
 
-    
+
 
 //     public function getUpdatedAtAttribute($value)
 // {

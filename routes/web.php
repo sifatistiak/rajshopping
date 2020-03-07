@@ -1,6 +1,9 @@
 <?php
 
 // FrontendController
+
+use App\Models\SubCategory;
+
 Route::get('/', 'Frontend\IndexController@index')->name('index');
 Route::get('/products/{id}', 'Frontend\IndexController@products')->name('products');
 Route::get('/shop', 'Frontend\IndexController@shop')->name('shop');
@@ -93,6 +96,13 @@ Route::prefix('yqw')->group(function () {
         Route::get('edit-category/{id}', 'Admin\CategoryController@editCategoryView')->name('edit.category.view');
         Route::post('edit-category', 'Admin\CategoryController@editCategory')->name('edit.category');
 
+        // SubCategory
+        Route::get('sub-categories', 'Admin\SubCategoryController@subCategories')->name('sub-categories');
+        Route::get('deleted-sub-categories', 'Admin\SubCategoryController@deletedSubCategories')->name('deleted.sub-categories');
+        Route::get('delete-sub-category/{id}', 'Admin\SubCategoryController@deleteSubCategory')->name('delete.sub-category');
+
+        Route::get('restore-sub-category/{id}', 'Admin\SubCategoryController@restoreSubCategory')->name('restore.sub-category');
+        Route::get('force-delete-sub-category/{id}', 'Admin\SubCategoryController@forceSubDeleteCategory')->name('force.delete.sub-category');
         Route::get('add-sub-category', 'Admin\SubCategoryController@addSubCategoryView')->name('add.sub-category.view');
         Route::post('add-sub-category', 'Admin\SubCategoryController@addSubCategory')->name('add.sub-category');
 
