@@ -93,6 +93,12 @@ Route::prefix('yqw')->group(function () {
         Route::get('edit-category/{id}', 'Admin\CategoryController@editCategoryView')->name('edit.category.view');
         Route::post('edit-category', 'Admin\CategoryController@editCategory')->name('edit.category');
 
+        Route::get('add-sub-category', 'Admin\SubCategoryController@addSubCategoryView')->name('add.sub-category.view');
+        Route::post('add-sub-category', 'Admin\SubCategoryController@addSubCategory')->name('add.sub-category');
+
+        Route::get('edit-sub-category/{id}', 'Admin\SubCategoryController@editSubCategoryView')->name('edit.sub-category.view');
+        Route::post('edit-sub-category', 'Admin\SubCategoryController@editSubCategory')->name('edit.sub-category');
+
         //slider-image
         Route::get('slider-images', 'Admin\SliderImageController@sliderImages')->name('slider.images');
         Route::get('delete-slider-image/{id}', 'Admin\SliderImageController@deleteSliderImage')->name('delete.slider.image');
@@ -113,7 +119,7 @@ Route::prefix('yqw')->group(function () {
         Route::get('product-by-category/{id?}', 'Admin\ProductController@productByCategory')->name('product.by.category');
 
 
-        
+
 
         // order
         Route::get('orders', 'Admin\OrderController@orders')->name('orders');
@@ -128,7 +134,7 @@ Route::prefix('yqw')->group(function () {
         Route::get('delete-complete-order/{user_identity}', 'Admin\OrderController@deleteCompleteOrder')->name('delete.complete.order');
         Route::get('save-complete-order/{user_identity}', 'Admin\OrderController@saveCompleteOrder')->name('save.complete.order');
         Route::get('completed-orders', 'Admin\OrderController@completedOrders')->name('completed.orders');
-        
+
         //reviews
         Route::get('reviews', 'Admin\ReviewHelpController@reviews')->name('reviews');
         Route::get('change-review-status/{id}', 'Admin\ReviewHelpController@changeReviewStatus')->name('change.review.status');
