@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Image;
@@ -21,7 +22,7 @@ class ProductController extends Controller
 
     public function products()
     {
-        $products = Product::with('category', 'displayImage')->orderBy('created_at', 'desc')->get();
+        $products = Product::with('category', 'subCategory', 'displayImage')->orderBy('created_at', 'desc')->get();
 
         return view('admin.products', compact('products'));
     }
@@ -85,6 +86,7 @@ class ProductController extends Controller
             'title' => 'string|required|max:255',
             'desc' => 'string|required|max:65535',
             'category_id' => 'integer|required',
+            'sub_category_id' => 'integer|required',
             'price' => 'integer|required|min:1',
             'quantity' => 'integer|required|min:1',
             'discount' => 'integer|required',
@@ -133,9 +135,10 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
+        $subcategories = SubCategory::where('category_id', $product->category_id)->get();
         $productImages = ProductImage::where('product_id', $id)->where('display_image_status', 0)->get();
         $displayImage = ProductImage::where('product_id', $id)->where('display_image_status', 1)->first();
-        return view('admin.edit_product', compact('product', 'categories', 'productImages', 'displayImage'));
+        return view('admin.edit_product', compact('product', 'categories', 'subcategories', 'productImages', 'displayImage'));
     }
 
     public function editProduct(Request $request, $id)
@@ -144,6 +147,7 @@ class ProductController extends Controller
             'title' => 'string|required|max:255',
             'desc' => 'string|required|max:65535',
             'category_id' => 'integer|required',
+            'sub_category_id' => 'integer|required',
             'price' => 'integer|required|min:1',
             'quantity' => 'integer|required|min:0',
             'discount' => 'integer|required',
@@ -238,5 +242,18 @@ class ProductController extends Controller
         $category = Category::where('id',$categoryId)->first();
         $products = Product::where('category_id', $categoryId)->with('displayImage', 'category')->orderBy('created_at', 'desc')->get();
         return view('admin.product_by_category', compact('category','categories', 'categoryId', 'products'));
+    }
+
+    public function productBySubCategory(Request $request)
+    {
+        // return $request;
+        $categories = Category::all();
+        $subcategories = SubCategory::all();
+        $categoryId = $request->category_id;
+        $subcategoryId = $request->sub_category_id;
+        $category = Category::where('id',$categoryId)->first();
+        $subcategory = SubCategory::where('id',$subcategoryId)->first();
+        $products = Product::where('sub_category_id', $subcategoryId)->where('category_id', $categoryId)->with('displayImage', 'category')->orderBy('created_at', 'desc')->get();
+        return view('admin.product_by_subcategory', compact('category', 'subcategory', 'categories', 'subcategories', 'categoryId', 'subcategoryId', 'products'));
     }
 }

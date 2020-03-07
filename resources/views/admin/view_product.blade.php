@@ -2,8 +2,8 @@
 @section('title','Admin | View Product')
 @section('header','View Product')
 @section('content')
-
-<div class="col-md-8"><br>
+<div class="row" style="display:grid">
+<div class="col-md-12"><br>
     <table class="table table-striped">
         <tr>
             <td>
@@ -39,6 +39,14 @@
         </tr>
         <tr>
             <td>
+                Sub Category
+            </td>
+            <td>
+                {{$product->subCategory['name']}}
+            </td>
+        </tr>
+        <tr>
+            <td>
                 Price
             </td>
             <td>
@@ -47,19 +55,17 @@
         </tr>
     </table>
 </div>
-<div class="row">
-<div class="col-md-8">
+<div class="col-md-4">
     <p>Display Image</p>
     <img src="{{asset('product_images/'.$displayImage->image)}}" />
 </div>
-</div>
+
+<div class="col-md-4">
 <h3>Other Images</h3>
-<div class="row">
 @foreach ($productImages as $productImage)
-<div class="col-md-6">
     <img src="{{asset('product_images/'.$productImage->image)}}" />
-</div>
 @endforeach
+</div>
 </div>
 
 @endsection

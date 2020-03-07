@@ -1,14 +1,14 @@
 @extends('layouts.admin')
-@section('title','Admin | Product By Category')
-@section('header','Product By Category')
+@section('title','Admin | Product By Sub Category')
+@section('header','Product By Sub Category')
 @section('content')
 <div class="col-md-6">
-    <form action="{{ route('admin.product.by.category') }}" method="GET" role="form">
+    <form action="{{ route('admin.product.by.subcategory') }}" method="GET" role="form">
         @csrf
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Category</label>
-                <select required name="category_id" class="form-control">
+                <select required name="category_id" id="category" class="form-control">
                     @if ($categoryId)
                     <option value="{{$category->id}}"> {{$category->name}} </option>
                     @endif
@@ -18,12 +18,22 @@
                 </select>
             </div>
         </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Sub Category</label>
+                <select required name="sub_category_id" id="subcategory" class="form-control">
+                    @if ($subcategoryId)
+                    <option value="{{$subcategory->id}}"> {{$subcategory->name}} </option>
+                    @endif
+                </select>
+            </div>
+        </div>
         <div style="margin-left: 10px">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
 </div>
-@if ($categoryId)
+@if ($subcategoryId)
 <div class="col-md-12">
     <table class="table table-hover table-bordered table-striped">
         <thead>
@@ -64,4 +74,24 @@
     </table>
 </div>
 @endif
+
+<script>
+    $(document).ready(function () {
+            $('#category').on('change',function(e){
+            console.log(e);
+            var cat_id = e.target.value;
+            console.log(cat_id);
+            //ajax
+            $.get('/ajax-subcat?cat_id='+ cat_id,function(data){
+            //success data
+            //console.log(data);
+            var subcat = $('#subcategory').empty();
+            $.each(data,function(index,subcatObj){
+                $('#subcategory').append('<option value="'+subcatObj.id+'">'+subcatObj.name+'</option>');
+            });
+            });
+            });
+            });
+</script>
+
 @endsection

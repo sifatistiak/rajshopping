@@ -10,6 +10,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Category</th>
+                <th scope="col">Sub Category</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Display Image</th>
@@ -24,6 +25,7 @@
                 <td>{{$product->title}}</td>
                 <td>{{str_limit($product->desc,50)}}</td>
                 <td>{{$product->category->name}}</td>
+                <td>{{$product->subCategory['name']}}</td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->quantity}}</td>
                 <td><img height="60px" width="80px" src="{{asset('product_images/'.$product->displayImage->image)}}"

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $fillable = ['title', 'desc', 'category_id', 'price', 'quantity','discount', 'status'];
+    protected $fillable = ['title', 'desc', 'category_id', 'sub_category_id', 'price', 'quantity','discount', 'status'];
     use SoftDeletes;
     // protected $timestamp = False;
     // public $timestamps = false;

@@ -29,7 +29,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <!-- Google Font -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -161,6 +162,8 @@ desired effect
                   href="{{route('admin.products')}}">Manage all Product</a></li>
               <li class="@if (Request::path() == 'yqw/product-by-category' ) active @endif"><a
                   href="{{route('admin.product.by.category')}}">Product by Category</a></li>
+              <li class="@if (Request::path() == 'yqw/product-by-subcategory' ) active @endif"><a
+                  href="{{route('admin.product.by.subcategory')}}">Product by Sub Category</a></li>
               <li class="@if (Request::path() == 'yqw/deleted-products' ) active @endif"><a
                   href="{{route('admin.deleted.products')}}">Deleted Products</a></li>
             </ul>
@@ -202,7 +205,7 @@ desired effect
               <li class="@if (Request::path() == 'yqw/sub-categories' ) active @endif"><a
                   href="{{route('admin.sub-categories')}}">Manage Sub Category</a></li>
               <li class="@if (Request::path() == 'yqw/sub-deleted-categories' ) active @endif"><a
-                  href="{{route('admin.deleted.sub-categories')}}">Deleted sub- Category</a></li>
+                  href="{{route('admin.deleted.sub-categories')}}">Deleted Sub Category</a></li>
             </ul>
           </li>
           {{-- slider Image --}}

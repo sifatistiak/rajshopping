@@ -3,7 +3,13 @@
 // FrontendController
 
 use App\Models\SubCategory;
+use Illuminate\Support\Facades\Input;
 
+Route::get('/ajax-subcat', function () {
+    $cat_id = Input::get('cat_id');
+    $subcategories = DB::table('sub_categories')->where('category_id', '=', $cat_id)->get();
+    return Response::json($subcategories);
+});
 Route::get('/', 'Frontend\IndexController@index')->name('index');
 Route::get('/products/{id}', 'Frontend\IndexController@products')->name('products');
 Route::get('/shop', 'Frontend\IndexController@shop')->name('shop');
@@ -127,6 +133,7 @@ Route::prefix('yqw')->group(function () {
         Route::post('edit-product/{id}', 'Admin\ProductController@editProduct')->name('edit.product');
         Route::get('view-product/{id}', 'Admin\ProductController@viewProduct')->name('product.view');
         Route::get('product-by-category/{id?}', 'Admin\ProductController@productByCategory')->name('product.by.category');
+        Route::get('product-by-subcategory/{id?}', 'Admin\ProductController@productBySubCategory')->name('product.by.subcategory');
 
 
 

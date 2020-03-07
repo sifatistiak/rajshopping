@@ -10,29 +10,30 @@
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Title</label>
-                <input value="{{old('title')}}Firdous Ombre - 19" type="text" max="255" class="form-control" placeholder="Enter Product Title" name="title" autofocus
+                <input type="text" max="255" class="form-control" placeholder="Enter Product Title" name="title" autofocus
                     required>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Description</label>
-                <textarea name="desc" rows="10" class="form-control" required>{{old('desc')}}
-<p><strong> DIGITAL PRINTED LAWN SHIRT 3.18M<br>
-DIGITAL PRINTED BAMBERG CHIFFON DUPATTA 2.5M<br>
-COTTONTROUSER 2.5M<br>
-2PCS ORGANZA EMB DAMAN MOTIFS-4PCS ORGANZA EMB TROUSER MOTIFS </strong></p>
-<p><strong>Quality </strong>- Best Quality Ensure</p>
-<p><strong>Look</strong> - As like the picture</p></textarea>
+                <textarea name="desc" rows="10" class="form-control" required></textarea>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Category</label>
-                <select required name="category_id" class="form-control">
+                <select required name="category_id" id="category" class="form-control">
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}"> {{$category->name}} </option>
                     @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Sub Category</label>
+                <select required name="sub_category_id" id="subcategory" class="form-control">
                 </select>
             </div>
         </div>
@@ -76,5 +77,23 @@ COTTONTROUSER 2.5M<br>
     </form>
 
 </div>
-
+<script>
+    $(document).ready(function () {
+            $('#category').on('change',function(e){
+            console.log(e);
+            var cat_id = e.target.value;
+            console.log(cat_id);
+            //ajax
+            $.get('/ajax-subcat?cat_id='+ cat_id,function(data){
+            //success data
+            //console.log(data);
+            var subcat = $('#subcategory').empty();
+            $.each(data,function(index,subcatObj){
+                $('#subcategory').append('<option value="'+subcatObj.id+'">'+subcatObj.name+'</option>');
+            });
+            });
+            });
+            });
+</script>
 @endsection
+
