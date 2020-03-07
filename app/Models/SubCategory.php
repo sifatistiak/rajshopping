@@ -24,7 +24,7 @@ class SubCategory extends Model
 
     public function mypath()
     {
-        return route('category.products',[$this->id,str_slug($this->name, '-')]);
+        return route('subcategory.products',[$this->id,str_slug($this->name, '-')]);
     }
     // protected $dispatchesEvents;
 
@@ -32,7 +32,7 @@ class SubCategory extends Model
     {
         return $this->hasMany(Product::class)->where('title', $term);
     }
-    
+
     public function category()
     {
         return $this->belongsTo(Category::class)->select('id','name');

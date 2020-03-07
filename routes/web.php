@@ -15,6 +15,7 @@ Route::get('/products/{id}', 'Frontend\IndexController@products')->name('product
 Route::get('/shop', 'Frontend\IndexController@shop')->name('shop');
 
 Route::get('/category-products/{category}-{slug}', 'Frontend\IndexController@categoryProducts')->name('category.products');
+Route::get('/subcategory-products/{subcategory}-{slug}', 'Frontend\IndexController@subCategoryProducts')->name('subcategory.products');
 
 Route::get('/product/{product}-{slug}', 'Frontend\IndexController@newproduct')->name('newproduct');
 Route::get('/product/{id}', 'Frontend\IndexController@product')->name('product');

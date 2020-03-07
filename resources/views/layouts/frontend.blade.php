@@ -52,7 +52,6 @@
   gtag('config', 'UA-149462793-1');
 	</script>
 	<script src="{{asset('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
-
 </head>
 
 <body>
@@ -239,7 +238,8 @@
 		</div>
 		<!-- container -->
 	</header>
-	<!-- /HEADER -->
+    <!-- /HEADER -->
+
 	<!-- NAVIGATION -->
 	<div id="navigation" class="navigation">
 		<!-- container -->
@@ -248,14 +248,26 @@
 				<!-- menu nav -->
 				<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
-					<ul class="menu-list">
+					<ul class="menu-list dropdown">
                         @php
                             $categories =  App\Models\Category::orderBy('priority', 'asc')->get();
+
                         @endphp
                         @foreach ($categories as $category)
-                            <li><a href="{{$category->mypath()}}">{{$category->name}}</a></li>
+                        <li class="dropdown">
+                            <a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$category->name}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                               <li> <a  href="{{$category->mypath()}}">{{$category->name}}</a></li>
+                               @php
+                               $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('priority', 'asc')->get();
+                               @endphp
+                               @foreach ($subcategories as $item)
+                                <li> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
+                               @endforeach
+                            </ul>
                         @endforeach
-					</ul>
+                    </ul>
+                    </div>
 				</div>
 
 			</div>

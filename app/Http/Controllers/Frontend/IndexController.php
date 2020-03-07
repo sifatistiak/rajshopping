@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\SliderImage;
@@ -59,6 +60,11 @@ class IndexController extends Controller
         $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('category_id', $category->id)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(12);
         return view('frontend.products', compact('products', 'category'));
     }
+    public function subCategoryProducts(SubCategory $subcategory)
+    {
+        $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('sub_category_id', $subcategory->id)->with('reviews', 'displayImage')->orderBy('created_at', 'desc')->paginate(12);
+        return view('frontend.subproducts', compact('products', 'subcategory'));
+    }
 
     public function sortByPrice(Request $request)
     {
@@ -76,7 +82,18 @@ class IndexController extends Controller
                 $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('category_id', $categoryId)->orderBy('price', 'asc')->get();
             }
             return view('frontend.sort_by_price_product', compact('products', 'category', 'filter'));
-        } else {
+        }
+        else if ($request->sub_category_id) {
+            $subcategoryId = $request->sub_category_id;
+            $subcategory = SubCategory::findOrFail($subcategoryId);
+            if ($filter == 1) {
+                $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('sub_category_id', $subcategoryId)->orderBy('price', 'desc')->get();
+            } else {
+                $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('sub_category_id', $subcategoryId)->orderBy('price', 'asc')->get();
+            }
+            return view('frontend.sort_by_price_subproduct', compact('products', 'subcategory', 'filter'));
+        }
+        else {
             if ($filter == 1) {
                 $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->orderBy('price', 'desc')->get();
             } else {
