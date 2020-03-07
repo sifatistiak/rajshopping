@@ -40,22 +40,31 @@
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Quantity</label>
-                <input value="{{old('quantity')}}1" type="number" class="form-control" placeholder="Enter Product Quantity" name="quantity" min="1"
+                <input type="number" class="form-control" placeholder="Enter Product Quantity" name="quantity" min="1"
                     required>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Discount</label>
-                <input value="{{old('discount')}}10" type="number" class="form-control" placeholder="Enter Product discount" name="discount"
+                <input value="0" type="number" class="form-control" placeholder="Enter Product discount" name="discount" min="0"
                     required>
             </div>
         </div>
         <div class="box-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Price</label>
-                <input value="{{old('price')}}4300" type="number" class="form-control" placeholder="Enter Product Price" name="price" min="1"
+                <input type="number" class="form-control" placeholder="Enter Product Price" name="price" min="1"
                     required>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Hot Product</label>
+                <select required name="status" class="form-control">
+                    <option value="1"> Yes </option>
+                    <option value="0"> No </option>
+                </select>
             </div>
         </div>
         <div class="box-body">

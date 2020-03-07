@@ -2,13 +2,15 @@
 @section('title','Products')
 @section('header','Products')
 @section('content')
+<small>*Hot Products are marked Red</small>
+<br>
 <div class="col-md-12">
     <table class="table table-hover table-bordered table-striped">
         <thead>
             <tr>
                 <th scope="col">Sl.</th>
                 <th scope="col">Title</th>
-                <th scope="col">Description</th>
+                <th scope="">Description</th>
                 <th scope="col">Category</th>
                 <th scope="col">Sub Category</th>
                 <th scope="col">Price</th>
@@ -20,7 +22,11 @@
         <tbody>
             @foreach ($products as $product)
 
+            @if ($product->status == 1)
+            <tr style="color:red">
+            @else
             <tr>
+             @endif
                 <td>{{$loop->index+1}}</td>
                 <td>{{$product->title}}</td>
                 <td>{{str_limit($product->desc,50)}}</td>

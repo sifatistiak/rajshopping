@@ -70,6 +70,21 @@
         </div>
         <div class="box-body">
             <div class="form-group">
+                <label for="exampleInputEmail1">Hot Product</label>
+                <select required name="status" class="form-control">
+                    <option @if($product->status == 1)
+                        selected
+                        @endif
+                        value="1"> Yes </option>
+                    <option @if($product->status == 0)
+                        selected
+                        @endif
+                        value="0"> No </option>
+                </select>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
                 <label for="exampleInputEmail1">Images</label><br>
                 @foreach ($productImages as $productImage)
                 <img width="100px" height="80px " src="{{asset('product_images/'.$productImage->image)}}" />
