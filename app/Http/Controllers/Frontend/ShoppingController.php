@@ -123,7 +123,7 @@ class ShoppingController extends Controller
 
         $address = Address::where('user_identity', $userIdentity)->first();
         $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->with('product')->get();
-        $discountvalue = $request->session()->pull('coupon', 'default');
+        $discountvalue = $request->session()->get('coupon', 'default');
         return view('frontend.checkout', compact('carts', 'address', 'discountvalue'));
     }
 
