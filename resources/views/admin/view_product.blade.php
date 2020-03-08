@@ -2,8 +2,8 @@
 @section('title','Admin | View Product')
 @section('header','View Product')
 @section('content')
-<div class="row" style="display:grid">
-<div class="col-md-12"><br>
+<div class="row" style="overflow-x: auto; display:grid;">
+<div class="col-md-12" style="overflow-x: auto;"><br>
     <table class="table table-striped">
         <tr>
             <td>

@@ -3,7 +3,7 @@
 @section('header','Deleted Categories')
 @section('content')
 
-<div class="col-md-6">
+<div class="col-md-6" style="overflow-x: auto;">
     <table class="table table-hover table-bordered table-striped">
         <thead>
             <tr>

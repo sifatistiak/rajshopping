@@ -3,7 +3,7 @@
 @section('header','Reviews')
 @section('content')
 
-<div class="col-md-9">
+<div class="col-md-9" style="overflow-x: auto;">
     <table class="table table-hover table-bordered table-striped">
         <thead>
             <tr>

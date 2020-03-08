@@ -2,7 +2,7 @@
 @section('title','Deleted Products')
 @section('header','Deleted Products')
 @section('content')
-<div class="col-md-12">
+<div class="col-md-12" style="overflow-x: auto;">
     <table class="table table-hover table-bordered table-striped">
         <thead>
             <tr>
