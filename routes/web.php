@@ -141,6 +141,8 @@ Route::prefix('yqw')->group(function () {
         Route::post('add-product', 'Admin\ProductController@addProduct')->name('add.product');
         Route::get('edit-product/{id}', 'Admin\ProductController@editProductView')->name('edit.product.view');
         Route::post('edit-product/{id}', 'Admin\ProductController@editProduct')->name('edit.product');
+        Route::get('duplicate-product/{id}', 'Admin\ProductController@duplicateProductView')->name('duplicate.product.view');
+        Route::post('duplicate-product/{id}', 'Admin\ProductController@duplicateProduct')->name('duplicate.product');
         Route::get('view-product/{id}', 'Admin\ProductController@viewProduct')->name('product.view');
         Route::get('product-by-category/{id?}', 'Admin\ProductController@productByCategory')->name('product.by.category');
         Route::get('product-by-subcategory/{id?}', 'Admin\ProductController@productBySubCategory')->name('product.by.subcategory');

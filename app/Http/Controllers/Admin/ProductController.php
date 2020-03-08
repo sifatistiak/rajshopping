@@ -222,6 +222,39 @@ class ProductController extends Controller
         return back()->with('success', 'Product update successful.');
     }
 
+    // duplication
+    public function duplicateProductView($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        $subcategories = SubCategory::where('category_id', $product->category_id)->get();
+        return view('admin.duplicate_product', compact('product', 'categories', 'subcategories'));
+    }
+
+    public function duplicateProduct(Request $request, $id)
+    {
+        $this->validate($request, [
+            'category_id' => 'integer|required',
+            'sub_category_id' => 'integer|required',
+        ]);
+
+        $product = Product::findOrFail($id);
+        $productDisplayImage = ProductImage::where('product_id', $id)->where('display_image_status', 1)->first();
+        $productImages = ProductImage::where('product_id', $id)->where('display_image_status', 0)->first();
+        $newClient = $product->replicate();
+        $newClient->category_id = $request->category_id;
+        $newClient->sub_category_id = $request->sub_category_id;
+        $newClient->save();
+        $newClientDisplayImage = $productDisplayImage->replicate();
+        $newClientDisplayImage->product_id = $newClient->id;
+        $newClientDisplayImage->save();
+        $newClientImage = $productImages->replicate();
+        $newClientImage->product_id = $newClient->id;
+        $newClientImage->save();
+
+        return back()->with('success', 'Product Duplication successful.');
+    }
+
     public function deleteProduct($id)
     {
         $product = Product::findOrFail($id);

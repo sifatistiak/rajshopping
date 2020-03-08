@@ -65,6 +65,7 @@
                 <td>
                     <a href="{{route('admin.product.view',$product->id)}}">View || </a>
                     <a href="{{route('admin.edit.product.view',$product->id)}}">Edit || </a>
+                    <a href="{{route('admin.duplicate.product.view',$product->id)}}">Duplicate || </a>
                     <a onclick="return confirm('Are you sure?')"
                         href="{{route('admin.delete.product',$product->id)}}">Soft Delete</a>
                 </td>
