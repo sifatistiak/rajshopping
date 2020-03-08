@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 
 class ShoppingController extends Controller
 {
@@ -69,10 +71,23 @@ class ShoppingController extends Controller
         } else {
             $userIdentity = $request->ip();
         }
+
         $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->with('product')->get();
 
-        return view('frontend.cart', compact('carts'));
+        if ($code = $request->input('code')) {
+            $coupon = Coupon::where('code', $code)->first();
+            session(['coupon' => $coupon]);
+            return view('frontend.cart', compact('carts', 'coupon'));
+        } else {
+            return view('frontend.cart', compact('carts'));
+        }
     }
+
+    // public function cartCoupon($request)
+    // {
+    //     $coupon = Coupon::where('code', $request)->first();
+    //     return view('frontend.cart', compact('coupon'));
+    // }
 
     public function frontendCarts(Request $request)
     {
@@ -108,7 +123,8 @@ class ShoppingController extends Controller
 
         $address = Address::where('user_identity', $userIdentity)->first();
         $carts = Cart::where('user_identity', $userIdentity)->where('status', 1)->with('product')->get();
-        return view('frontend.checkout', compact('carts', 'address'));
+        $discountvalue = $request->session()->pull('coupon', 'default');
+        return view('frontend.checkout', compact('carts', 'address', 'discountvalue'));
     }
 
     public function buyNow(Product $product)
@@ -173,6 +189,7 @@ class ShoppingController extends Controller
             foreach ($request->carts as $cartId) {
                 $cart = Cart::where('id', $cartId)->first();
                 $cart->status = 0;
+                $cart->amount = $request->amount;
                 $cart->save();
             }
 
@@ -211,7 +228,7 @@ class ShoppingController extends Controller
 
             $msg = "<h3>Your account has been created and  Order has been placed. We will contact you soon. Thank You.</h3>";
         }
-        
+
         return redirect()->route('checkout')->with('success', $msg);
     }
 

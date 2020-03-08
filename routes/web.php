@@ -23,6 +23,7 @@ Route::get('/search', 'Frontend\IndexController@search')->name('search');
 Route::get('/search-page', 'Frontend\IndexController@searchPage')->name('search.page');
 Route::post('/sort-by-price', 'Frontend\IndexController@sortByPrice')->name('sort.by.price');
 Route::get('/cart', 'Frontend\ShoppingController@cart')->name('cart');
+Route::post('/cart', 'Frontend\ShoppingController@cart')->name('cart.coupon');
 // Route::get('/checkout/{id?}', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
 Route::get('/checkout', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
 Route::get('/buy-now/{product}-{slug}', 'Frontend\ShoppingController@buyNow')->name('buy.now');

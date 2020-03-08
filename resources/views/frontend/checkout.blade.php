@@ -257,14 +257,17 @@
 								</tr>
 								<tr>
 									<th class="empty" colspan="3"></th>
-									<th>SHIPING</th>
+									<th>Coupon Discount</th>
 									<th colspan="2" class="sub-total"><span id="shipping">
-											@if ($address)
-											@if ($address->division == "Dhaka")
-											0
-											@else
-											50
-											@endif
+                                            @if ($discountvalue != 'default')
+                                                @if ($discountvalue['type'] == 0)
+                                                    {{$total*$discountvalue['amount']/100}}
+                                                    {{-- {{$subTotal= $total-($total*$discountvalue['amount']/100)}} --}}
+                                                @elseif ($discountvalue['type'] == 1)
+                                                    {{$discountvalue['amount']}}
+                                                    {{-- {{$subTotal= $total-$discountvalue['amount']}} --}}
+                                                @endif
+                                            @else 0
 											@endif
 
 										</span><img style="display: inline" width="15px"
@@ -274,7 +277,17 @@
 									<th class="empty" colspan="3"></th>
 									<th>TOTAL</th>
 									<th colspan="2" class="total">
-										<div style="display:inline" id="total">{{$total}}</div>
+                                        <div style="display:inline" id="total">
+                                            @if ($discountvalue != 'default')
+                                                @if ($discountvalue['type'] == 0)
+                                                    {{$total = $total-($total*$discountvalue['amount']/100)}}
+                                                @elseif ($discountvalue['type'] == 1)
+                                                    {{$total = $total-$discountvalue['amount']}}
+                                                @endif
+                                            @else {{$total}}
+                                            @endif
+                                            <input type="hidden" name="amount" value="{{$total}}">
+                                        </div>
 										<img style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt="">
 									</th>

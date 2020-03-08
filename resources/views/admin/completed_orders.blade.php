@@ -41,8 +41,8 @@
                 <td><span
                         style="color:#FFFFFF;font-size: 20px">{{$userIdentity->created_at->toFormattedDateString()}}</span>
                 </td>
-               
-                
+
+
                 <td>
                     <a onclick="return confirm('Are you sure?')" class="btn btn-danger"
                         href="{{route('admin.delete.complete.order',$orderCart->user_identity)}}">Delete</a>
@@ -66,9 +66,9 @@
                 <td colspan="2"><img height="80px" width="100px"
                         src="{{asset('thumb_product_images/'.$item->product->displayImage->image)}}" alt=""></td>
                 <td>{{$item->quantity}}</td>
-                <td>{{$item->product->price}}</td>
+                <td>{{$item->amount}}</td>
                 @php
-                $total += $item->quantity*$item->product->price;
+                $total += $item->amount;
                 @endphp
             </tr>
             @endforeach
@@ -89,7 +89,7 @@
                         }
                         echo $shipping;
                         @endphp
-                
+
                     </b></td>
                 <td><b>Total = {{$total+$shipping}}</b></td>
             </tr>

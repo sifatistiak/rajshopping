@@ -116,21 +116,21 @@
                 <td colspan="2"><img height="80px" width="100px"
                         src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" alt=""></td>
                 <td>{{$orderProduct->quantity}}</td>
-                <td>{{$product->price}}</td>
+                <td>{{$orderProduct->amount}}</td>
                 <td>
                     @if($product->deleted_at == NULL)
                     <button class="btn btn-success" disabled> Active</button>
                     @else
                     <button class="btn btn-danger" disabled>Soft Deleted</button>
                     @endif
-                
+
                 </td>
                 <td colspan="3">
                     <a class="btn btn-info" href="{{route('admin.product.view',$product->id)}}">View</a>
                      || <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('admin.delete.order.product',$orderProduct->id)}}">Delete</a>
                 </td>
                 @php
-                $total += $orderProduct->quantity*$product->price;
+                $total += $orderProduct->amount;
                 @endphp
             </tr>
             @endforeach

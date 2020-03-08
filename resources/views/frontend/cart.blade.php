@@ -70,30 +70,76 @@
 
 							</tbody>
 							<tfoot>
-								<tr>
-									<th class="empty" colspan="3"></th>
-									<th>TOTAL</th>
-									<th colspan="2" id="" class="sub-total">
-										<div style="display:inline" id="sub_total">{{$total}}</div><img
-											style="display: inline" width="15px"
-											src="{{asset('frontend/img/taka.png')}}" alt="">
-									</th>
-								</tr>
+                                <tr>
+                                    <td>
+                                        Enter Coupon Code
+                                    </td>
+                                    <form action="{{ route('cart.coupon')}}" method="POST">
+                                        <td>
+                                            <input type="text" name="code"
+                                            @if(isset($coupon->code)) value="{{$coupon->code}}"
+                                            @endif
+                                            >
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-primary">Apply</button>
+                                        </td>
+                                    </form>
+                                @php
+
+                                    if (isset($coupon->amount) && isset($coupon->type)){
+                                        $disAm = $coupon->amount;
+                                        $type = $coupon->type;
+                                    if ($type == 0) {
+                                        $subTotal= $total-($total*$disAm/100);
+                                        $show = $disAm."% OFF";
+                                        $disAm = $total*$disAm/100;
+                                    }
+                                    else if ($type == 1) {
+                                        $subTotal= $total-$disAm;
+                                        $show = "BDT ".$disAm." OFF";
+
+                                    }
+                                    else {
+                                        $subTotal= $total;
+                                        $show='';
+                                    }
+                                    }
+
+                                    else {
+                                        $disAm = 0;
+                                        $type = 3;
+                                        $show='No Coupon';
+                                    }
+                                @endphp
+                                    <td>Coupon Discount</td>
+                                    <th colspan="2" id="" class="sub-total">
+                                        <div style="display:inline" id="discount">{{$show}}</div>
+                                    </th>
+                                </tr>
+
+
 								{{-- <tr>
-									<th class="empty" colspan="3"></th>
-									<th>SHIPING</th>
-									<th colspan="2" class="sub-total">50<img style="display: inline" width="15px"
-											src="{{asset('frontend/img/taka.png')}}" alt=""></th>
-								</tr>
+                                    <th class="empty" colspan="3"></th>
+									<th>Coupon Discount</th>
+                                    <th colspan="2" class="sub-total">
+                                        @if ($type == 0)
+                                        {{$disAm}} %
+                                        @elseif ($type == 1)
+                                           {{$disAm}} <img style="display: inline" width="15px" src="{{asset('frontend/img/taka.png')}}" alt="">
+                                        @else
+                                            N/A
+                                        @endif
+                                    </th>
+								</tr> --}}
 								<tr>
 									<th class="empty" colspan="3"></th>
-									<th>TOTAL</th>
-									<th colspan="2" class="total">
-										<div style="display:inline" id="total">{{$total+50}}</div>
-										<img style="display: inline" width="15px"
-											src="{{asset('frontend/img/taka.png')}}" alt="">
-									</th>
-								</tr> --}}
+                                    <th>TOTAL</th>
+                                    <th colspan="2" class="total">
+                                        <div style="display:inline" id="total">{{$total}}</div>
+                                        <img style="display: inline" width="15px" src="{{asset('frontend/img/taka.png')}}" alt="">
+                                    </th>
+								</tr>
 							</tfoot>
 						</table>
 						<div class="pull-right">
@@ -139,10 +185,11 @@
 			var sum = 0;
 			$(".total1").each(function(){
 			sum += Number($(this).text());
-			
-			});
+            });
+            var dis = parseFloat($("#discount").text());
+            var total = sum-dis;
 			$("#sub_total").text(sum);
-			$("#total").text(sum+50);
+			$("#total").text(total);
 			$("#cart_price").text(sum);
 		});
 
@@ -156,7 +203,7 @@
 				});
 			});
 		});
-		
+
 	});
 
 </script>
