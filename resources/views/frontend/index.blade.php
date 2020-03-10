@@ -149,55 +149,76 @@
 </div>
 <!-- /section -->
 <!--  section -->
-<div id="shop" class="section">
+<div id="shop" class="section col-lg-12" style="background-color:#fef7e7; overflow:scroll;">
     <!-- container -->
     <div class="container">
         <!-- row -->
         <div class="row">
-            <!-- banner -->
-            <div class="col-md-4 col-sm-6">
-                <a class="banner1 banner-1"><br><br><br>
-                    <img height="130px" src="{{asset('frontend/img/delivery.jpg')}}" alt="">
-                    <div class="banner-caption text-center">
-                        {{-- <h2 class="white-color">NEW COLLECTION</h2> --}}
-                    </div><br>
-
-                    <h3 style="margin-top:8rem;">Free Delivery in Dhaka</h3>
-                    <p style="text-align: justify;">We provide free delivery within Dhaka city and 50tk for outside of
-                        Dhaka. We deliver our product within 24-48 hours in Dhaka city and 48-72 hours outside of Dhaka.
-                    </p>
-                </a>
-
+            <div class="col-md-12">
+                <table style="margin-left: 25%; margin-right: 25%;">
+                    <tr>
+                        <td><img src="{{asset('frontend/img/main-logo.png')}}" alt=""></td>
+                        <td style="padding-left: 10%;">
+                            <h5> বাংলার মেলা</h5>
+                            <p style="text-align:justify;">রঙ হতে রঙ বাংলাদেশ। সময়কে রাঙানোর অভিন্ন লক্ষে অবিচল আমরা। ২৪
+                                বছরের লেগাসি অব্যাহত রেখেই পথ চলছে রঙ বাংলাদেশ। দেশজ
+                                উপকরণ, উজ্জ্বল বর্ণ আর হৃদয়গ্রাহী নকশাবিন্যাসে সমুন্নত থাকবে আমাদের সাংস্কৃতিক ঐতিহ্য।
+                            </p>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <!-- /banner -->
-            <!-- banner -->
-            <div class="col-md-4 col-sm-6">
-                <a class="banner1 banner-1">
-                    <img src="{{asset('frontend/img/pathao.jpg')}}" alt="">
-                    <div class="banner-caption text-center">
-                        {{-- <h2 class="white-color">NEW COLLECTION</h2> --}}
-                    </div><br>
-                    <h3>Our Delivery Partner</h3>
-                    <p style="text-align: justify;">Pathao helps us to deliver your product at your home. They provide
-                        fast delivery. Pathao is our fast, safe and secure delivery partner.</p>
-                </a>
-
-            </div><br><br><br>
-            <!-- /banner -->
-            <!-- banner -->
-            <div class="col-md-4 col-sm-6">
-                <a class="banner1 banner-1">
-                    <img src="{{asset('frontend/img/cash.jpg')}}" alt="">
-                    <div class="banner-caption text-center">
-                        {{-- <h2 class="white-color">NEW COLLECTION</h2> --}}
-                    </div><br><br>
-                    <h3 style="margin-top:4rem;">Safe Payment System</h3>
-                    <p style="text-align: justify;"> We receive cash when we deliver your product so that you don't have
-                        to worry about your money. We also return your cash if any accident occurs.</p>
-                </a><br>
-
+        </div>
+        <div class="row" style="margin-top:2rem;">
+            <div class="col-md-12">
+                <table style="margin-left: 5%; margin-right: 5%;">
+                    <tr>
+                        <td><img src="{{asset('frontend/img/shroddhanjli.png')}}" alt=""></td>
+                        <td style="padding-left: 2rem; padding-right:4rem;">
+                            <h5> শ্রদ্ধাঞ্জলি</h5>
+                            <p style="text-align:justify;">পরিবার ও সমাজে যাঁদের আমরা প্রতিদিন বিনম্র শ্রদ্ধা ও অনিশেষ
+                                ভালোবাসায় সিক্ত করি তাদের জন্যই শ্রদ্ধাঞ্জলি। রঙ বাংলাদেশের
+                                আন্তরিক নিবেদন। এই সাব-ব্র্যান্ডটি বয়োজ্যেষ্ঠদের আপন ভুবন। এর সৃষ্টিতে প্রতীয়মান
+                                শ্রদ্ধাস্পদদের উপযোগী রঙ, ডিজাইন, আরাম,
+                                মর্যাদা আর সামাজিক অবস্থান।</p>
+                        </td>
+                        <td><img src="{{asset('frontend/img/amar-bangladesh.png')}}" alt=""></td>
+                        <td style="padding-left:2rem;">
+                            <h5> আমার বাংলাদেশ</h5>
+                            <p style="text-align:justify;">প্রতিটি পণ্যই এক টুকরো বাংলাদেশ। রঙ বাংলাদেশ-এর এই
+                                সাব-ব্র্যান্ডে রয়েছে কান্ট্রি ব্র্যান্ডিংয়ের সচেতন প্রয়াস। স্মারক
+                                উপহার বা সুভেনির সামগ্রীই এই কালেকশনের মূল বৈশিষ্ট্য। এর মাধ্যমে থাকছে দেশি এবং
+                                বিদেশীদের কাছে পজিটিভ বাংলাদেশের
+                                প্রতিচ্ছবিকে তুলে ধরার প্রচেষ্টা।</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <!-- /banner -->
+        </div>
+        <div class="row" style="margin-top:2rem;">
+            <div class="col-md-12">
+                <table style="margin-left: 8%; margin-right: 5%;">
+                    <tr>
+                        <td><img src="{{asset('frontend/img/rang-junior.png')}}" alt=""></td>
+                        <td style="padding-left: 5rem; width:45%">
+                            <h5>বাংলার মেলা জুনিয়র</h5>
+                            <p style="text-align:justify;">রঙ বাংলাদেশ-এর শিশুতোষ ফ্যাশন লাইন রঙ জুনিয়র। ছোটদের পোশাকের
+                                বিশেষত্ব মেনেই তৈরি রঙ জুনিয়র-এর সংগ্রহ। প্রাত্যহিক আর
+                                উৎসব পোশাকের ঋদ্ধ আয়োজনে রঙ জুনিয়র রাঙাবে শিশুদের আনন্দময় ভুবন। এই ব্র্যান্ডের সানন্দ
+                                সংগ্রহে উজ্জ্বল হয়ে উঠবে
+                                সববয়সী শিশুরা</p>
+                        </td>
+                        <td style="padding-left:2rem;"><img src="{{asset('frontend/img/west-rang-updated.png')}}"
+                                alt=""></td>
+                        <td style="padding-left:2rem;">
+                            <h5> ওয়েস্ট বাংলার মেলা</h5>
+                            <p style="text-align:justify;">সমসময়ের তারুণ্যময় ফ্যাশন লাইন। রঙ বাংলাদেশের সাব-ব্র্যান্ড।
+                                হৃদয়ে তরুণ আর বয়সে তরুণদের জন্যই এই প্রয়াস। ট্রেন্ডি আর
+                                ফ্যাশনেবল পোশাক ও পণ্যে সবাইকে প্রফুল্ল করতে বদ্ধপরিকর।</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <!-- /row -->
     </div>
