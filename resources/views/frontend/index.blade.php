@@ -132,7 +132,7 @@
 			<div class="col-md-6">
 				<div class="banner banner-1">
 					@if($twoCollections)
-					<img src="{{asset('slider_images/'.$bigCollection->image)}}" alt="">
+					<img src="{{asset('slider_images/'.$twoCollections->image)}}" alt="">
 					@endif
 					<div class="banner-caption text-center">
 						<h1 class="primary-color">{{$categoryProducts[4]->name}} DEAL<br><span class="white-color font-weak">Up to {{$discount}}%

@@ -20,9 +20,10 @@ class IndexController extends Controller
     {
         // Artisan::call('down');
         $sliderImages = SliderImage::select('image')->where('type', 'slider')->orderBy('created_at', 'desc')->get();
-        $threeCollections = SliderImage::select('image')->where('type', 'collection')->orderBy('created_at', 'desc')->take(3)->get();
-        $twoCollections = SliderImage::select('image')->where('type', 'collection')->orderBy('created_at', 'desc')->limit(1)->get();
+        // $threeCollections = SliderImage::select('image')->where('type', 'collection')->orderBy('created_at', 'desc')->take(3)->get();
+        // $twoCollections = SliderImage::select('image')->where('type', 'collection')->orderBy('created_at', 'desc')->limit(1)->get();
         $bigCollection = SliderImage::select('image')->where('type', 'big_collection')->first();
+        $twoCollections = SliderImage::select('image')->where('type', 'collection')->first();
         $discount = Product::max('discount');
         // cache()->forget('categoryProducts');
         // dd(cache('categoryProducts'));
@@ -33,7 +34,7 @@ class IndexController extends Controller
         $hotProducts = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->where('status', 1)->with('reviews', 'displayImage')->orderBy('updated_at', 'desc')->limit(10)->get();
 
         // return $categoryProducts;
-        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'allProducts', 'hotProducts', 'threeCollections', 'twoCollections', 'bigCollection', 'discount'));
+        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'allProducts', 'hotProducts', 'twoCollections', 'bigCollection', 'discount'));
     }
 
 
