@@ -1,6 +1,19 @@
 @extends('layouts.frontend')
-@section('title','KaporBd - 3 piece for women')
+@section('title','Banglar Mela')
 @section('content')
+<div id="boxes">
+    <div style="top: 50%; left: 50%; display: none;" id="dialog" class="window">
+        {{-- <div id="col-12"> --}}
+        <a href="#" class="close agree"><img src="{{asset('frontend/img/close-ic.png')}}" width="25"
+                    style="float:right;"></a>
+                    @if($pop_up)
+                        <img src="{{asset('slider_images/'.$pop_up->image)}}" alt="" width="100%" height="90%">
+                    @endif
+        {{-- </div> --}}
+    </div>
+    <div style="width: 2478px; font-size: 32pt; color:white; height: 1202px; display: none; opacity: 0.4;" id="mask">
+    </div>
+</div>
 <!-- Slide HOME -->
 <div id="home">
 	<!-- container -->
@@ -118,8 +131,8 @@
 			<!-- banner -->
 			<div class="col-md-6">
 				<div class="banner banner-1">
-					@if($bigCollection)
-					<img src="{{asset('slider_images/'.$bigCollection->image)}}" alt="">
+					@if($left)
+					<img src="{{asset('slider_images/'.$left->image)}}" alt="">
 					@endif
 					<div class="banner-caption text-center">
 						<h1 class="primary-color">{{$categoryProducts[3]->name}} DEAL<br><span class="white-color font-weak">Up to {{$discount}}%
@@ -131,8 +144,8 @@
 			</div>
 			<div class="col-md-6">
 				<div class="banner banner-1">
-					@if($twoCollections)
-					<img src="{{asset('slider_images/'.$twoCollections->image)}}" alt="">
+					@if($right)
+					<img src="{{asset('slider_images/'.$right->image)}}" alt="">
 					@endif
 					<div class="banner-caption text-center">
 						<h1 class="primary-color">{{$categoryProducts[4]->name}} DEAL<br><span class="white-color font-weak">Up to {{$discount}}%
@@ -148,81 +161,29 @@
 	<!-- /container -->
 </div>
 <!-- /section -->
-<!--  section -->
-<div id="shop" class="section col-lg-12" style="background-color:#fef7e7; overflow:scroll;">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-12">
-                <table style="margin-left: 25%; margin-right: 25%;">
-                    <tr>
-                        <td><img src="{{asset('frontend/img/main-logo.png')}}" alt=""></td>
-                        <td style="padding-left: 10%;">
-                            <h5> বাংলার মেলা</h5>
-                            <p style="text-align:justify;">রঙ হতে রঙ বাংলাদেশ। সময়কে রাঙানোর অভিন্ন লক্ষে অবিচল আমরা। ২৪
-                                বছরের লেগাসি অব্যাহত রেখেই পথ চলছে রঙ বাংলাদেশ। দেশজ
-                                উপকরণ, উজ্জ্বল বর্ণ আর হৃদয়গ্রাহী নকশাবিন্যাসে সমুন্নত থাকবে আমাদের সাংস্কৃতিক ঐতিহ্য।
-                            </p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="row" style="margin-top:2rem;">
-            <div class="col-md-12">
-                <table style="margin-left: 5%; margin-right: 5%;">
-                    <tr>
-                        <td><img src="{{asset('frontend/img/shroddhanjli.png')}}" alt=""></td>
-                        <td style="padding-left: 2rem; padding-right:4rem;">
-                            <h5> শ্রদ্ধাঞ্জলি</h5>
-                            <p style="text-align:justify;">পরিবার ও সমাজে যাঁদের আমরা প্রতিদিন বিনম্র শ্রদ্ধা ও অনিশেষ
-                                ভালোবাসায় সিক্ত করি তাদের জন্যই শ্রদ্ধাঞ্জলি। রঙ বাংলাদেশের
-                                আন্তরিক নিবেদন। এই সাব-ব্র্যান্ডটি বয়োজ্যেষ্ঠদের আপন ভুবন। এর সৃষ্টিতে প্রতীয়মান
-                                শ্রদ্ধাস্পদদের উপযোগী রঙ, ডিজাইন, আরাম,
-                                মর্যাদা আর সামাজিক অবস্থান।</p>
-                        </td>
-                        <td><img src="{{asset('frontend/img/amar-bangladesh.png')}}" alt=""></td>
-                        <td style="padding-left:2rem;">
-                            <h5> আমার বাংলাদেশ</h5>
-                            <p style="text-align:justify;">প্রতিটি পণ্যই এক টুকরো বাংলাদেশ। রঙ বাংলাদেশ-এর এই
-                                সাব-ব্র্যান্ডে রয়েছে কান্ট্রি ব্র্যান্ডিংয়ের সচেতন প্রয়াস। স্মারক
-                                উপহার বা সুভেনির সামগ্রীই এই কালেকশনের মূল বৈশিষ্ট্য। এর মাধ্যমে থাকছে দেশি এবং
-                                বিদেশীদের কাছে পজিটিভ বাংলাদেশের
-                                প্রতিচ্ছবিকে তুলে ধরার প্রচেষ্টা।</p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="row" style="margin-top:2rem;">
-            <div class="col-md-12">
-                <table style="margin-left: 8%; margin-right: 5%;">
-                    <tr>
-                        <td><img src="{{asset('frontend/img/rang-junior.png')}}" alt=""></td>
-                        <td style="padding-left: 5rem; width:45%">
-                            <h5>বাংলার মেলা জুনিয়র</h5>
-                            <p style="text-align:justify;">রঙ বাংলাদেশ-এর শিশুতোষ ফ্যাশন লাইন রঙ জুনিয়র। ছোটদের পোশাকের
-                                বিশেষত্ব মেনেই তৈরি রঙ জুনিয়র-এর সংগ্রহ। প্রাত্যহিক আর
-                                উৎসব পোশাকের ঋদ্ধ আয়োজনে রঙ জুনিয়র রাঙাবে শিশুদের আনন্দময় ভুবন। এই ব্র্যান্ডের সানন্দ
-                                সংগ্রহে উজ্জ্বল হয়ে উঠবে
-                                সববয়সী শিশুরা</p>
-                        </td>
-                        <td style="padding-left:2rem;"><img src="{{asset('frontend/img/west-rang-updated.png')}}"
-                                alt=""></td>
-                        <td style="padding-left:2rem;">
-                            <h5> ওয়েস্ট বাংলার মেলা</h5>
-                            <p style="text-align:justify;">সমসময়ের তারুণ্যময় ফ্যাশন লাইন। রঙ বাংলাদেশের সাব-ব্র্যান্ড।
-                                হৃদয়ে তরুণ আর বয়সে তরুণদের জন্যই এই প্রয়াস। ট্রেন্ডি আর
-                                ফ্যাশনেবল পোশাক ও পণ্যে সবাইকে প্রফুল্ল করতে বদ্ধপরিকর।</p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <!-- /row -->
-    </div>
-    <!-- /container -->
-</div>
-<!-- / section -->
+<script>
+    $(document).ready(function() {
+    var id = '#dialog';
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+    $('#mask').css({'width':maskWidth,'height':maskHeight});
+    $('#mask').fadeIn(500);
+    $('#mask').fadeTo("slow",0.9);
+    var winH = $(window).height();
+    var winW = $(window).width();
+    $(id).css('top', winH/2-$(id).height()/2);
+    $(id).css('left', winW/2-$(id).width()/2);
+    $(id).fadeIn(2000);
+    $('.window .close').click(function (e) {
+    e.preventDefault();
+    $('#mask').hide();
+    $('.window').hide();
+    });
+    $('#mask').click(function () {
+    $(this).hide();
+    $('.window').hide();
+    });
+
+    });
+</script>
 @endsection

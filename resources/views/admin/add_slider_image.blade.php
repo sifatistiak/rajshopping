@@ -17,9 +17,10 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Image Type</label>
                 <select class="form-control" name="type">
-                    <option value="slider">Slider Image</option>
-                    <option value="collection">Collection Image</option>
-                    <option value="big_collection">Big Collection Image</option>
+                    <option value="Slider">Slider Image</option>
+                    <option value="Pop_Up">PopUp Image</option>
+                    <option value="Left">Left Section</option>
+                    <option value="Right">Right Section</option>
                 </select>
 
             </div>

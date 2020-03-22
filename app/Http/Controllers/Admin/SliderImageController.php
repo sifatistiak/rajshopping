@@ -18,7 +18,7 @@ class SliderImageController extends Controller
 
     public function sliderImages()
     {
-        $sliderImages = SliderImage::orderBy('created_at', 'desc')->get();
+        $sliderImages = SliderImage::orderBy('type', 'desc')->get();
         return view('admin.slider_images', compact('sliderImages'));
     }
 
@@ -39,19 +39,22 @@ class SliderImageController extends Controller
             $img = $request->file('image');
             $imageName = uniqid() . '.' . $img->getClientOriginalExtension();
         }
-        
+
         $sliderImage = new SliderImage();
         $sliderImage->image = $imageName;
 
-        if ($request->type == "slider") {
-            $sliderImage->type = "slider";
+        if ($request->type == "Slider") {
+            $sliderImage->type = "Slider";
             Image::make($request->file('image'))->resize(1200, 675)->save('slider_images/' . $imageName,30);
-        } elseif ($request->type == "big_collection") {
-            $sliderImage->type = "big_collection";
-            Image::make($request->file('image'))->resize(720, 540)->save('slider_images/' . $imageName,30);
+        } elseif ($request->type == "Right") {
+            $sliderImage->type = "Right";
+            Image::make($request->file('image'))->resize(555, 435)->save('slider_images/' . $imageName,30);
+        } elseif ($request->type == "Pop_Up") {
+            $sliderImage->type = "Pop_Up";
+            Image::make($request->file('image'))->save('slider_images/' . $imageName,30);
         } else {
-            $sliderImage->type = "collection";
-            Image::make($request->file('image'))->resize(360, 270)->save('slider_images/' . $imageName,30);
+            $sliderImage->type = "Left";
+            Image::make($request->file('image'))->resize(555, 435)->save('slider_images/' . $imageName,30);
         }
         $sliderImage->save();
         return back()->with('success', 'Image created successful.');
