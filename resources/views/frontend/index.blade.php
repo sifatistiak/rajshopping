@@ -40,7 +40,47 @@
 		<!-- /container -->
 	</div>
 </div>
-
+<!-- section -->
+<div class="section section-grey">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row" style="height:50rem;">
+            <!-- banner -->
+            <div class="col-md-6">
+                <div class="banner banner-1">
+                    @if($left)
+                    <img src="{{asset('slider_images/'.$left->image)}}" alt="">
+                    @endif
+                    <div class="banner-caption text-center">
+                        <h1 class="primary-color">{{$categoryProducts[3]->name}} DEAL<br><span
+                                class="white-color font-weak">Up to {{$discount}}%
+                                OFF</span></h1>
+                        <a href="{{$categoryProducts[3]->mypath()}}" class="primary-btn">Shop
+                            Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="banner banner-1">
+                    @if($right)
+                    <img src="{{asset('slider_images/'.$right->image)}}" alt="">
+                    @endif
+                    <div class="banner-caption text-center">
+                        <h1 class="primary-color">{{$categoryProducts[4]->name}} DEAL<br><span
+                                class="white-color font-weak">Up to {{$discount}}%
+                                OFF</span></h1>
+                        <a href="{{$categoryProducts[4]->mypath()}}" class="primary-btn">Shop
+                            Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
 <div style="margin:10rem;"></div>
 <!-- /Slide HOME -->
 <!-- Cateory 1 section -->
@@ -122,45 +162,7 @@
     {{-- @endforeach --}}
     <!-- /Cateory 1 section -->
 
-<!-- section -->
-<div class="section section-grey">
-	<!-- container -->
-	<div class="container">
-		<!-- row -->
-		<div class="row" style="height:50rem;">
-			<!-- banner -->
-			<div class="col-md-6">
-				<div class="banner banner-1">
-					@if($left)
-					<img src="{{asset('slider_images/'.$left->image)}}" alt="">
-					@endif
-					<div class="banner-caption text-center">
-						<h1 class="primary-color">{{$categoryProducts[3]->name}} DEAL<br><span class="white-color font-weak">Up to {{$discount}}%
-								OFF</span></h1>
-						<a href="{{$categoryProducts[3]->mypath()}}" class="primary-btn">Shop
-							Now</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="banner banner-1">
-					@if($right)
-					<img src="{{asset('slider_images/'.$right->image)}}" alt="">
-					@endif
-					<div class="banner-caption text-center">
-						<h1 class="primary-color">{{$categoryProducts[4]->name}} DEAL<br><span class="white-color font-weak">Up to {{$discount}}%
-								OFF</span></h1>
-						<a href="{{$categoryProducts[4]->mypath()}}" class="primary-btn">Shop
-							Now</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /row -->
-	</div>
-	<!-- /container -->
-</div>
-<!-- /section -->
+
 <script>
     $(document).ready(function() {
     var id = '#dialog';
