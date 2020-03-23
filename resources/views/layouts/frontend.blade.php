@@ -107,13 +107,81 @@
 				</div>
 				<div class="pull-right">
 					<ul class="header-btns">
+						<!-- wishlist -->
+
+						<li class="header-cart dropdown default-dropdown">
+							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+								<div class="header-btns-icon">
+									<i class="fa fa-heart fa-2x"></i>
+									{{-- wishlist --}}
+									@php
+									$userIdentity = "";
+									if (Auth::check()) {
+									$userIdentity = Auth::id();
+									} else {
+									$userIdentity = Request::ip();
+									}
+									@endphp
+
+									<span id="cart_number"
+										class="qty">{{App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->count()}}</span>
+								</div>
+								<br>
+
+
+							</a>
+
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<div class="dropdown-cart-list">
+									@php
+									if(Auth::check()){
+									$userIdentity = Auth::id();
+									}
+									else{
+									$userIdentity = Request::ip();
+									}
+									$carts =
+									App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->with('product')->get();
+									@endphp
+									<div id="carts">
+										@foreach ($carts as $cart)
+										<div class="product product-widget">
+											<a href="{{$cart->product->mypath()}}">
+											<div class="product-thumb">
+												<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}" alt="">
+											</div>
+											</a>
+											<div class="product-body">
+												<h3 class="product-price">{{$cart->product->price}} <span
+														class="qty">x{{$cart->quantity}}</span></h3>
+												<h2 class="product-name"><a
+														href="{{$cart->product->mypath()}}">{{$cart->product->title}}</a>
+												</h2>
+												@if($cart->product->deleted_at != NULL)
+												<strong style="color:red"> This Product is out of stock.</strong>
+												@endif
+											</div>
+										</div>
+										@endforeach
+									</div>
+									<div id="no_product_added">
+										@if(count($carts)<1) <h4 style="margin-top:10px">No Product added</h4>
+											@endif
+									</div>
+								</div>
+							</div>
+						</li>
+                        {{-- wishlist end here end --}}
+
+
 						<!-- Cart -->
 
 						<li class="header-cart dropdown default-dropdown">
 							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 								<div class="header-btns-icon">
-									<i class="fa fa-shopping-cart"></i>
+									<i class="fa fa-shopping-cart fa-2x"></i>
 									{{-- cart --}}
 									@php
 									$userIdentity = "";
@@ -127,7 +195,7 @@
 									<span id="cart_number"
 										class="qty">{{App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->count()}}</span>
 								</div>
-								<strong class="text-uppercase">My Cart:</strong>
+								{{-- <strong class="text-uppercase">My Cart:</strong> --}}
 								<br>
 								{{-- price --}}
 								@php
@@ -139,7 +207,7 @@
 								}
 
 								@endphp
-								<span id="cart_price">{{$price}}</span><img style="display: inline" width="12px"
+								<span id="cart_price" style="padding:1px;">{{$price}}</span><img style="display: inline" width="12px"
 									src="{{asset('frontend/img/taka.png')}}" alt="">
 
 							</a>
@@ -196,12 +264,9 @@
 
 						<li class="header-account dropdown default-dropdown">
 							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-								<div class="header-btns-icon">
-									<i class="fa fa-user-o"></i>
+								<div>
+									<i class="fa fa-user-o fa-2x" aria-hidden="true"> &nbsp;</i>
 								</div>
-
-								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
-
 							</div>
 							<ul class="custom-menu">
 								<li><a href="{{route('user.profile')}}"><i class="fa fa-user-o"></i>Profile</a></li>
@@ -209,7 +274,7 @@
 										Password</a></li>
 
 								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-						        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a></li>
+						        document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Logout</a></li>
 							</ul>
 						</li>
 
@@ -218,11 +283,9 @@
 						</form>
 						@else
 						<li>
-							<div class="header-btns-icon">
-								<i class="fa fa-sign-in"></i>
-							</div>
-							<strong><a href="{{route('login')}}" class="text-uppercase">Sign In</a> / <a
-									href="{{route('register')}}" class="text-uppercase">Create Account</a></strong>
+
+                            <strong><a href="{{route('login')}}" class="text-uppercase"><i class="fa fa-sign-in fa-2x" aria-hidden="true"> &nbsp;</i></a>
+                                 <a	href="{{route('register')}}" class="text-uppercase"><i class="fa fa-user-plus fa-2x" aria-hidden="true">&nbsp;</i></a></strong>
 						</li>
 						@endif
 						<!-- /Account -->
@@ -255,15 +318,16 @@
                         @endphp
                         @foreach ($categories as $category)
                         <li class="dropdown">
-                            <a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$category->name}}<span class="caret"></span></a>
+                            <a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$category->name}}</a>
                             <ul class="dropdown-menu">
-                               <li> <a  href="{{$category->mypath()}}">{{$category->name}}</a></li>
-                               @php
+                                @php
                                $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('priority', 'asc')->get();
                                @endphp
                                @foreach ($subcategories as $item)
-                                <li> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
+                               <li> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
+                               <hr class="hr">
                                @endforeach
+                               <li> <a  href="{{$category->mypath()}}">All</a></li>
                             </ul>
                         @endforeach
                     </ul>
