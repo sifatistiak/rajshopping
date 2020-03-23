@@ -312,6 +312,7 @@
 				<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list dropdown">
+                        <a class="text-uppercase" href="{{route('index')}}" >Home</a>
                         @php
                             $categories =  App\Models\Category::orderBy('priority', 'asc')->get();
 
@@ -329,6 +330,7 @@
                                @endforeach
                                <li> <a  href="{{$category->mypath()}}">All</a></li>
                             </ul>
+                        </li>
                         @endforeach
                     </ul>
                     </div>
