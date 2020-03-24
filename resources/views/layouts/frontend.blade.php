@@ -43,7 +43,7 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149462793-1"></script>
+	{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149462793-1"></script> --}}
 	<script>
 		window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -66,12 +66,15 @@
 				position: fixed;
 				z-index: 100;
 				top: 0px;
-				width: 100%;
-
+                width: 100%;
 			}
-		</style>
-
-		<div id="header" class="navbar-default header1">
+        </style>
+		<div id="header" class="navbar-default header1" style="background-color: white;">
+            <div class="col-md-12" style="display:block; background:#eaeaea; top: -0.4rem;">
+                <span> <i class="fa fa-phone">+8801969878987</i></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span> <i class="fa fa-envelope">support@banglarmela.com</i></span>
+            </div>
 			{{-- <div id="header"> --}}
 			<div class="container">
 				<div class="pull-left">
