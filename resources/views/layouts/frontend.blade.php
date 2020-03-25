@@ -307,7 +307,7 @@
     <!-- /HEADER -->
 
 	<!-- NAVIGATION -->
-	<div id="navigation" class="navigation">
+	<div id="navigation" class="navigation" style="padding-top:2%;">
 		<!-- container -->
 		<div class="container">
 			<div id="responsive-nav">

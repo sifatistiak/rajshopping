@@ -45,7 +45,7 @@
     <!-- container -->
     <div class="container">
         <!-- row -->
-        <div class="row" style="height:50rem;">
+        <div class="row">
             <!-- banner -->
             <div class="col-md-6">
                 <div class="banner banner-1">

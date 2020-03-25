@@ -347,6 +347,8 @@ textarea.input {
     background-color: #f6740a;
 }
 
+@media()
+
 /*----------------------------*\
 	Breadcrumb
 \*----------------------------*/
@@ -895,8 +897,6 @@ textarea.input {
 
 .banner > img {
     width: 100%;
-    height: -webkit-fill-available;
-
 }
 
 .banner.banner-1 .banner-caption {
@@ -1860,4 +1860,8 @@ textarea.input {
     [class*="col-xs"] {
         width: 100%;
     }
+    .section-title:after {
+        width: 10rem;
+    }
+    
 }
