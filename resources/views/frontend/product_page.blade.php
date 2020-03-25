@@ -91,16 +91,16 @@
 				<div class="col-md-12">
 					<div id="review" class="product-tab">
 						<ul class="tab-nav">
-							<li class="active"><a data-toggle="tab" href="#tab2">Reviews ({{count($reviews)}})</a></li>
-							<li><a data-toggle="tab" href="#tab1">Description</a></li>
+							<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+							<li><a data-toggle="tab" href="#tab2">Reviews ({{count($reviews)}})</a></li>
 						</ul>
 						<div class="tab-content">
-							<div id="tab1" class="tab-pane fade in ">
+							<div id="tab1" class="tab-pane fade in active">
 								<p>
 									{!!$singleProduct->desc!!}
 								</p>
 							</div>
-							<div id="tab2" class="tab-pane fade in active">
+							<div id="tab2" class="tab-pane fade in ">
 
 								<div class="row">
 									<div class="col-md-6">
