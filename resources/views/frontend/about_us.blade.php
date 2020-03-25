@@ -22,7 +22,7 @@
         <div class="col-md-9"><br>
             <p style="text-align:justify"><span style="font-size:17px">
 
-                    Welcome to KaporBD.com. We are an online E-commerce platform. We are providing the best quality of 3
+                    Welcome to Banglarmela.com. We are an online E-commerce platform. We are providing the best quality of 3
                     pieces for women.
                     The products are at a low cost. This platform helps people to buy a product from home. <br><br>
                     We are providing an excellent customer experience, ease-of-purchase, comprehensive customer care,
