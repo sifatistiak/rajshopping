@@ -71,9 +71,9 @@
         </style>
 		<div id="header" class="navbar-default header1" style="background-color: white;">
             <div class="col-md-12" style="display:block; background:#eaeaea; top: -0.4rem;">
-                <span> <i class="fa fa-phone">+8801969878987</i></span>
+                <span> <i class="fa fa-phone"> &nbsp;+8801969878987</i></span>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <span> <i class="fa fa-envelope">support@banglarmela.com</i></span>
+                <span> <i class="fa fa-envelope"> &nbsp;support@banglarmela.com</i></span>
             </div>
 			{{-- <div id="header"> --}}
 			<div class="container">
