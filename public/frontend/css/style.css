@@ -279,7 +279,7 @@ textarea.input {
 }
 
 .list-links li > a:before {
-    content: "\f105";
+    content: "";
     position: absolute;
     left: 0px;
     font-family: FontAwesome;
@@ -295,10 +295,11 @@ textarea.input {
 .list-links li > a:hover,
 .list-links li > a:focus,
 .list-links li.active > a {
+    font-size: larger;
     color: #f6740a;
-    -webkit-transform: translateX(10px);
+    /* -webkit-transform: translateX(10px);
     -ms-transform: translateX(10px);
-    transform: translateX(10px);
+    transform: translateX(10px); */
 }
 
 .list-links li > a:hover:before,
@@ -1863,5 +1864,5 @@ textarea.input {
     .section-title:after {
         width: 10rem;
     }
-    
+
 }

@@ -387,10 +387,10 @@
 
 						<!-- footer social -->
 						<ul class="footer-social">
-							<li><a target="_blank" href="https://facebook.com/kapor.com.bd"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="https://twitter.com/BdKapor" target="_blank"><i class="fa fa-twitter"></i></a></li>
+							<li><a target="_blank" href="https://facebook.com/"><i class="fa fa-facebook fa-2x"></i></a></li>
+							<li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
 							{{-- {{-- <li><a href="#"><i class="fa fa-instagram"></i></a></li> --}}
-							<li><a target="_blank" href="https://www.youtube.com/channel/UCREk65vSf7WSoPq7yMhCmfg"><i class="fa fa-youtube"></i></a></li>
+							<li><a target="_blank" href="https://www.youtube.com/channel/"><i class="fa fa-youtube fa-2x"></i></a></li>
 						</ul>
 						<!-- /footer social -->
 					</div>
@@ -443,8 +443,8 @@
 						<h3 class="footer-header">Contact Us</h3>
 						<ul class="list-links">
 							<li><a href="{{route('quick.contact')}}">Quick Contact</a></li>
-							<li><a href="#">Call us +880 1833996321</a></li>
-							<li><a href="#">Email us</a> - support@kaporbd.com</li>
+							<li><a href="tel:+8801929717612"> +880 1929717612</a></li>
+							<li><a href="mailto:support@kaporbd.com"> <span class="text-lowercase"> support@kaporbd.com </span></a></li>
 						</ul>
 
 
