@@ -258,7 +258,7 @@
 								<tr>
 									<th class="empty" colspan="3"></th>
 									<th>Coupon Discount</th>
-									<th colspan="2" class="sub-total"><span id="shipping">
+									<th colspan="2" class="sub-total"><span id="discount-amount">
                                             @if ($discountvalue != 'default')
                                                 @if ($discountvalue['type'] == 0)
                                                     {{$total*$discountvalue['amount']/100}}
@@ -269,6 +269,15 @@
                                                 @endif
                                             @else 0
 											@endif
+
+										</span><img style="display: inline" width="15px"
+											src="{{asset('frontend/img/taka.png')}}" alt=""></th>
+								</tr>
+								<tr>
+									<th class="empty" colspan="3"></th>
+									<th>Delivery Charge</th>
+									<th colspan="2" class="sub-total"><span id="shipping">
+                                           0
 
 										</span><img style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt=""></th>
@@ -329,7 +338,8 @@
 				}
 				$("#shipping").text(shipping);
 				var subTotal = parseInt($("#sub_total").text());
-				$("#total").text(subTotal+shipping);
+				var discountamount = parseInt($("#discount-amount").text());
+				$("#total").text(subTotal+shipping-discountamount);
 
 			});
 		});
