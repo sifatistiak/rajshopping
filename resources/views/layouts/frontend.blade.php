@@ -315,7 +315,10 @@
 				<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list dropdown">
-                        <a class="text-uppercase" href="{{route('index')}}" >Home</a>
+                        <li class="dropdown">
+                            <a class="text-uppercase" href="{{route('index')}}">Home</a>
+                        </li>
+
                         @php
                             $categories =  App\Models\Category::orderBy('priority', 'asc')->get();
 
