@@ -444,7 +444,7 @@
 						<ul class="list-links">
 							<li><a href="{{route('quick.contact')}}">Quick Contact</a></li>
 							<li><a href="tel:+8801929717612"> +880 1929717612</a></li>
-							<li><a href="mailto:support@kaporbd.com"> <span class="text-lowercase"> support@kaporbd.com </span></a></li>
+							<li><a href="mailto:support@banglarmela.com"> <span class="text-lowercase"> support@banglarmela.com </span></a></li>
 						</ul>
 
 
@@ -463,7 +463,7 @@
 						Copyright &copy;
 						<script>
 							document.write(new Date().getFullYear());
-						</script> All rights reserved <a href="{{route('index')}}">@KaporBD</a> . Technology Partner <a style="color:#f8694a"
+						</script> All rights reserved <a href="{{route('index')}}">@BanglarMela</a> . Technology Partner <a style="color:#f8694a"
 							href="http://skoder.co" target="_blank">Skoder</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
