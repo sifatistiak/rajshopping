@@ -37,13 +37,14 @@
         </div>
         @else
         <div class="product-rating">
-            
+
         </div>
         @endif
         {{-- <h2 class="product-name"><a href="{{route('nproduct',[$product->id,slug('title')])}}">{{$product->title}}</a></h2> --}}
         <h2 class="product-name"><a href="{{$product->mypath()}}">{{$product->title}}</a></h2>
         <div class="product-btns">
-            <a href="{{$product->buyNow()}}" class="primary-btn">Buy Now </a>
+            {{-- <a href="{{$product->buyNow()}}" class="primary-btn">Buy Now </a> --}}
+            <a href="" class="primary-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
             <button style="margin-left:5px" id="add_to_cart" value="{{$product->id}}" class="primary-btn add_to_cart"></i> Add
                 to Cart </button>
         </div>
