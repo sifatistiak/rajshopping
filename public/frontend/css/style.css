@@ -1828,6 +1828,10 @@ textarea.input {
     margin: 15px 0px;
 }
 
+.trl{
+    text-align: right;
+}
+
 /*=========================================================
 	12 -> RESPONSIVE
 ========================================================== = */
@@ -1868,5 +1872,14 @@ textarea.input {
     .banner-1>img {
         height: auto;
     }
+    .trl{
+        text-align: left;
+    }
+    .trl>img {
+        width: 160px;
+        padding-bottom: 0.75em;
+    }
 
 }
+
+

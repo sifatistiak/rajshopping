@@ -35,22 +35,22 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3 text-right">
+                        <div class="col-md-3 trl">
                             <img class="col-md-4" src="{{asset('frontend/img/car.png')}}" alt="">
                             <h6>FREE SHIPPING</h6>
                             <p>Free shipping only Bangladesh order above 2000 BDT</p>
                         </div>
-                        <div class="col-md-3 text-right">
+                        <div class="col-md-3 trl">
                             <img class="col-md-4" src="{{asset('frontend/img/support.png')}}" alt="">
                             <h6>SUPPORT 24/7</h6>
                             <p> Contact us 24 hours a day, 7 days a week</p>
                         </div>
-                        <div class="col-md-3 text-right">
+                        <div class="col-md-3 trl">
                             <img class="col-md-4" src="{{asset('frontend/img/return.png')}}" alt="">
                             <h6>7 DAYS RETURN</h6>
                             <p>Simply return it within 7 days for an exchange.</p>
                         </div>
-                        <div class="col-md-3 text-right">
+                        <div class="col-md-3 trl">
                             <img class="col-md-4" src="{{asset('frontend/img/secure.png')}}" alt="">
                             <h6>100% PAYMENT SECURE</h6>
                             <p>We ensure secure payment with PEV</p>
