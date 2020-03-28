@@ -52,13 +52,13 @@
                     @if($left)
                     <img src="{{asset('slider_images/'.$left->image)}}" alt="">
                     @endif
-                    <div class="banner-caption text-center">
+                    {{-- <div class="banner-caption text-center">
                         <h1 class="primary-color">{{$categoryProducts[3]->name}} DEAL<br><span
                                 class="white-color font-weak">Up to {{$discount}}%
                                 OFF</span></h1>
                         <a href="{{$categoryProducts[3]->mypath()}}" class="primary-btn">Shop
                             Now</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-md-6">
@@ -66,13 +66,13 @@
                     @if($right)
                     <img src="{{asset('slider_images/'.$right->image)}}" alt="">
                     @endif
-                    <div class="banner-caption text-center">
+                    {{-- <div class="banner-caption text-center">
                         <h1 class="primary-color">{{$categoryProducts[4]->name}} DEAL<br><span
                                 class="white-color font-weak">Up to {{$discount}}%
                                 OFF</span></h1>
                         <a href="{{$categoryProducts[4]->mypath()}}" class="primary-btn">Shop
                             Now</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
