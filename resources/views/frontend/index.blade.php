@@ -48,7 +48,7 @@
         <div class="row">
             <!-- banner -->
             <div class="col-md-6">
-                <div class="banner banner-1">
+                <div class="banner">
                     @if($left)
                     <img src="{{asset('slider_images/'.$left->image)}}" alt="">
                     @endif
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="banner banner-1">
+                <div class="banner">
                     @if($right)
                     <img src="{{asset('slider_images/'.$right->image)}}" alt="">
                     @endif
