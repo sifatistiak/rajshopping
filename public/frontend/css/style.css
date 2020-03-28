@@ -890,9 +890,9 @@ textarea.input {
     margin-bottom: 15px;
 }
 
-.banner1 > img {
+.banner-1 > img {
     width: 100%;
-    /* height: -webkit-fill-available; */
+    height: -webkit-fill-available;
 
 }
 
@@ -1842,6 +1842,7 @@ textarea.input {
     .product-reviews {
         margin-bottom: 30px;
     }
+
 }
 
 @media only screen and (max-width: 767px) {
@@ -1863,6 +1864,9 @@ textarea.input {
     }
     .section-title:after {
         width: 10rem;
+    }
+    .banner-1>img {
+        height: auto;
     }
 
 }
