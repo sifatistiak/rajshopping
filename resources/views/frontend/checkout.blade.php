@@ -169,7 +169,7 @@
 							<h4 class="title">Payments Methods</h4>
 						</div>
 						<div class="input-checkbox">
-							<input type="radio" name="payments" id="payments-1" checked>
+							<input type="radio" name="payment" value="cash" id="-1" checked>
 							<label for="payments-1">Cash on Delivery</label>
 							<div class="caption">
 								<p>Please provide cash on receiving your product. Thank you.
@@ -183,8 +183,17 @@
 								</h4>
 							</div>
 						</div>
+						<div class="input-checkbox">
+							<input type="radio" name="payment" value="ssl" id="payments-2">
+							<label for="payments-1">Pay Via SSL Commerce</label>
+							<div class="caption">
+
+							</div>
+						</div>
+
 					</div>
 				</div>
+
 
 				<div class="col-md-12">
 					<div class="order-summary clearfix">
@@ -213,7 +222,9 @@
 								@endphp
 
 								<tr class="rows">
-									<td class="thumb"><a href="{{$product->mypath()}}"><img src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" height="80px" width="100px" alt=""></a></td>
+									<td class="thumb"><a href="{{$product->mypath()}}"><img
+												src="{{asset('thumb_product_images/'.$product->displayImage->image)}}"
+												height="80px" width="100px" alt=""></a></td>
 									<input type="hidden" name="carts[]" value="{{$cart->id}}">
 									<td class="details">
 										<a href="{{$cart->product->mypath()}}">{{$cart->product->title}}</a>
@@ -259,15 +270,15 @@
 									<th class="empty" colspan="3"></th>
 									<th>Coupon Discount</th>
 									<th colspan="2" class="sub-total"><span id="discount-amount">
-                                            @if ($discountvalue != 'default')
-                                                @if ($discountvalue['type'] == 0)
-                                                    {{$total*$discountvalue['amount']/100}}
-                                                    {{-- {{$subTotal= $total-($total*$discountvalue['amount']/100)}} --}}
-                                                @elseif ($discountvalue['type'] == 1)
-                                                    {{$discountvalue['amount']}}
-                                                    {{-- {{$subTotal= $total-$discountvalue['amount']}} --}}
-                                                @endif
-                                            @else 0
+											@if ($discountvalue != 'default')
+											@if ($discountvalue['type'] == 0)
+											{{$total*$discountvalue['amount']/100}}
+											{{-- {{$subTotal= $total-($total*$discountvalue['amount']/100)}} --}}
+											@elseif ($discountvalue['type'] == 1)
+											{{$discountvalue['amount']}}
+											{{-- {{$subTotal= $total-$discountvalue['amount']}} --}}
+											@endif
+											@else 0
 											@endif
 
 										</span><img style="display: inline" width="15px"
@@ -277,7 +288,7 @@
 									<th class="empty" colspan="3"></th>
 									<th>Delivery Charge</th>
 									<th colspan="2" class="sub-total"><span id="shipping">
-                                           0
+											0
 
 										</span><img style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt=""></th>
@@ -286,17 +297,17 @@
 									<th class="empty" colspan="3"></th>
 									<th>TOTAL</th>
 									<th colspan="2" class="total">
-                                        <div style="display:inline" id="total">
-                                            @if ($discountvalue != 'default')
-                                                @if ($discountvalue['type'] == 0)
-                                                    {{$total = $total-($total*$discountvalue['amount']/100)}}
-                                                @elseif ($discountvalue['type'] == 1)
-                                                    {{$total = $total-$discountvalue['amount']}}
-                                                @endif
-                                            @else {{$total}}
-                                            @endif
-                                            <input type="hidden" name="amount" value="{{$total}}">
-                                        </div>
+										<div style="display:inline" id="total">
+											@if ($discountvalue != 'default')
+											@if ($discountvalue['type'] == 0)
+											{{$total = $total-($total*$discountvalue['amount']/100)}}
+											@elseif ($discountvalue['type'] == 1)
+											{{$total = $total-$discountvalue['amount']}}
+											@endif
+											@else {{$total}}
+											@endif
+											<input type="hidden" name="amount" value="{{$total}}">
+										</div>
 										<img style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt="">
 									</th>

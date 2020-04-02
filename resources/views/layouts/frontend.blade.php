@@ -127,8 +127,8 @@
 									}
 									@endphp
 
-									<span id="cart_number"
-										class="qty">{{App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->count()}}</span>
+									<span id=""
+										class="qty">{{CartPackage::getContent()->count()}}</span>
 								</div>
 								<br>
 
@@ -148,30 +148,27 @@
 									App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->with('product')->get();
 									@endphp
 									<div id="carts">
-										@foreach ($carts as $cart)
+										@foreach (CartPackage::getContent() as $wishlist)
 										<div class="product product-widget">
-											<a href="{{$cart->product->mypath()}}">
+											<a href="{{$wishlist->attributes->url}}">
 											<div class="product-thumb">
-												<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}" alt="">
+												<img src="{{asset($wishlist->attributes->image)}}" alt="">
 											</div>
 											</a>
 											<div class="product-body">
-												<h3 class="product-price">{{$cart->product->price}} <span
-														class="qty">x{{$cart->quantity}}</span></h3>
+												<h3 class="product-price">{{$wishlist->price}} <span
+														class="qty">x{{$wishlist->quantity}}</span></h3>
 												<h2 class="product-name"><a
-														href="{{$cart->product->mypath()}}">{{$cart->product->title}}</a>
+														href="{{$wishlist->attributes->url}}">{{$wishlist->name}}</a>
 												</h2>
-												@if($cart->product->deleted_at != NULL)
-												<strong style="color:red"> This Product is out of stock.</strong>
-												@endif
 											</div>
 										</div>
 										@endforeach
 									</div>
-									<div id="no_product_added">
-										@if(count($carts)<1) <h4 style="margin-top:10px">No Product added</h4>
-											@endif
-									</div>
+								</div>
+								<div id="view_cart" class="shopping-cart-btns">
+									<span style="margin-left:15px"></span>
+									<a href="{{route('wishlists')}}" class="main-btn ">View Wishlist</a>
 								</div>
 							</div>
 						</li>

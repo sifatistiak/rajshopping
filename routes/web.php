@@ -22,8 +22,13 @@ Route::get('/product/{id}', 'Frontend\IndexController@product')->name('product')
 Route::get('/search', 'Frontend\IndexController@search')->name('search');
 Route::get('/search-page', 'Frontend\IndexController@searchPage')->name('search.page');
 Route::post('/sort-by-price', 'Frontend\IndexController@sortByPrice')->name('sort.by.price');
+// cart
 Route::get('/cart', 'Frontend\ShoppingController@cart')->name('cart');
 Route::post('/cart', 'Frontend\ShoppingController@cart')->name('cart.coupon');
+//wishlist
+Route::get('/add-to-wishlist/{product}', 'Frontend\ShoppingController@addToWishList')->name('add.to.wishlist');
+Route::get('/wishlists', 'Frontend\ShoppingController@wishlists')->name('wishlists');
+Route::get('/remove-wishlist/{id}', 'Frontend\ShoppingController@removeWishlist')->name('remove.wishlist');
 // Route::get('/checkout/{id?}', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
 Route::get('/checkout', 'Frontend\ShoppingController@checkoutPage')->name('checkout');
 Route::get('/buy-now/{product}-{slug}', 'Frontend\ShoppingController@buyNow')->name('buy.now');
@@ -37,6 +42,11 @@ Route::post('/change-password', 'Frontend\UserController@changePassword')->name(
 Route::get('/user-profile', 'Frontend\UserController@userProfileChangeView')->name('user.profile');
 Route::post('/user-profile', 'Frontend\UserController@userProfileChange')->name('user.profile');
 
+// ssl payment
+
+Route::post('cart_payment_success', 'Frontend\ShoppingController@cartPaymentSuccess')->name('cart.payment.success');
+Route::post('cart_payment_cancel', 'Frontend\ShoppingController@cartPaymentCancel')->name('cart.payment.cancel');
+Route::post('cart_payment_fail', 'Frontend\ShoppingController@cartPaymentFail')->name('cart.payment.fail');
 
 Route::middleware(['onlyAjaxRequest'])->group(function () {
     Route::get('/add-to-cart', 'Frontend\ShoppingController@addToCart')->name('add.to.cart');

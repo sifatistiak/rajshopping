@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->string('user_identity');
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity')->default(1);
-            $table->string('amount')->default(NULL);
+            $table->string('amount')->nullable();
             $table->boolean('status')->default(1);
             $table->boolean('hand_over')->default(0);
             $table->foreign('product_id')->references('id')->on('products');
