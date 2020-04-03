@@ -63,8 +63,8 @@
 									<td></td>
 									<td></td>
 									<td>Grand Total</td>
-									<td>{{ CartPackage::getSubTotal() }}<img style="display: inline" width="15px"
-										src="{{asset('frontend/img/taka.png')}}" alt=""></td>
+									<td>{{ Cart::getSubTotal() }}<img style="display: inline" width="15px"
+											src="{{asset('frontend/img/taka.png')}}" alt=""></td>
 								</tr>
 
 							</tbody>

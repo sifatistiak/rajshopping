@@ -66,15 +66,15 @@
 				position: fixed;
 				z-index: 100;
 				top: 0px;
-                width: 100%;
+				width: 100%;
 			}
-        </style>
+		</style>
 		<div id="header" class="navbar-default header1" style="background-color: white;">
-            <div class="col-md-12" style="display:block; background:#eaeaea; top: -0.4rem;">
-                <span> <i class="fa fa-phone"> &nbsp;+8801969878987</i></span>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span> <i class="fa fa-envelope"> &nbsp;support@banglarmela.com</i></span>
-            </div>
+			<div class="col-md-12" style="display:block; background:#eaeaea; top: -0.4rem;">
+				<span> <i class="fa fa-phone"> &nbsp;+8801969878987</i></span>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span> <i class="fa fa-envelope"> &nbsp;support@banglarmela.com</i></span>
+			</div>
 			{{-- <div id="header"> --}}
 			<div class="container">
 				<div class="pull-left">
@@ -101,7 +101,8 @@
 
 						<form id="searchForm" action="{{route('search.page')}}" method="get">
 							{{-- @csrf --}}
-							<input id="search_box" name="search_key" required class="input search-input" type="text" placeholder="Enter Your Keyword">
+							<input id="search_box" name="search_key" required class="input search-input" type="text"
+								placeholder="Enter Your Keyword">
 
 							<button class="search-btn"><i class="fa fa-search"></i></button>
 						</form>
@@ -127,8 +128,7 @@
 									}
 									@endphp
 
-									<span id=""
-										class="qty">{{CartPackage::getContent()->count()}}</span>
+									<span id="" class="qty">{{Cart::getContent()->count()}}</span>
 								</div>
 								<br>
 
@@ -148,12 +148,12 @@
 									App\Models\Cart::where('user_identity',$userIdentity)->where('status',1)->with('product')->get();
 									@endphp
 									<div id="carts">
-										@foreach (CartPackage::getContent() as $wishlist)
+										@foreach (Cart::getContent() as $wishlist)
 										<div class="product product-widget">
 											<a href="{{$wishlist->attributes->url}}">
-											<div class="product-thumb">
-												<img src="{{asset($wishlist->attributes->image)}}" alt="">
-											</div>
+												<div class="product-thumb">
+													<img src="{{asset($wishlist->attributes->image)}}" alt="">
+												</div>
 											</a>
 											<div class="product-body">
 												<h3 class="product-price">{{$wishlist->price}} <span
@@ -172,7 +172,7 @@
 								</div>
 							</div>
 						</li>
-                        {{-- wishlist end here end --}}
+						{{-- wishlist end here end --}}
 
 
 						<!-- Cart -->
@@ -207,8 +207,8 @@
 								}
 
 								@endphp
-								<span id="cart_price" style="padding:1px;">{{$price}}</span><img style="display: inline" width="12px"
-									src="{{asset('frontend/img/taka.png')}}" alt="">
+								<span id="cart_price" style="padding:1px;">{{$price}}</span><img style="display: inline"
+									width="12px" src="{{asset('frontend/img/taka.png')}}" alt="">
 
 							</a>
 
@@ -228,9 +228,10 @@
 										@foreach ($carts as $cart)
 										<div class="product product-widget">
 											<a href="{{$cart->product->mypath()}}">
-											<div class="product-thumb">
-												<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}" alt="">
-											</div>
+												<div class="product-thumb">
+													<img src="{{asset('thumb_product_images/'.$cart->product->displayImage->image)}}"
+														alt="">
+												</div>
 											</a>
 											<div class="product-body">
 												<h3 class="product-price">{{$cart->product->price}} <span
@@ -284,8 +285,10 @@
 						@else
 						<li>
 
-                            <strong><a href="{{route('login')}}" class="text-uppercase"><i class="fa fa-sign-in fa-2x" aria-hidden="true"> &nbsp;</i></a>
-                                 <a	href="{{route('register')}}" class="text-uppercase"><i class="fa fa-user-plus fa-2x" aria-hidden="true">&nbsp;</i></a></strong>
+							<strong><a href="{{route('login')}}" class="text-uppercase"><i class="fa fa-sign-in fa-2x"
+										aria-hidden="true"> &nbsp;</i></a>
+								<a href="{{route('register')}}" class="text-uppercase"><i class="fa fa-user-plus fa-2x"
+										aria-hidden="true">&nbsp;</i></a></strong>
 						</li>
 						@endif
 						<!-- /Account -->
@@ -301,7 +304,7 @@
 		</div>
 		<!-- container -->
 	</header>
-    <!-- /HEADER -->
+	<!-- /HEADER -->
 
 	<!-- NAVIGATION -->
 	<div id="navigation" class="navigation" style="padding-top:2%;">
@@ -312,36 +315,39 @@
 				<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list dropdown">
-                        <li class="dropdown">
-                            <a class="text-uppercase" href="{{route('index')}}">Home</a>
-                        </li>
+						<li class="dropdown">
+							<a class="text-uppercase" href="{{route('index')}}">Home</a>
+						</li>
 
-                        @php
-                            $categories =  App\Models\Category::orderBy('priority', 'asc')->get();
+						@php
+						$categories = App\Models\Category::orderBy('priority', 'asc')->get();
 
-                        @endphp
-                        @foreach ($categories as $category)
-                        <li class="dropdown">
-                            <a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$category->name}}</a>
-                            <ul class="dropdown-menu">
-                                @php
-                               $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('priority', 'asc')->get();
-                               @endphp
-                               @foreach ($subcategories as $item)
-                               <li> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
-                               <hr class="hr">
-                               @endforeach
-                               <li> <a  href="{{$category->mypath()}}">All</a></li>
-                            </ul>
-                        </li>
-                        @endforeach
-                    </ul>
-                    </div>
+						@endphp
+						@foreach ($categories as $category)
+						<li class="dropdown">
+							<a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false">{{$category->name}}</a>
+							<ul class="dropdown-menu">
+								@php
+								$subcategories =
+								App\Models\SubCategory::where('category_id',$category->id)->orderBy('priority',
+								'asc')->get();
+								@endphp
+								@foreach ($subcategories as $item)
+								<li> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
+								<hr class="hr">
+								@endforeach
+								<li> <a href="{{$category->mypath()}}">All</a></li>
+							</ul>
+						</li>
+						@endforeach
+					</ul>
 				</div>
-
 			</div>
+
 		</div>
-		<!-- /container -->
+	</div>
+	<!-- /container -->
 	</div>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
@@ -383,14 +389,18 @@
 						</div>
 						<!-- /footer logo -->
 
-						<p style="margin-top:-25px">A trust worthy e-commerce platform to buy product from anywhere in Bangladesh.</p>
+						<p style="margin-top:-25px">A trust worthy e-commerce platform to buy product from anywhere in
+							Bangladesh.</p>
 
 						<!-- footer social -->
 						<ul class="footer-social">
-							<li><a target="_blank" href="https://facebook.com/"><i class="fa fa-facebook fa-2x"></i></a></li>
-							<li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
+							<li><a target="_blank" href="https://facebook.com/"><i class="fa fa-facebook fa-2x"></i></a>
+							</li>
+							<li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+							</li>
 							{{-- {{-- <li><a href="#"><i class="fa fa-instagram"></i></a></li> --}}
-							<li><a target="_blank" href="https://www.youtube.com/channel/"><i class="fa fa-youtube fa-2x"></i></a></li>
+							<li><a target="_blank" href="https://www.youtube.com/channel/"><i
+										class="fa fa-youtube fa-2x"></i></a></li>
 						</ul>
 						<!-- /footer social -->
 					</div>
@@ -444,7 +454,8 @@
 						<ul class="list-links">
 							<li><a href="{{route('quick.contact')}}">Quick Contact</a></li>
 							<li><a href="tel:+8801929717612"> +880 1929717612</a></li>
-							<li><a href="mailto:support@banglarmela.com"> <span class="text-lowercase"> support@banglarmela.com </span></a></li>
+							<li><a href="mailto:support@banglarmela.com"> <span class="text-lowercase">
+										support@banglarmela.com </span></a></li>
 						</ul>
 
 
@@ -463,8 +474,8 @@
 						Copyright &copy;
 						<script>
 							document.write(new Date().getFullYear());
-						</script> All rights reserved <a href="{{route('index')}}">@BanglarMela</a> . Technology Partner <a style="color:#f8694a"
-							href="http://skoder.co" target="_blank">Skoder</a>
+						</script> All rights reserved <a href="{{route('index')}}">@BanglarMela</a> . Technology Partner
+						<a style="color:#f8694a" href="http://skoder.co" target="_blank">Skoder</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<!-- /footer copyright -->

@@ -14,7 +14,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
-use CartPackage as WishList;
+use Cart as WishList;
 
 use Session;
 
