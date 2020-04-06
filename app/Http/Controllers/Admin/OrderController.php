@@ -6,6 +6,7 @@ use App\Helpers\AdminHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -24,7 +25,7 @@ class OrderController extends Controller
     public function orderView($userIdentity)
     {
         $address = Address::where('user_identity', $userIdentity)->first();
-        
+
         $carts = Cart::where('user_identity', $userIdentity)->where('status', 0)->where('hand_over', 0)->get();
 
         return view('admin.order_view', compact('address', 'carts'));
@@ -34,7 +35,7 @@ class OrderController extends Controller
     {
         $address = Address::where('user_identity', $userIdentity)->first();
         $address->$action = 1;
-        
+
         if ($action == "hand_over") {
             if ($address->confirm == 1 && $address->deliver == 1) {
                 $carts = Cart::where('user_identity', $userIdentity)->get();

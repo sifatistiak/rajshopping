@@ -270,7 +270,8 @@
 									<th class="empty" colspan="3"></th>
 									<th>Coupon Discount</th>
 									<th colspan="2" class="sub-total"><span id="discount-amount">
-											@if ($discountvalue != 'default')
+                                        @if (isset($discountvalue))
+                                        @if ($discountvalue != 'default')
 											@if ($discountvalue['type'] == 0)
 											{{$total*$discountvalue['amount']/100}}
 											{{-- {{$subTotal= $total-($total*$discountvalue['amount']/100)}} --}}
@@ -279,7 +280,8 @@
 											{{-- {{$subTotal= $total-$discountvalue['amount']}} --}}
 											@endif
 											@else 0
-											@endif
+                                        @endif
+                                        @endif
 
 										</span><img style="display: inline" width="15px"
 											src="{{asset('frontend/img/taka.png')}}" alt=""></th>
@@ -298,6 +300,7 @@
 									<th>TOTAL</th>
 									<th colspan="2" class="total">
 										<div style="display:inline" id="total">
+											@if (isset($discountvalue))
 											@if ($discountvalue != 'default')
 											@if ($discountvalue['type'] == 0)
 											{{$total = $total-($total*$discountvalue['amount']/100)}}
@@ -306,14 +309,17 @@
 											@endif
 											@else {{$total}}
 											@endif
-											<input type="hidden" name="amount" value="{{$total}}">
+											@endif
 										</div>
 										<img style="display: inline" width="15px"
-											src="{{asset('frontend/img/taka.png')}}" alt="">
+                                        src="{{asset('frontend/img/taka.png')}}" alt="">
 									</th>
 								</tr>
 							</tfoot>
 						</table>
+                        <input type="hidden" name="amount" id="amount_hidden">
+                        <input type="hidden" name="dis_amount" id="dis_amount_hidden">
+                        <input type="hidden" name="count_cart" id="count_cart" value="{{count($carts)}}">
 						<div class="pull-right">
 							<button id="checkout" type="submit" class="primary-btn">Place Order</button>
 						</div>
@@ -339,6 +345,22 @@
 @section('script')
 <script>
 	$(document).ready(function(){
+        var division = $("#division").val();
+        var shipping = 0;
+        if(division == "Dhaka"){
+        shipping = 0;
+        }else{
+        shipping = 50;
+        }
+        $("#shipping").text(shipping);
+        var subTotal = parseInt($("#sub_total").text());
+        var discountamount = parseInt($("#discount-amount").text());
+        var finalAmmount = subTotal+shipping-discountamount;
+        $("#total").text(finalAmmount);
+        document.getElementById("amount_hidden").value = finalAmmount;
+        var count_cart = parseInt($("#count_cart").val());
+        document.getElementById("dis_amount_hidden").value = discountamount/count_cart;
+
 			$("#division").change(function(e){
 				var division = $("#division").val();
 				var shipping = 0;
@@ -350,9 +372,16 @@
 				$("#shipping").text(shipping);
 				var subTotal = parseInt($("#sub_total").text());
 				var discountamount = parseInt($("#discount-amount").text());
-				$("#total").text(subTotal+shipping-discountamount);
+                var finalAmmount = subTotal+shipping-discountamount;
+                $("#total").text(finalAmmount);
+                document.getElementById("amount_hidden").value = finalAmmount;
+                var count_cart = parseInt($("#count_cart").val());
+                document.getElementById("dis_amount_hidden").value = discountamount/count_cart;
 
-			});
-		});
+
+            });
+
+    });
+
 </script>
 @endsection

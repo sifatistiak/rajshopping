@@ -83,6 +83,7 @@ class ShoppingController extends Controller
             session(['coupon' => $coupon]);
             return view('frontend.cart', compact('carts', 'coupon'));
         } else {
+            $request->session()->forget('coupon');
             return view('frontend.cart', compact('carts'));
         }
     }
@@ -185,6 +186,8 @@ class ShoppingController extends Controller
 
     public function placeOrder(Request $request)
     {
+        $request->session()->forget('coupon');
+
         $this->validate($request, [
             'name' => ['required', 'string', 'max:191'],
             'phone' => ['required', 'starts_with:01', 'digits:11'],
@@ -221,7 +224,7 @@ class ShoppingController extends Controller
             foreach ($request->carts as $cartId) {
                 $cart = Cart::where('id', $cartId)->first();
                 $cart->status = 0;
-                $cart->amount = $request->amount;
+                $cart->amount = $request->dis_amount;
                 $cart->save();
             }
 
@@ -282,7 +285,7 @@ class ShoppingController extends Controller
 
             # CUSTOMER INFORMATION
             $post_data['cus_name'] = $request->name;
-            $post_data['cus_email'] = $request->email;
+            $post_data['cus_email'] = "istiak@skoder.co";
             $post_data['cus_add1'] = $request->address;
             $post_data['cus_add2'] = "Dhaka";
             $post_data['cus_city'] = "Dhaka";
@@ -303,7 +306,7 @@ class ShoppingController extends Controller
 
             # OPTIONAL PARAMETERS
             $post_data['value_a'] = $request->name;
-            $post_data['value_b'] = $request->email;
+            $post_data['value_b'] = "";
             $post_data['value_c'] = $request->phone;
             $post_data['value_d'] = $request->address;
 
@@ -319,7 +322,7 @@ class ShoppingController extends Controller
             $post_data['discount_amount'] = "5";
             $post_data['convenience_fee'] = "3";
             # REQUEST SEND TO SSLCOMMERZ
-            $direct_api_url = "https://sandbox.sslcommerz.com/gwprocess/v3/api.php";
+            $direct_api_url = "https://sandbox.sslcommerz.com/gwprocess/v4/api.php";
 
             $handle = curl_init();
             curl_setopt($handle, CURLOPT_URL, $direct_api_url);
@@ -338,6 +341,7 @@ class ShoppingController extends Controller
             if ($code == 200 && !(curl_errno($handle))) {
                 curl_close($handle);
                 $sslcommerzResponse = $content;
+                print_r($sslcommerzResponse);
             } else {
                 curl_close($handle);
                 echo "FAILED TO CONNECT WITH SSLCOMMERZ API";

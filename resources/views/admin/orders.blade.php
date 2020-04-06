@@ -103,6 +103,7 @@
             </tr>
             @php
             $total = 0;
+            $dis_total = 0;
             $orderProducts = $orderCart->orderProduct($orderCart->user_identity);
             @endphp
             @foreach ($orderProducts as $orderProduct)
@@ -116,7 +117,7 @@
                 <td colspan="2"><img height="80px" width="100px"
                         src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" alt=""></td>
                 <td>{{$orderProduct->quantity}}</td>
-                <td>{{$orderProduct->amount}}</td>
+                <td>{{$product->price}}</td>
                 <td>
                     @if($product->deleted_at == NULL)
                     <button class="btn btn-success" disabled> Active</button>
@@ -130,7 +131,8 @@
                      || <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('admin.delete.order.product',$orderProduct->id)}}">Delete</a>
                 </td>
                 @php
-                $total += $orderProduct->amount;
+                $total += $product->price;
+                $dis_total += $orderProduct->amount;
                 @endphp
             </tr>
             @endforeach
@@ -138,8 +140,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td colspan="2"><b>Discount = {{$dis_total}}</b></td>
                 <td><b>Shipping =
                         @php
                         $shipping = 0;
@@ -153,7 +154,7 @@
                         @endphp
 
                     </b></td>
-                <td><b>Total = {{$total+$shipping}}</b></td>
+                <td><b>Total = {{$total+$shipping-$dis_total}}</b></td>
             </tr>
             </tr>
             @endforeach

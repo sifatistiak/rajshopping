@@ -15,8 +15,10 @@
 
   menuToggle.on('click', function () {
     catList.removeClass('open');
-    menuList.toggleClass('open');
+      menuList.toggleClass('open');
   });
+
+  menuList.addClass('open');
 
   $(document).click(function (event) {
     if (!$(event.target).closest(responsiveNav).length) {

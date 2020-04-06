@@ -13,49 +13,53 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8"><br>
-                <button onclick="window.print();"></button>
-                <h1 style="font-size:100px">KaporBD.com</h1><br><hr><br>
-                <h1>Customer Details</h1><br><br>
+            <div class="col-md-10"><br>
+                <button style="float:right" onclick="window.print();">Print</button>
+                <div style="margin-top:1rem;">
+                    <img src="{{asset('frontend/img/main-logo.png')}}" alt="">
+                    <p style="font-weight:bold; font-size:50px;"> BanglarMela.com </p>
+                </div>
+                <hr><br>
+                <h3>Customer Details</h3><br><br>
                 <table class="table table-striped">
                     <tr>
                         <td>
-                            <h2>Name : </h2>
+                            <h4>Name : </h4>
                         </td>
                         <td>
-                            <h2>{{$address->name}}</h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>Phone : </h2>
-                        </td>
-                        <td>
-                            <h2>{{$address->phone}}</h2>
+                            <h4>{{$address->name}}</h4>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h2>Division: </h2>
+                            <h4>Phone : </h4>
                         </td>
                         <td>
-                            <h2>{{$address->division}}</h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>City: </h2>
-                        </td>
-                        <td>
-                            <h2>{{$address->city}}</h2>
+                            <h4>{{$address->phone}}</h4>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h2>Address:</h2>
+                            <h4>Division: </h4>
                         </td>
                         <td>
-                            <h2>{{$address->address}}</h2>
+                            <h4>{{$address->division}}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>City: </h4>
+                        </td>
+                        <td>
+                            <h4>{{$address->city}}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Address:</h4>
+                        </td>
+                        <td>
+                            <h4>{{$address->address}}</h4>
                         </td>
                     </tr>
                 </table>
@@ -64,7 +68,7 @@
             <div class="col-md-10">
                 <div class="order-summary clearfix"><br><br><br>
                     <div class="section-title">
-                        <h2 class="title">Ordered Product</h2>
+                        <h3 class="title">Ordered Product</h3>
                     </div>
                     @if (count($carts)>0)
                     <table id="cart_table" class="shopping-cart-table table">
@@ -80,6 +84,7 @@
                         <tbody>
                             @php
                             $total = 0;
+                            $dis_total =0;
                             @endphp
                             @foreach ($carts as $cart)
 
@@ -99,6 +104,7 @@
                                 <td class="total1 text-center"><strong class="primary-color">
                                         @php
                                         $total += $cart->product->price * $cart->quantity;
+                                        $dis_total += $cart->amount;
                                         @endphp
                                         <div style="display:inline" class="view">
                                             {{$cart->product->price * $cart->quantity}}
@@ -116,6 +122,15 @@
                                 <th>SUBTOTAL</th>
                                 <th colspan="2" id="" class="sub-total">
                                     <div style="display:inline" id="sub_total">{{$total}}</div><img
+                                        style="display: inline" width="15px" src="{{asset('frontend/img/taka.png')}}"
+                                        alt="">
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="empty" colspan="2"></th>
+                                <th>DISCOUNT</th>
+                                <th colspan="2" id="" class="sub-total">
+                                    <div style="display:inline" id="dis_total">{{$dis_total}}</div><img
                                         style="display: inline" width="15px" src="{{asset('frontend/img/taka.png')}}"
                                         alt="">
                                 </th>
@@ -141,7 +156,7 @@
                                 <th class="empty" colspan="2"></th>
                                 <th>TOTAL</th>
                                 <th colspan="2" class="total">
-                                    <div style="display:inline" id="total">{{$total+$shipping}}</div>
+                                    <div style="display:inline" id="total">{{$total+$shipping-$dis_total}}</div>
                                     <img style="display: inline" width="15px" src="{{asset('frontend/img/taka.png')}}"
                                         alt="">
                                 </th>

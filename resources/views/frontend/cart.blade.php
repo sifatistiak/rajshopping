@@ -86,7 +86,9 @@
                                         </td>
                                     </form>
                                 @php
-
+                                    if (!isset($subTotal)) {
+                                        $subTotal= $total;
+                                    }
                                     if (isset($coupon->amount) && isset($coupon->type)){
                                         $disAm = $coupon->amount;
                                         $type = $coupon->type;
@@ -97,7 +99,7 @@
                                     }
                                     else if ($type == 1) {
                                         $subTotal= $total-$disAm;
-                                        $show = "BDT ".$disAm." OFF";
+                                        $show = $disAm." BDT";
 
                                     }
                                     else {
@@ -109,7 +111,7 @@
                                     else {
                                         $disAm = 0;
                                         $type = 3;
-                                        $show='No Coupon';
+                                        $show='0';
                                     }
                                 @endphp
                                     <td>Coupon Discount</td>
@@ -118,25 +120,11 @@
                                     </th>
                                 </tr>
 
-
-								{{-- <tr>
-                                    <th class="empty" colspan="3"></th>
-									<th>Coupon Discount</th>
-                                    <th colspan="2" class="sub-total">
-                                        @if ($type == 0)
-                                        {{$disAm}} %
-                                        @elseif ($type == 1)
-                                           {{$disAm}} <img style="display: inline" width="15px" src="{{asset('frontend/img/taka.png')}}" alt="">
-                                        @else
-                                            N/A
-                                        @endif
-                                    </th>
-								</tr> --}}
 								<tr>
 									<th class="empty" colspan="3"></th>
                                     <th>TOTAL</th>
                                     <th colspan="2" class="total">
-                                        <div style="display:inline" id="total">{{$total}}</div>
+                                        <div style="display:inline" id="total">{{$subTotal}}</div>
                                         <img style="display: inline" width="15px" src="{{asset('frontend/img/taka.png')}}" alt="">
                                     </th>
 								</tr>
@@ -186,11 +174,21 @@
 			$(".total1").each(function(){
 			sum += Number($(this).text());
             });
+            if ($("#discount").text().includes("BDT")) {
+                var dis = parseFloat($("#discount").text());
+                var total = sum-dis;
+                $("#sub_total").text(sum);
+                $("#total").text(total);
+                $("#cart_price").text(sum);
+            }
+            if($("#discount").text().includes("OFF")) {
             var dis = parseFloat($("#discount").text());
-            var total = sum-dis;
-			$("#sub_total").text(sum);
-			$("#total").text(total);
-			$("#cart_price").text(sum);
+            var total = sum-(sum*dis/100);
+            $("#sub_total").text(sum);
+            $("#total").text(total);
+            $("#cart_price").text(sum);
+            }
+
 		});
 
 		$("#checkout").click(function(e){

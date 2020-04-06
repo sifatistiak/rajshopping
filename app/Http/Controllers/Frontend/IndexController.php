@@ -31,11 +31,12 @@ class IndexController extends Controller
         // $categoryProducts = Category::with('products')->orderBy('created_at', 'desc')->get();
 
         $categoryProducts = Category::select('name', 'id')->with('products')->orderBy('priority', 'desc')->get();
-        $allProducts = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->with('reviews', 'displayImage')->orderBy('updated_at', 'desc')->limit(10)->get();
+        $allProducts = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->with('reviews', 'displayImage')->orderBy('updated_at', 'desc')->skip(0)->take(10)->get();
+        $all50Products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->with('reviews', 'displayImage')->orderBy('updated_at', 'desc')->skip(10)->take(30)->get();
         $hotProducts = Product::select('id', 'title', 'desc', 'category_id', 'price', 'discount', 'status')->where('status', 1)->with('reviews', 'displayImage')->orderBy('updated_at', 'desc')->limit(10)->get();
 
         // return $categoryProducts;
-        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'allProducts', 'hotProducts', 'pop_up', 'left', 'right', 'discount'));
+        return view('frontend.index', compact('sliderImages', 'categoryProducts', 'allProducts', 'all50Products', 'hotProducts', 'pop_up', 'left', 'right', 'discount'));
     }
 
 

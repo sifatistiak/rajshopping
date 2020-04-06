@@ -117,7 +117,7 @@
 							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 								<div class="header-btns-icon">
-									<i class="fa fa-heart fa-2x"></i>
+                                    <img src="https://img.icons8.com/ios/30/000000/like.png" />
 									{{-- wishlist --}}
 									@php
 									$userIdentity = "";
@@ -181,7 +181,8 @@
 							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 								<div class="header-btns-icon">
-									<i class="fa fa-shopping-cart fa-2x"></i>
+                                    {{-- <i class="fa fa-shopping-cart fa-2x"></i> --}}
+                                    <img src="https://img.icons8.com/cotton/30/000000/shopping-cart--v2.png" />
 									{{-- cart --}}
 									@php
 									$userIdentity = "";
@@ -265,7 +266,7 @@
 
 						<li class="header-account dropdown default-dropdown">
 							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-								<div>
+								<div style="margin-top: 0.7rem;">
 									<i class="fa fa-user-o fa-2x" aria-hidden="true"> &nbsp;</i>
 								</div>
 							</div>
@@ -283,12 +284,16 @@
 							@csrf
 						</form>
 						@else
-						<li>
+						<li style="margin-top: 0.8rem;">
 
-							<strong><a href="{{route('login')}}" class="text-uppercase"><i class="fa fa-sign-in fa-2x"
-										aria-hidden="true"> &nbsp;</i></a>
-								<a href="{{route('register')}}" class="text-uppercase"><i class="fa fa-user-plus fa-2x"
-										aria-hidden="true">&nbsp;</i></a></strong>
+                            <strong><a href="{{route('login')}}" class="text-uppercase">
+                                {{-- <i class="fa fa-sign-in fa-2x" aria-hidden="true"> &nbsp;</i> --}}
+                                <img src="https://img.icons8.com/ios/28/000000/enter-2.png" />
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{{route('register')}}" class="text-uppercase">
+                                    {{-- <i class="fa fa-user-plus fa-2x" aria-hidden="true">&nbsp;</i> --}}
+                                    <img src="https://img.icons8.com/ios/28/000000/add-user-male.png" />
+                                </a></strong>
 						</li>
 						@endif
 						<!-- /Account -->
