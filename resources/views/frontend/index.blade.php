@@ -56,7 +56,7 @@
                 <div class="col-md-12">
                     <div class="section-title flex-center">
                         {{-- <h2 class="title">{{$allProducts[$i]}}</h2> --}}
-                        <h2 class="title">NEW ARRIVALS</h2>
+                        <h2 class="title">Groceries Collection</h2>
                         {{-- <div class="pull-right">
                             <div class="product-slick-dots-1 custom-dots">
                             </div>
@@ -70,7 +70,7 @@
                     <div class="row">
                         <div id="product-slick-1" class="product-slick">
                             <!-- Product Single -->
-                            @foreach ($allProducts as $product)
+                            @foreach ($groceries as $product)
                             @include('includes.product')
                             @endforeach
                             <!-- /Product Single -->
@@ -94,7 +94,7 @@
                 <div class="col-md-12">
                     <div class="section-title">
                             {{-- <h2 class="title">{{$allProducts[$i]}}</h2> --}}
-                            <h2 class="title">ALL PRODUCTS</h2>
+                            <h2 class="title">Home and Cleaning</h2>
 
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                     <div class="row">
                         <div id="product-slick-1" class="product-slick">
                             <!-- Product Single -->
-                            @foreach ($all50Products as $product)
+                            @foreach ($home as $product)
                             @include('includes.product')
                             @endforeach
                             <!-- /Product Single -->
@@ -129,7 +129,7 @@
                 <div class="col-md-12">
                     <div class="section-title">
                             {{-- <h2 class="title">{{$allProducts[$i]}}</h2> --}}
-                            <h2 class="title">POPULAR COLLECTIONS</h2>
+                            <h2 class="title">Fruits and Vegitables</h2>
 
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                     <div class="row">
                         <div id="product-slick-1" class="product-slick">
                             <!-- Product Single -->
-                            @foreach ($hotProducts as $product)
+                            @foreach ($fruits as $product)
                             @include('includes.product')
                             @endforeach
                             <!-- /Product Single -->

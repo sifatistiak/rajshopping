@@ -9,9 +9,9 @@
                 </div>
              </div>
         <div class="col-md-10">
-            
+
 <p style="line-height: 1.38; margin-top: 30pt; margin-bottom: 0pt;"><span
-        style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Welcome to the KaporBD.com . We respect your privacy and want to protect your personal information. To learn more, please read this Privacy Policy.</span></p>
+        style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">Welcome to the RajShopping.com . We respect your privacy and want to protect your personal information. To learn more, please read this Privacy Policy.</span></p>
 <p>&nbsp;</p>
 <p style="line-height: 1.38; margin-top: 3pt;"><span
         style="font-size: 11pt; font-family: Arial; color: #000000; background-color: transparent; font-weight: 400; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">This Privacy Policy explains how we collect and use your personal information.This Privacy Policy also explains the steps we have taken to secure your personal information. </span>

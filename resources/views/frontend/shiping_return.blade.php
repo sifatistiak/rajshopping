@@ -18,10 +18,10 @@
             <br>
             <div class="col-md-9 col-sm-12 col-xs-12">
                 <p style="font-size:16px">
-                    Welcome to KaporBD.com. We are an online marketplace and these are the terms and conditions governing your access and use of KaporBD.By using the site, you hereby accept these terms and conditions and represent
+                    Welcome to RajShopping.com. We are an online marketplace and these are the terms and conditions governing your access and use of RajShopping.By using the site, you hereby accept these terms and conditions and represent
                     that you agree to comply with these terms and conditions. If you do not agree to be bound by this terms and conditions
-                     please do not access, register with or use this site. This site is owned and operated by KaporBD.
-                    
+                     please do not access, register with or use this site. This site is owned and operated by RajShopping.
+
                    <p style="font-size:16px"> The site reserves the right to change, modify, add, or remove portions of these Terms and Conditions at any time without
                     any prior notification. Changes will be effective when posted on the site with no other notice provided. Please check
                     these Terms and Conditions regularly for updates.<p>
@@ -41,7 +41,7 @@
                 </p><br><br>
                  <h3>Privacy</h3>
                 <p style="font-size:16px">
-                    Please review our Privacy Agreement, which also governs your visit to the site. The personal information  provided to us by you or your use of the site will be treated as strictly confidential. 
+                    Please review our Privacy Agreement, which also governs your visit to the site. The personal information  provided to us by you or your use of the site will be treated as strictly confidential.
                 </p>
 
                 <br><br>
@@ -59,7 +59,7 @@
                 <br><br>
                  <h3>Copyrights</h3>
                 <p style="font-size:16px">
-                    Our graphics, logos, page headers, button icons, scripts and service names are the trademarks or trade dress and may not be used in connection with any product or service that does not belong to us.The entire contents of the site are protected by copyright to KaporBD.
+                    Our graphics, logos, page headers, button icons, scripts and service names are the trademarks or trade dress and may not be used in connection with any product or service that does not belong to us.The entire contents of the site are protected by copyright to RajShopping.
                 </p>
                 <br><br>
                  <h3>Loss</h3>

@@ -340,9 +340,11 @@ textarea.input {
 .section-title .title {
     display: inline-block;
     text-transform: uppercase;
-}
+    border-bottom: 3px solid #8a1010;
+    margin-bottom: -1px;
+    padding-bottom: 10px;}
 
-.section-title:after {
+/* .section-title:after {
     content: "";
     position: absolute;
     left: 37%;
@@ -350,7 +352,7 @@ textarea.input {
     height: 3px;
     width: 300px;
     background-color: #b11116;
-}
+} */
 
 @media()
 

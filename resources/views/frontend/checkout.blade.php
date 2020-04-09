@@ -37,10 +37,10 @@
 								name="phone" placeholder="Phone">
 						</div>
 						<div class="form-group">
-							<h4>Devision</h4>
+							<h4>Division</h4>
 							<select required id="division" name="division" class="form-control">
 								<option value="">Select Division for Shipping</option>
-								<option @if ($address) @if ($address->division == "Dhaka") selected @endif @endif
+								{{-- <option @if ($address) @if ($address->division == "Dhaka") selected @endif @endif
 									value="Dhaka">Dhaka </option>
 								<option @if ($address) @if ($address->division == "Barishal") selected @endif @endif
 									value="Barishal">Barishal</option>
@@ -49,24 +49,23 @@
 								<option @if ($address) @if ($address->division == "Khulna") selected @endif @endif
 									value="Khulna">Khulna</option>
 								<option @if ($address) @if ($address->division == "Mymensingh") selected @endif @endif
-									value="Mymensingh">Mymensingh</option>
-								<option @if ($address) @if ($address->division == "Rajshahi") selected @endif @endif
-									value="Rajshahi">Rajshahi </option>
-								<option @if ($address) @if ($address->division == "Sylhet") selected @endif @endif
+									value="Mymensingh">Mymensingh</option> --}}
+								<option selected value="Rajshahi">Rajshahi</option>
+								{{-- <option @if ($address) @if ($address->division == "Sylhet") selected @endif @endif
 									value="Sylhet">Sylhet </option>
 								<option @if ($address) @if ($address->division == "Rangpur") selected @endif @endif
-									value="Rangpur">Rangpur</option>
+									value="Rangpur">Rangpur</option> --}}
 							</select>
 						</div>
 						<div class="form-group">
 							<h4>City</h4>
 							<select required name="city" class="form-control">
-								@if($address)
-								<option value="{{$address->city}}">{{$address->city}}</option>
-								@else
+								{{-- @if($address) --}}
+								{{-- <option value="{{$address->city}}">{{$address->city}}</option> --}}
+								{{-- @else --}}
 								<option value="">Select City for Shipping</option>
-								@endif
-								<option value="Bagerhat">Bagerhat</option>
+								{{-- @endif --}}
+								{{-- <option value="Bagerhat">Bagerhat</option>
 								<option value="Bandarban">Bandarban</option>
 								<option value="Barguna">Barguna</option>
 								<option value="Barishal">Barishal</option>
@@ -128,7 +127,8 @@
 								<option value="Sunamganj">Sunamganj</option>
 								<option value="Sylhet">Sylhet</option>
 								<option value="Tangail">Tangail</option>
-								<option value="Thakurgonj">Thakurgonj</option>
+								<option value="Thakurgonj">Thakurgonj</option> --}}
+								<option value="Rajshahi" selected>Rajshahi</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -174,22 +174,22 @@
 							<div class="caption">
 								<p>Please provide cash on receiving your product. Thank you.
 								</p><br><br>
+								{{-- <h4> --}}
+									{{-- Free delivery inside Dhaka --}}
+								{{-- </h4> --}}
 								<h4>
-									Free delivery inside Dhaka
-								</h4>
-								<h4>
-									Shipping Charge outside Dhaka : 50 <img style="display: inline" width="15px"
+									Delivery Charge inside Rajshahi : 50 <img style="display: inline" width="15px"
 										src="{{asset('frontend/img/taka.png')}}" alt="">
 								</h4>
 							</div>
 						</div>
-						<div class="input-checkbox">
+						{{-- <div class="input-checkbox">
 							<input type="radio" name="payment" value="ssl" id="payments-2">
 							<label for="payments-1">Pay Via SSL Commerce</label>
 							<div class="caption">
 
 							</div>
-						</div>
+						</div> --}}
 
 					</div>
 				</div>
@@ -346,12 +346,12 @@
 <script>
 	$(document).ready(function(){
         var division = $("#division").val();
-        var shipping = 0;
-        if(division == "Dhaka"){
-        shipping = 0;
-        }else{
-        shipping = 50;
-        }
+        var shipping = 50;
+        // if(division == "Dhaka"){
+        // shipping = 0;
+        // }else{
+        // shipping = 50;
+        // }
         $("#shipping").text(shipping);
         var subTotal = parseInt($("#sub_total").text());
         var discountamount = parseInt($("#discount-amount").text());
@@ -363,12 +363,12 @@
 
 			$("#division").change(function(e){
 				var division = $("#division").val();
-				var shipping = 0;
-				if(division == "Dhaka"){
-					shipping = 0;
-				}else{
-					shipping = 50;
-				}
+				var shipping = 50;
+				// if(division == "Dhaka"){
+				// 	shipping = 0;
+				// }else{
+				// 	shipping = 50;
+				// }
 				$("#shipping").text(shipping);
 				var subTotal = parseInt($("#sub_total").text());
 				var discountamount = parseInt($("#discount-amount").text());

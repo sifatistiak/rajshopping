@@ -71,7 +71,7 @@
 		</style>
 		<div id="header" class="navbar-default header1" style="background-color: white;">
 			<div class="col-md-12" style="display:block; background:#eaeaea; top: -0.4rem;">
-				<span> <i class="fa fa-phone"> &nbsp;+8801929717612</i></span>
+				<span> <i class="fa fa-phone"> &nbsp;+8801979891996</i></span>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<span> <i class="fa fa-envelope"> &nbsp;support@rajshopping.com</i></span>
 			</div>
@@ -395,11 +395,11 @@
 						<!-- /footer logo -->
 
 						<p style="margin-top:-25px">A trust worthy e-commerce platform to buy product from anywhere in
-							Bangladesh.</p>
+							Rajshahi.</p>
 
 						<!-- footer social -->
 						<ul class="footer-social">
-							<li><a target="_blank" href="https://facebook.com/"><i class="fa fa-facebook fa-2x"></i></a>
+							<li><a target="_blank" href="https://www.facebook.com/Rajshopping-107671447566845/"><i class="fa fa-facebook fa-2x"></i></a>
 							</li>
 							<li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
 							</li>
@@ -458,7 +458,7 @@
 						<h3 class="footer-header">Contact Us</h3>
 						<ul class="list-links">
 							<li><a href="{{route('quick.contact')}}">Quick Contact</a></li>
-							<li><a href="tel:+8801929717612"> +880 1929717612</a></li>
+							<li><a href="tel:+8801979891996"> +8801979891996</a></li>
 							<li><a href="mailto:support@rajshopping.com"> <span class="text-lowercase">
 										support@rajshopping.com </span></a></li>
 						</ul>
