@@ -31,7 +31,7 @@ class Product extends Model
     public function mypath()
     {
         // return url("/product/{$this->id}-".str_slug($this->title, '-'));
-        return route('newproduct', [$this->id,str_slug($this->title, '-')]);
+        return route('newproduct', [$this->id,str_slug($this->title, '-' ,  'bn')]);
     }
 
     public function buyNow()
