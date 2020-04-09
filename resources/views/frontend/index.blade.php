@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Banglar Mela')
+@section('title','RAJ SHOPPING')
 @section('content')
 <div id="boxes">
     <div style="top: 10%; left: 20%; display: none;" id="dialog" class="window">
@@ -129,7 +129,7 @@
                 <div class="col-md-12">
                     <div class="section-title">
                             {{-- <h2 class="title">{{$allProducts[$i]}}</h2> --}}
-                            <h2 class="title">HOT COLLECTIONS</h2>
+                            <h2 class="title">POPULAR COLLECTIONS</h2>
 
                     </div>
                 </div>

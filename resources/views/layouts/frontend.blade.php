@@ -11,7 +11,7 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>@yield('title')</title>
-	<link rel="icon" type="image/png" href="{{asset('frontend/img/logo.jpg')}}">
+	<link rel="icon" type="image/png" href="{{asset('frontend/img/logo.png')}}">
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -71,9 +71,9 @@
 		</style>
 		<div id="header" class="navbar-default header1" style="background-color: white;">
 			<div class="col-md-12" style="display:block; background:#eaeaea; top: -0.4rem;">
-				<span> <i class="fa fa-phone"> &nbsp;+8801969878987</i></span>
+				<span> <i class="fa fa-phone"> &nbsp;+8801929717612</i></span>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<span> <i class="fa fa-envelope"> &nbsp;support@banglarmela.com</i></span>
+				<span> <i class="fa fa-envelope"> &nbsp;support@rajshopping.com</i></span>
 			</div>
 			{{-- <div id="header"> --}}
 			<div class="container">
@@ -459,8 +459,8 @@
 						<ul class="list-links">
 							<li><a href="{{route('quick.contact')}}">Quick Contact</a></li>
 							<li><a href="tel:+8801929717612"> +880 1929717612</a></li>
-							<li><a href="mailto:support@banglarmela.com"> <span class="text-lowercase">
-										support@banglarmela.com </span></a></li>
+							<li><a href="mailto:support@rajshopping.com"> <span class="text-lowercase">
+										support@rajshopping.com </span></a></li>
 						</ul>
 
 
@@ -479,7 +479,7 @@
 						Copyright &copy;
 						<script>
 							document.write(new Date().getFullYear());
-						</script> All rights reserved <a href="{{route('index')}}">@BanglarMela</a> . Technology Partner
+						</script> All rights reserved <a href="{{route('index')}}">@RajShopping</a> . Technology Partner
 						<a style="color:#f8694a" href="http://skoder.co" target="_blank">Skoder</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>

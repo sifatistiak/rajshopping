@@ -128,7 +128,7 @@ Route::prefix('yqw')->group(function () {
         Route::get('delete-sub-category/{id}', 'Admin\SubCategoryController@deleteSubCategory')->name('delete.sub-category');
 
         Route::get('restore-sub-category/{id}', 'Admin\SubCategoryController@restoreSubCategory')->name('restore.sub-category');
-        Route::get('force-delete-sub-category/{id}', 'Admin\SubCategoryController@forceSubDeleteCategory')->name('force.delete.sub-category');
+        Route::get('force-delete-sub-category/{id}', 'Admin\SubCategoryController@forceDeleteSubCategory')->name('force.delete.sub-category');
         Route::get('add-sub-category', 'Admin\SubCategoryController@addSubCategoryView')->name('add.sub-category.view');
         Route::post('add-sub-category', 'Admin\SubCategoryController@addSubCategory')->name('add.sub-category');
 

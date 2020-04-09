@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Salwar Kameez')
+@section('title','')
 @section('content')
 
 Category : "Firdous Solitaire"
@@ -19,17 +19,17 @@ https://kaporbd.com
 
 Firdous Ombre
 Product Description :
-3.18 M DIGITAL PRINTED LAWN COTTON Kameez 
-2.5 M DIGITAL PRINTED Pure CHIFFON Orna 
-2.5 M COTTON Shalwar 
+3.18 M DIGITAL PRINTED LAWN COTTON Kameez
+2.5 M DIGITAL PRINTED Pure CHIFFON Orna
+2.5 M COTTON Shalwar
 Quality - Best Quality Ensure
 Look - As like the picture
 
 
- 1 Piece 
+ 1 Piece
  Kameez - Free Long Size
 Kameez Cloth Type - Cutton
-Condition - Unready, Unstitched 
+Condition - Unready, Unstitched
 Quality - Best Quality Ensure
 Look - As like the picture
 
@@ -42,7 +42,7 @@ Look - As like the picture
 2.5 M Digitally Printed Lawn Orna
 2.5 M Dyed Shalwar
 Shalwar, Kameez, Orna Cloth Type - Cotton
-Condition - Unready, Unstitched 
+Condition - Unready, Unstitched
 Quality - Best Quality Ensure
 Look - As like the picture
 

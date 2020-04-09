@@ -21,7 +21,7 @@
                 <td>{{$category->name}}</td>
                 <td>{{$category->priority}}</td>
                 <td><a class="btn btn-success" onclick="return confirm('Are you sure?')" href="{{route('admin.restore.sub-category',$category->id)}}">Restore</a></td>
-                <td><a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('admin.force.delete.sub-  category',$category->id)}}">Force Delete</a></td>
+                <td><a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('admin.force.delete.sub-category',$category->id)}}">Force Delete</a></td>
             </tr>
             @endforeach
         </tbody>
