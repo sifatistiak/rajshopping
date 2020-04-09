@@ -78,7 +78,7 @@
 
 						<div class="product-btns">
 
-							<a href="{{route('add.to.wishlist',$product->id)}}" class="primary-btn"><i class="fa fa-heart"
+							<a href="{{route('add.to.wishlist',$singleProduct->id)}}" class="primary-btn"><i class="fa fa-heart"
                                     aria-hidden="true"></i></a>
 							<button style="margin-left:5px" id="add_to_cart" value="{{$singleProduct->id}}" class="primary-btn add_to_cart"><i
 									class="fa fa-shopping-cart"></i>
