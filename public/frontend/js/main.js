@@ -9,13 +9,17 @@
     menuList = $('#responsive-nav .menu-nav .menu-list');
 
   catToggle.on('click', function () {
-    menuList.removeClass('open');
-    catList.toggleClass('open');
+    // menuList.removeClass('open');
+    // catList.toggleClass('open');
   });
 
   menuToggle.on('click', function () {
-    catList.removeClass('open');
-      menuList.toggleClass('open');
+    // catList.removeClass('open');
+    //   menuList.toggleClass('open');
+      if (responsiveNav.hasClass('open')) {
+          responsiveNav.removeClass('open');
+          $('#navigation').removeClass('shadow');
+      }
   });
 
   menuList.addClass('open');

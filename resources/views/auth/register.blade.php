@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <h4>Police Station</h4>
                         <select required value="{{old('city')}}" name="city" class="form-control">
-                            <option value="">Select Police Station</option>
+                            <option value="" >Select Police Station</option>
                             {{-- <option value="Bagerhat">Bagerhat</option>
                             <option value="Bandarban">Bandarban</option>
                             <option value="Barguna">Barguna</option>
