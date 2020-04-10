@@ -24,7 +24,8 @@ class Category extends Model
 
     public function mypath()
     {
-        return route('category.products',[$this->id, preg_replace("/[\s_]/", "-", $this->title)]);
+        return route('category.products',[$this->id, $this->title]);
+        // return route('category.products',[$this->id, preg_replace("/[\s_]/", "-", $this->title)]);
     }
     // protected $dispatchesEvents;
 
