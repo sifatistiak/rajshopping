@@ -70,7 +70,7 @@
 			}
 		</style>
 		<div id="header" class="navbar-default header1" style="background-color: white;">
-			<div class="col-md-12" style="display:block; background:#eaeaea; top: -0.4rem;">
+			<div id="scrollHide" class="col-md-12" style="display:block; background:#eaeaea; top: -0.4rem;">
 				<span> <i class="fa fa-phone"> &nbsp;+8801979891996</i></span>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<span> <i class="fa fa-envelope"> &nbsp;support@rajshopping.com</i></span>
@@ -509,6 +509,15 @@
 	<script src="{{asset('frontend/js/main.js')}}"></script>
 
 	<script>
+        $(document).scroll(function() {
+        var y = $(this).scrollTop();
+        if (y > 500) {
+        $('#scrollHide').fadeOut();
+        } else {
+        $('#scrollHide').fadeIn();
+        }
+        });
+
 		$( function() {
 		    // $( "#search" ).autocomplete({
 			//   source: "{{route('search')}}",
