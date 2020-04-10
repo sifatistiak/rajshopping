@@ -12,8 +12,7 @@
     // menuList.removeClass('open');
     // catList.toggleClass('open');
       if (responsiveNav.hasClass('open')) {
-          responsiveNav.removeClass('open');
-          $('#navigation').removeClass('shadow');
+          responsiveNav.addClass('open');
       }
   });
 

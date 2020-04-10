@@ -339,10 +339,10 @@
 								'asc')->get();
 								@endphp
 								@foreach ($subcategories as $item)
-								<li class="category-nav category-list"> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
+								<li> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
 								<hr class="hr">
 								@endforeach
-								<li class="category-nav category-list"> <a href="{{$category->mypath()}}">All</a></li>
+								<li> <a href="{{$category->mypath()}}">All</a></li>
 							</ul>
 						</li>
 						@endforeach
