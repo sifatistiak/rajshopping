@@ -15,8 +15,7 @@
       $('#navigation').addClass('shadow');
       responsiveNav.addClass('open');
   });
-    $('#navigation').addClass('shadow');
-    responsiveNav.addClass('open');
+
   menuToggle.on('click', function () {
     // catList.removeClass('open');
     //   menuList.toggleClass('open');
@@ -30,9 +29,9 @@
 
   $(document).click(function (event) {
     if (!$(event.target).closest(responsiveNav).length) {
-      if (responsiveNav.hasClass('open')) {
-        responsiveNav.removeClass('open');
-        $('#navigation').removeClass('shadow');
+    //   if (responsiveNav.hasClass('open')) {
+        // responsiveNav.removeClass('open');
+        // $('#navigation').removeClass('shadow');
       } else {
         if ($(event.target).closest('.nav-toggle > button').length) {
           if (!menuList.hasClass('open') && !catList.hasClass('open')) {
