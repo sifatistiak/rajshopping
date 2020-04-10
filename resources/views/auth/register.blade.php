@@ -36,7 +36,7 @@
                             {{-- <option value="Chittagong">Chittagong</option> --}}
                             {{-- <option value="Khulna">Khulna</option> --}}
                             {{-- <option value="Mymensingh">Mymensingh</option> --}}
-                            <option value="Rajshahi">Rajshahi </option>
+                            <option value="Rajshahi" selected>Rajshahi </option>
                             {{-- <option value="Sylhet">Sylhet </option> --}}
                             {{-- <option value="Rangpur">Rangpur</option> --}}
                         </select>
