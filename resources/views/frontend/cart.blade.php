@@ -176,6 +176,10 @@
 			$(".total1").each(function(){
 			sum += Number($(this).text());
             });
+            $("#total").text(sum);
+            $("#cart_price").text(sum);
+
+
             if ($("#discount").text().includes("BDT")) {
                 var dis = parseFloat($("#discount").text());
                 var total = sum-dis;

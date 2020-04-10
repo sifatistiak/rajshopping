@@ -37,7 +37,7 @@
 
   $(document).click(function (event) {
     if (!$(event.target).closest(responsiveNav).length) {
-      if (responsiveNav.hasClass('open')) {
+        if (responsiveNav.hasClass('open') && !catToggle.hasClass('open')) {
               responsiveNav.removeClass('open');
               $('#navigation').removeClass('shadow');
       } else {
