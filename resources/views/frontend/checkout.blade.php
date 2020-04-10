@@ -37,9 +37,9 @@
 								name="phone" placeholder="Phone">
 						</div>
 						<div class="form-group">
-							<h4>Division</h4>
+							<h4>District</h4>
 							<select required id="division" name="division" class="form-control">
-								<option value="">Select Division for Shipping</option>
+								<option value="">Select District for Shipping</option>
 								{{-- <option @if ($address) @if ($address->division == "Dhaka") selected @endif @endif
 									value="Dhaka">Dhaka </option>
 								<option @if ($address) @if ($address->division == "Barishal") selected @endif @endif
@@ -58,13 +58,13 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<h4>City</h4>
+							<h4>Police Station</h4>
 							<select required name="city" class="form-control">
-								{{-- @if($address) --}}
-								{{-- <option value="{{$address->city}}">{{$address->city}}</option> --}}
-								{{-- @else --}}
-								<option value="">Select City for Shipping</option>
-								{{-- @endif --}}
+								@if($address)
+								<option value="{{$address->city}}">{{$address->city}}</option>
+								@else
+								<option value="">Select Police Station for Shipping</option>
+								@endif
 								{{-- <option value="Bagerhat">Bagerhat</option>
 								<option value="Bandarban">Bandarban</option>
 								<option value="Barguna">Barguna</option>
@@ -128,7 +128,18 @@
 								<option value="Sylhet">Sylhet</option>
 								<option value="Tangail">Tangail</option>
 								<option value="Thakurgonj">Thakurgonj</option> --}}
-								<option value="Rajshahi" selected>Rajshahi</option>
+								<option value="Rajpara" selected>Rajpara</option>
+								<option value="Boalia" selected>Boalia</option>
+								<option value="Motihar" selected>Motihar</option>
+								<option value="Chandrima" selected>Chandrima</option>
+								<option value="Katakhali" selected>Katakhali</option>
+								<option value="Belpukur" selected>Belpukur</option>
+								<option value="Shah Makhdum" selected>Shah Makhdum</option>
+								<option value="Airport" selected>Airport</option>
+								<option value="Paba" selected>Paba</option>
+								<option value="Kashiadanga" selected>Kashiadanga</option>
+								<option value="Kornohar" selected>Kornohar</option>
+								<option value="Damkura" selected>Damkura</option>
 							</select>
 						</div>
 						<div class="form-group">

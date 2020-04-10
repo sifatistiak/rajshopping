@@ -28,24 +28,24 @@
                             placeholder="Phone">
                     </div>
                     <div class="form-group">
-                        <h4>Devision</h4>
+                        <h4>District</h4>
                         <select required value="{{old('division')}}" name="division" class="form-control">
-                            <option value="">Select Division for Shipping</option>
-                            <option value="Dhaka">Dhaka</option>
-                            <option value="Barishal">Barishal</option>
-                            <option value="Chittagong">Chittagong</option>
-                            <option value="Khulna">Khulna</option>
-                            <option value="Mymensingh">Mymensingh</option>
+                            <option value="">Select District for Shipping</option>
+                            {{-- <option value="Dhaka">Dhaka</option> --}}
+                            {{-- <option value="Barishal">Barishal</option> --}}
+                            {{-- <option value="Chittagong">Chittagong</option> --}}
+                            {{-- <option value="Khulna">Khulna</option> --}}
+                            {{-- <option value="Mymensingh">Mymensingh</option> --}}
                             <option value="Rajshahi">Rajshahi </option>
-                            <option value="Sylhet">Sylhet </option>
-                            <option value="Rangpur">Rangpur</option>
+                            {{-- <option value="Sylhet">Sylhet </option> --}}
+                            {{-- <option value="Rangpur">Rangpur</option> --}}
                         </select>
                     </div>
                     <div class="form-group">
-                        <h4>City</h4>
+                        <h4>Police Station</h4>
                         <select required value="{{old('city')}}" name="city" class="form-control">
-                            <option value="">Select City for Shipping</option>
-                            <option value="Bagerhat">Bagerhat</option>
+                            <option value="">Select Police Station</option>
+                            {{-- <option value="Bagerhat">Bagerhat</option>
                             <option value="Bandarban">Bandarban</option>
                             <option value="Barguna">Barguna</option>
                             <option value="Barishal">Barishal</option>
@@ -107,7 +107,19 @@
                             <option value="Sunamganj">Sunamganj</option>
                             <option value="Sylhet">Sylhet</option>
                             <option value="Tangail">Tangail</option>
-                            <option value="Thakurgonj">Thakurgonj</option>
+                            <option value="Thakurgonj">Thakurgonj</option> --}}
+                            <option value="Rajpara" selected>Rajpara</option>
+                            <option value="Boalia" selected>Boalia</option>
+                            <option value="Motihar" selected>Motihar</option>
+                            <option value="Chandrima" selected>Chandrima</option>
+                            <option value="Katakhali" selected>Katakhali</option>
+                            <option value="Belpukur" selected>Belpukur</option>
+                            <option value="Shah Makhdum" selected>Shah Makhdum</option>
+                            <option value="Airport" selected>Airport</option>
+                            <option value="Paba" selected>Paba</option>
+                            <option value="Kashiadanga" selected>Kashiadanga</option>
+                            <option value="Kornohar" selected>Kornohar</option>
+                            <option value="Damkura" selected>Damkura</option>
                         </select>
                     </div>
                     <div class="form-group">
