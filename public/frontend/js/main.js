@@ -33,11 +33,10 @@
 
 
   menuList.addClass('open');
-
+    var clicked = false;
   $(document).click(function (event) {
     if (!$(event.target).closest(responsiveNav).length) {
       if (responsiveNav.hasClass('open')) {
-          var clicked = false;
           responsiveNav.click(function() {
               this.clicked = true;
               alert(clicked);
