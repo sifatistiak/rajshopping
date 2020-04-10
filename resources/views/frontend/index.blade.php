@@ -2,7 +2,7 @@
 @section('title','RAJ SHOPPING')
 @section('content')
 <div id="boxes">
-    <div style="top: 10%; left: 20%; display: none;" id="dialog" class="window">
+    <div style="top: 10px; bottom 10px; left: 20%; display: none;" id="dialog" class="window">
         {{-- <div id="col-12"> --}}
         <a href="#" class="close agree"><img src="{{asset('frontend/img/close-ic.png')}}" width="25"
                     style="float:right;"></a>
