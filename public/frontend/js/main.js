@@ -40,8 +40,6 @@
       if (responsiveNav.hasClass('open')) {
             //   responsiveNav.removeClass('open');
             //   $('#navigation').removeClass('shadow');
-          }
-
       } else {
         if ($(event.target).closest('.nav-toggle > button').length) {
           if (!menuList.hasClass('open') && !catList.hasClass('open')) {
