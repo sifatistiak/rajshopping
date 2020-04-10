@@ -40,13 +40,16 @@
           var clicked = false;
           $('.menu-nav').on('click', function () {
               clicked = true;
+              alert(clicked);
           });
           if (clicked) {
               alert("clecked INSIDE");
+              alert(clicked);
               $('#navigation').addClass('shadow');
               responsiveNav.addClass('open');
           } else {
               alert("OUTSIDE");
+              alert(clicked);
               responsiveNav.removeClass('open');
               $('#navigation').removeClass('shadow');
           }
