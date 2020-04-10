@@ -2,7 +2,7 @@
 @section('title','RAJ SHOPPING')
 @section('content')
 <div id="boxes">
-    <div style="top: 10px; bottom: 10px; left: 25%; display: none;" id="dialog" class="window">
+    <div style="display: none;" id="dialog" class="window">
         {{-- <div id="col-12"> --}}
         <a href="#" class="close agree"><img src="{{asset('frontend/img/close-ic.png')}}" width="25"
                     style="float:right;"></a>
@@ -213,8 +213,8 @@
                 $('#mask').fadeTo("slow",0.9);
                 var winH = $(window).height();
                 var winW = $(window).width();
-                // $(id).css('top', winH/2-$(id).height()/2);
-                // $(id).css('left', winW/2-$(id).width()/2);
+                $(id).css('top', winH/2-$(id).height()/2);
+                $(id).css('left', winW/2-$(id).width()/2);
                 $(id).fadeIn(2000);
                 $('.window .close').click(function (e) {
                 e.preventDefault();
