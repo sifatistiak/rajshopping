@@ -38,8 +38,8 @@
     if (!$(event.target).closest(responsiveNav).length) {
       if (responsiveNav.hasClass('open')) {
           var clicked = false;
-          $('.menu-nav').on('click', function () {
-              clicked = true;
+          responsiveNav.on('click', function () {
+              this.clicked = true;
               alert(clicked);
           });
           if (clicked) {
