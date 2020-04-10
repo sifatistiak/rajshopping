@@ -329,7 +329,7 @@
 
 						@endphp
 						@foreach ($categories as $category)
-						<li class="dropdown">
+						<li class="dropdown category-nav category-header">
 							<a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown"
 								role="button" aria-haspopup="true" aria-expanded="false">{{$category->name}}</a>
 							<ul class="dropdown-menu">
@@ -339,10 +339,10 @@
 								'asc')->get();
 								@endphp
 								@foreach ($subcategories as $item)
-								<li> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
+								<li class="category-nav category-list"> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
 								<hr class="hr">
 								@endforeach
-								<li> <a href="{{$category->mypath()}}">All</a></li>
+								<li class="category-nav category-list"> <a href="{{$category->mypath()}}">All</a></li>
 							</ul>
 						</li>
 						@endforeach
