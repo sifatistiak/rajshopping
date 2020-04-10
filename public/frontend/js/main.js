@@ -11,9 +11,9 @@
   catToggle.on('click', function () {
     // menuList.removeClass('open');
     // catList.toggleClass('open');
-      if (responsiveNav.hasClass('open')) {
-          responsiveNav.addClass('open');
-      }
+      menuList.addClass('open');
+      $('#navigation').addClass('shadow');
+      responsiveNav.addClass('open');
   });
 
   menuToggle.on('click', function () {
