@@ -1913,8 +1913,13 @@ textarea.input {
         width:70%;
     }
 
-    .open>.dropdown-menu {
+    .menu-nav>.open>.dropdown-menu {
         display: contents !important;
+    }
+
+    .header-btns > .open > .dropdown-menu {
+        display: block !important;
+        left: -45px;
     }
 
 }
