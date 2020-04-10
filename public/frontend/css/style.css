@@ -1913,6 +1913,10 @@ textarea.input {
         width:70%;
     }
 
+    .open>.dropdown-menu {
+        display: contents !important;
+    }
+
 }
 
 @media only screen and (max-width:1000px) and (min-width:600px) {

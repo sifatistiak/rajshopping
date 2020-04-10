@@ -322,7 +322,7 @@
 					<ul class="menu-list dropdown">
 						<li class="dropdown">
 							<a class="text-uppercase" href="{{route('index')}}">Home</a>
-						</li>
+                        </li>
 
 						@php
 						$categories = App\Models\Category::orderBy('priority', 'asc')->get();
