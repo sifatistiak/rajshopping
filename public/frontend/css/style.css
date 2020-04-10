@@ -1671,6 +1671,10 @@ textarea.input {
 
 /*-- shopping cart table --*/
 
+.shopping-cart-table{
+    overflow-y: auto;
+}
+
 .shopping-cart-table > tbody > tr > td,
 .shopping-cart-table > tbody > tr > th,
 .shopping-cart-table > tfoot > tr > td,
