@@ -1913,7 +1913,7 @@ textarea.input {
         width:70%;
     }
 
-    .menu-nav>.open>.dropdown-menu {
+    .open>.dropdown-menu {
         display: contents !important;
     }
 
