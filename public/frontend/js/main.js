@@ -15,7 +15,8 @@
       $('#navigation').addClass('shadow');
       responsiveNav.addClass('open');
   });
-
+    $('#navigation').addClass('shadow');
+    responsiveNav.addClass('open');
   menuToggle.on('click', function () {
     // catList.removeClass('open');
     //   menuList.toggleClass('open');
