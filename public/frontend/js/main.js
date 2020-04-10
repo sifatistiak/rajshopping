@@ -16,10 +16,10 @@
       responsiveNav.addClass('open');
   });
 
-  $('.menu-nav').on('click', function () {
-        $('#navigation').addClass('shadow');
-        responsiveNav.addClass('open');
-    });
+//   $('.menu-nav').on('click', function () {
+//         $('#navigation').addClass('shadow');
+//         responsiveNav.addClass('open');
+//     });
 
   menuToggle.on('click', function () {
     // catList.removeClass('open');
@@ -36,7 +36,7 @@
 
 
   $(document).click(function (event) {
-    if ($(event.target).closest(responsiveNav).length) {
+    if (!$(event.target).closest(responsiveNav).length) {
       if (responsiveNav.hasClass('open')) {
               responsiveNav.removeClass('open');
               $('#navigation').removeClass('shadow');
