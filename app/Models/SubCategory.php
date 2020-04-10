@@ -24,7 +24,7 @@ class SubCategory extends Model
 
     public function mypath()
     {
-        return route('subcategory.products',[$this->id,str_slug($this->name, '-')]);
+        return route('subcategory.products',[$this->id, preg_replace("/[\s_]/", "-", $this->title)]);
     }
     // protected $dispatchesEvents;
 

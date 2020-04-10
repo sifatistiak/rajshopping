@@ -11,7 +11,7 @@ class Category extends Model
     use SoftDeletes;
 
     protected $fillable = ['name','priority'];
-    
+
     public function products()
     {
         return $this->hasMany(Product::class)->select('id','title', 'desc', 'category_id', 'price', 'quantity','discount','status')->with('reviews')->with('displayImage')->where('status', 1)->orderBy('created_at','desc');
@@ -24,7 +24,7 @@ class Category extends Model
 
     public function mypath()
     {
-        return route('category.products',[$this->id,str_slug($this->name, '-')]);
+        return route('category.products',[$this->id, preg_replace("/[\s_]/", "-", $this->title)]);
     }
     // protected $dispatchesEvents;
 
