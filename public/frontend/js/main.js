@@ -30,20 +30,23 @@
       }
   });
 
-
+var clicked = false;
 
   menuList.addClass('open');
 
   $(document).click(function (event) {
     if (!$(event.target).closest(responsiveNav).length) {
       if (responsiveNav.hasClass('open')) {
-          responsiveNav.removeClass('open');
-          $('#navigation').removeClass('shadow');
-
           $('.menu-nav').on('click', function () {
+              this.clicked = true;
+          });
+          if (clicked) {
               $('#navigation').addClass('shadow');
               responsiveNav.addClass('open');
-          });
+          } else {
+              responsiveNav.removeClass('open');
+              $('#navigation').removeClass('shadow');
+          }
 
       } else {
         if ($(event.target).closest('.nav-toggle > button').length) {
