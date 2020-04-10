@@ -9,11 +9,12 @@
 		<div class="row">
 			<form id="checkout-form" class="clearfix">
 
-				<div class="col-md-12" style="overflow-y:auto;">
+				<div class="col-md-12">
 					<div class="order-summary clearfix">
 						<div class="section-title">
 							<h3 class="title">Cart Review</h3>
-						</div>
+                        </div>
+                        <div class="col-md-12" style="overflow-y:auto;">
 						@if (count($carts)>0)
 						<table id="cart_table" class="shopping-cart-table table">
 							<thead>
@@ -129,7 +130,8 @@
                                     </th>
 								</tr>
 							</tfoot>
-						</table>
+                        </table>
+                    </div>
 						<div class="pull-right">
 							<button id="checkout" class="primary-btn">Checkout</button>
 						</div>
