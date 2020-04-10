@@ -30,15 +30,16 @@
       }
   });
 
-var clicked = false;
+
 
   menuList.addClass('open');
 
   $(document).click(function (event) {
     if (!$(event.target).closest(responsiveNav).length) {
       if (responsiveNav.hasClass('open')) {
+          var clicked = false;
           $('.menu-nav').on('click', function () {
-              this.clicked = true;
+              clicked = true;
           });
           if (clicked) {
               alert("clecked INSIDE");
