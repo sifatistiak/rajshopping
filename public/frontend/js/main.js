@@ -41,9 +41,11 @@ var clicked = false;
               this.clicked = true;
           });
           if (clicked) {
+              alert("clecked INSIDE");
               $('#navigation').addClass('shadow');
               responsiveNav.addClass('open');
           } else {
+              alert("OUTSIDE");
               responsiveNav.removeClass('open');
               $('#navigation').removeClass('shadow');
           }
