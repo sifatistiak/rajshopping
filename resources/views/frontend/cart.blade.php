@@ -9,7 +9,7 @@
 		<div class="row">
 			<form id="checkout-form" class="clearfix">
 
-				<div class="col-md-12">
+				<div class="col-md-12" style="overflow-y:auto;">
 					<div class="order-summary clearfix">
 						<div class="section-title">
 							<h3 class="title">Cart Review</h3>
