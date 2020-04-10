@@ -33,24 +33,13 @@
 
 
   menuList.addClass('open');
-    var clicked = false;
+
+
   $(document).click(function (event) {
     if (!$(event.target).closest(responsiveNav).length) {
       if (responsiveNav.hasClass('open')) {
-          responsiveNav.click(function() {
-              this.clicked = true;
-              alert(clicked);
-          });
-          if (clicked) {
-              alert("clecked INSIDE");
-              alert(clicked);
-              $('#navigation').addClass('shadow');
-              responsiveNav.addClass('open');
-          } else {
-              alert("OUTSIDE");
-              alert(clicked);
-              responsiveNav.removeClass('open');
-              $('#navigation').removeClass('shadow');
+            //   responsiveNav.removeClass('open');
+            //   $('#navigation').removeClass('shadow');
           }
 
       } else {
