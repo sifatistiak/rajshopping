@@ -40,9 +40,9 @@
 							<del class="product-old-price">@php
 							$price = $singleProduct->price;
 							$oldPrice = round($price+($price*$singleProduct->discount/100));
-							while ($oldPrice % 10 != 0) {
-							$oldPrice +=1;
-							}
+							// while ($oldPrice % 10 != 0) {
+							// $oldPrice +=1;
+							// }
 							@endphp
 								{{$oldPrice}}<img style="display: inline" width="15px"
 									src="{{asset('frontend/img/taka.png')}}" alt="">
