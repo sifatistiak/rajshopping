@@ -392,7 +392,9 @@
 						<ul class="footer-social">
 							<li><a target="_blank" href="https://www.facebook.com/Rajshopping-107671447566845/"><i class="fa fa-facebook fa-2x"></i></a>
 							</li>
-							<li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+                            <li><a href="https://m.me/rajshoppingbd" target="_blank">
+                                    <img style="margin-top: -10px;" src="https://img.icons8.com/color/32/000000/facebook-messenger.png" />
+                                </a>
 							</li>
 							{{-- {{-- <li><a href="#"><i class="fa fa-instagram"></i></a></li> --}}
 							<li><a target="_blank" href="https://www.youtube.com/channel/"><i
