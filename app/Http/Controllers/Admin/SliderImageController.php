@@ -45,16 +45,20 @@ class SliderImageController extends Controller
 
         if ($request->type == "Slider") {
             $sliderImage->type = "Slider";
-            Image::make($request->file('image'))->save('slider_images/' . $imageName,30);
+            // Image::make($request->file('image'))->save('slider_images/' . $imageName);
+            $request->file('image')->move('slider_images/', $imageName);
         } elseif ($request->type == "Right") {
             $sliderImage->type = "Right";
-            Image::make($request->file('image'))->save('slider_images/' . $imageName,30);
+            // Image::make($request->file('image'))->save('slider_images/' . $imageName);
+            $request->file('image')->move('slider_images/', $imageName);
         } elseif ($request->type == "Pop_Up") {
             $sliderImage->type = "Pop_Up";
-            Image::make($request->file('image'))->save('slider_images/' . $imageName,30);
+            // Image::make($request->file('image'))->save('slider_images/' . $imageName);
+            $request->file('image')->move('slider_images/', $imageName);
         } else {
             $sliderImage->type = "Left";
-            Image::make($request->file('image'))->save('slider_images/' . $imageName,30);
+            // Image::make($request->file('image'))->save('slider_images/' . $imageName);
+            $request->file('image')->move('slider_images/', $imageName);
         }
         $sliderImage->save();
         return back()->with('success', 'Image created successful.');

@@ -39,13 +39,11 @@ class ProductController extends Controller
         //restore the category first
         $category = Category::withTrashed()->where('id', $product->category_id)->first();
         if ($category->trashed()) {
-            return back()->with('error', 'Restore the category first. Category is '.$category->name);
-        }else{
+            return back()->with('error', 'Restore the category first. Category is ' . $category->name);
+        } else {
             $product->restore();
             return back()->with('success', 'Product Restore successful.');
         }
-
-
     }
 
     public function forceDeleteProduct($id)
@@ -102,9 +100,9 @@ class ProductController extends Controller
         if ($request->hasFile('display_image')) {
             $img = $request->file('display_image');
             $displayImageName = uniqid() . '.' . $img->getClientOriginalExtension();
-            Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName,30);
-            Image::make($request->file('display_image'))->resize(1000, 1200)->save('main_product_images/' . $displayImageName);
-            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName,30);
+            Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName, 100);
+            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName, 100);
+            $request->file('display_image')->move('main_product_images/', $displayImageName);
         }
         $productImage = new ProductImage();
         $productImage->product_id = $product->id;
@@ -117,9 +115,9 @@ class ProductController extends Controller
             if (count($request->images) > 0) {
                 foreach ($request->images as $image) {
                     $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
-                    Image::make($image)->resize(500, 700)->save('product_images/' . $imageName,30);
-                    Image::make($image)->resize(1000, 1200)->save('main_product_images/' . $imageName);
-                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName,30);
+                    Image::make($image)->resize(500, 700)->save('product_images/' . $imageName, 100);
+                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName, 100);
+                    $image->move('main_product_images/', $imageName);
 
 
                     $productImage = new ProductImage();
@@ -166,9 +164,9 @@ class ProductController extends Controller
             $img = $request->file('display_image');
             $displayImageName = uniqid() . '.' . $img->getClientOriginalExtension();
 
-            Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName,30);
-            Image::make($request->file('display_image'))->resize(1000, 1200)->save('main_product_images/' . $displayImageName);
-            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName,30);
+            Image::make($request->file('display_image'))->resize(500, 700)->save('product_images/' . $displayImageName, 100);
+            Image::make($request->file('display_image'))->resize(300, 300)->save('thumb_product_images/' . $displayImageName, 100);
+            $request->file('display_image')->move('main_product_images/', $displayImageName);
 
             if (File::exists('product_images/' . $productDisplayImage->image)) {
                 File::delete('product_images/' . $productDisplayImage->image);
@@ -207,9 +205,9 @@ class ProductController extends Controller
                 //add new images
                 foreach ($request->images as $image) {
                     $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
-                    Image::make($image)->resize(500, 700)->save('product_images/' . $imageName,30);
-                    Image::make($image)->resize(1000, 1200)->save('main_product_images/' . $imageName);
-                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName,30);
+                    Image::make($image)->resize(500, 700)->save('product_images/' . $imageName, 100);
+                    Image::make($image)->resize(300, 300)->save('thumb_product_images/' . $imageName, 100);
+                    $image->move('main_product_images/', $imageName);
 
                     $productImage = new ProductImage();
                     $productImage->product_id = $product->id;
@@ -274,9 +272,9 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $categoryId = $request->category_id;
-        $category = Category::where('id',$categoryId)->first();
+        $category = Category::where('id', $categoryId)->first();
         $products = Product::where('category_id', $categoryId)->with('displayImage', 'category')->orderBy('created_at', 'desc')->get();
-        return view('admin.product_by_category', compact('category','categories', 'categoryId', 'products'));
+        return view('admin.product_by_category', compact('category', 'categories', 'categoryId', 'products'));
     }
 
     public function productBySubCategory(Request $request)
@@ -286,8 +284,8 @@ class ProductController extends Controller
         $subcategories = SubCategory::all();
         $categoryId = $request->category_id;
         $subcategoryId = $request->sub_category_id;
-        $category = Category::where('id',$categoryId)->first();
-        $subcategory = SubCategory::where('id',$subcategoryId)->first();
+        $category = Category::where('id', $categoryId)->first();
+        $subcategory = SubCategory::where('id', $subcategoryId)->first();
         $products = Product::where('sub_category_id', $subcategoryId)->where('category_id', $categoryId)->with('displayImage', 'category')->orderBy('created_at', 'desc')->get();
         return view('admin.product_by_subcategory', compact('category', 'subcategory', 'categories', 'subcategories', 'categoryId', 'subcategoryId', 'products'));
     }
