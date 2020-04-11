@@ -39,7 +39,7 @@
                     <!-- section title -->
 
                     <!-- Product Single -->
-                    @if (count($products)>0 || count($categories)>0)
+                    @if (count($products)>0 || count($categories)>0 || count($subcategories)>0)
 
                     @foreach ($products as $product)
 
@@ -50,7 +50,16 @@
                     @endforeach
                     @foreach ($categories as $category)
 
-                    @foreach ($category->searchProducts($term) as $product)
+                    @foreach ($category->searchProducts() as $product)
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        @include('includes.product')
+                    </div>
+                    @endforeach
+                    @endforeach
+
+                    @foreach ($subcategories as $subcategory)
+
+                    @foreach ($subcategory->searchProducts() as $product)
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         @include('includes.product')
                     </div>

@@ -28,8 +28,8 @@ class Category extends Model
     }
     // protected $dispatchesEvents;
 
-    public function searchProducts($term)
+    public function searchProducts()
     {
-        return $this->hasMany(Product::class)->where('title', $term);
+        return $this->hasMany(Product::class)->get();
     }
 }

@@ -144,7 +144,7 @@ class IndexController extends Controller
         // return $result;
 
         $searchKey = $request->search_key;
-        $products = Product::select('title')->where('title', 'LIKE', '%' . $searchKey . '%')->get();
+        $products = Product::select('title')->where('title', 'LIKE', '%' . $searchKey . '%')->orWhere('desc', 'LIKE', '%' . $searchKey . '%')->get();
 
         if ($request->ajax()) {
             return response()->json($products);
@@ -154,9 +154,10 @@ class IndexController extends Controller
     public function searchPage(Request $request)
     {
         $term = $request->search_key;
-        $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('title', 'LIKE', '%' . $term . '%')->with('reviews', 'displayImage')->paginate(12);
+        $products = Product::select('id', 'title', 'desc', 'category_id', 'price', 'quantity', 'discount', 'status')->where('title', 'LIKE', '%' . $term . '%')->orWhere('desc', 'LIKE', '%' . $term . '%')->with('reviews', 'displayImage')->paginate(12);
         $categories = Category::where('name', 'LIKE', '%' . $term . '%')->get();
-        return view('frontend.search_page', compact('products', 'categories', 'term'));
+        $subcategories = SubCategory::where('name', 'LIKE', '%' . $term . '%')->get();
+        return view('frontend.search_page', compact('products', 'categories', 'subcategories', 'term'));
     }
 
     public function aboutUs()
