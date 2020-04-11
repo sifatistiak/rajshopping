@@ -50,11 +50,11 @@
 
 									{{-- Quantity --}}
 									<td class="qty text-center">
-                                        <span class="btn" id="increase" style="color: seagreen; font-size: x-large; border: 0px solid;  box-shadow: none;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                        <input id="quantity" min="1" class="input quantity" type="number"
+                                        <span class="btn"  style="color: seagreen; font-size: x-large; border: 0px solid;  box-shadow: none;" onclick="increase('{{$cart->id}}')"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                        <input id="quantity_{{$cart->id}}" min="1" class="input quantity" type="number"
 											onchange="return event.key != 'Enter';" data-value="{{$cart->id}}"
                                             value="{{$cart->quantity}}" style="box-shadow:none;">
-                                        <span class="btn" id="decrease" style="color: red; font-size: x-large; border: 0px solid;   box-shadow: none;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                        <span class="btn" onclick="decrease({{$cart->id}})" style="color: red; font-size: x-large; border: 0px solid;   box-shadow: none;"><i class="fa fa-minus" aria-hidden="true"></i></span>
 									</td>
 									{{-- price --}}
 									<td class="total1 text-center"><strong class="primary-color">
@@ -155,6 +155,67 @@
 @endsection
 @section('script')
 <script>
+    function increase(id) {
+    var inc = parseInt($('#quantity_'+id).val());
+    inc++;
+    $('#quantity_'+id).val(inc);
+    var productPrice = parseInt($('#quantity_'+id).closest("tr").find(".product_price").text(),10);
+    $('#quantity_'+id).closest("tr").find(".view").html(inc*productPrice);
+    var sum = 0;
+    $(".total1").each(function(){
+    sum += Number($(this).text());
+    });
+    $("#total").text(sum);
+    $("#cart_price").text(sum);
+
+
+    if ($("#discount").text().includes("BDT")) {
+    var dis = parseFloat($("#discount").text());
+    var total = sum-dis;
+    $("#sub_total").text(sum);
+    $("#total").text(total);
+    $("#cart_price").text(sum);
+    }
+    if($("#discount").text().includes("OFF")) {
+    var dis = parseFloat($("#discount").text());
+    var total = sum-(sum*dis/100);
+    $("#sub_total").text(sum);
+    $("#total").text(total);
+    $("#cart_price").text(sum);
+    }
+    }
+
+    function decrease(id) {
+    var inc = parseInt($('#quantity_'+id).val());
+    if(inc > 1) {inc--;}
+    $('#quantity_'+id).val(inc);
+    var productPrice = parseInt($('#quantity_'+id).closest("tr").find(".product_price").text(),10);
+    $('#quantity_'+id).closest("tr").find(".view").html(inc*productPrice);
+    var sum = 0;
+    $(".total1").each(function(){
+    sum += Number($(this).text());
+    });
+    $("#total").text(sum);
+    $("#cart_price").text(sum);
+
+
+    if ($("#discount").text().includes("BDT")) {
+    var dis = parseFloat($("#discount").text());
+    var total = sum-dis;
+    $("#sub_total").text(sum);
+    $("#total").text(total);
+    $("#cart_price").text(sum);
+    }
+    if($("#discount").text().includes("OFF")) {
+    var dis = parseFloat($("#discount").text());
+    var total = sum-(sum*dis/100);
+    $("#sub_total").text(sum);
+    $("#total").text(total);
+    $("#cart_price").text(sum);
+    }
+    }
+</script>
+<script>
 	$(document).ready(function(){
 		$(document).on('click', '.closebtn', function (e) {
 			e.preventDefault();
@@ -171,65 +232,6 @@
 			}
         });
 
-        $("#increase").click(function() {
-           var inc =  parseInt($('#quantity').val());
-           inc++;
-           $('#quantity').val(inc);
-           var productPrice = parseInt($(this).closest("tr").find(".product_price").text(),10);
-           $(this).closest("tr").find(".view").html(inc*productPrice);
-           var sum = 0;
-            $(".total1").each(function(){
-            sum += Number($(this).text());
-            });
-            $("#total").text(sum);
-            $("#cart_price").text(sum);
-
-
-            if ($("#discount").text().includes("BDT")) {
-            var dis = parseFloat($("#discount").text());
-            var total = sum-dis;
-            $("#sub_total").text(sum);
-            $("#total").text(total);
-            $("#cart_price").text(sum);
-            }
-            if($("#discount").text().includes("OFF")) {
-            var dis = parseFloat($("#discount").text());
-            var total = sum-(sum*dis/100);
-            $("#sub_total").text(sum);
-            $("#total").text(total);
-            $("#cart_price").text(sum);
-            }
-        });
-
-        $("#decrease").click(function() {
-           var inc =  parseInt($('#quantity').val());
-           if(inc > 1) {inc--;}
-           $('#quantity').val(inc);
-           var productPrice = parseInt($(this).closest("tr").find(".product_price").text(),10);
-           $(this).closest("tr").find(".view").html(inc*productPrice);
-           var sum = 0;
-            $(".total1").each(function(){
-            sum += Number($(this).text());
-            });
-            $("#total").text(sum);
-            $("#cart_price").text(sum);
-
-
-            if ($("#discount").text().includes("BDT")) {
-            var dis = parseFloat($("#discount").text());
-            var total = sum-dis;
-            $("#sub_total").text(sum);
-            $("#total").text(total);
-            $("#cart_price").text(sum);
-            }
-            if($("#discount").text().includes("OFF")) {
-            var dis = parseFloat($("#discount").text());
-            var total = sum-(sum*dis/100);
-            $("#sub_total").text(sum);
-            $("#total").text(total);
-            $("#cart_price").text(sum);
-            }
-        });
 
 		$(document).on("change paste keyup input",".quantity", function() {
             if(parseInt(this.value,10)>0){
