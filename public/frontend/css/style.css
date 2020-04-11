@@ -62,6 +62,11 @@ Table OF Contents
 /* @import url('https://fonts.googleapis.com/css?family=Lato&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
+
+.dropdown-backdrop {
+    display:none;
+}
+
 #mask {
   position:absolute;
   left:0;

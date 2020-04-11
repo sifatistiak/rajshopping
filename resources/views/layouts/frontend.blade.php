@@ -316,44 +316,40 @@
 		<!-- container -->
 		<div class="container">
 			<div id="responsive-nav">
-				<!-- menu nav -->
-				<div class="menu-nav">
+                <!-- menu nav -->
+                	<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
-					<ul class="menu-list dropdown">
-						<li class="dropdown">
-							<a class="text-uppercase" href="{{route('index')}}">Home</a>
-                        </li>
+					<ul class="menu-list">
+						<li><a href="{{route('index')}}">Home</a></li>
+                        @php
+                        $categories = App\Models\Category::orderBy('priority', 'asc')->get();
 
-						@php
-						$categories = App\Models\Category::orderBy('priority', 'asc')->get();
-
-						@endphp
-						@foreach ($categories as $category)
-						<li class="dropdown category-nav category-header">
-							<a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown"
-								role="button" aria-haspopup="true" aria-expanded="false">{{$category->name}}</a>
-							<ul class="dropdown-menu">
-								@php
-								$subcategories =
-								App\Models\SubCategory::where('category_id',$category->id)->orderBy('priority',
-								'asc')->get();
-								@endphp
-								@foreach ($subcategories as $item)
-								<li> <a href="{{$item->mypath()}}">{{$item->name}}</a></li>
-								<hr class="hr">
-								@endforeach
-								<li> <a href="{{$category->mypath()}}">All</a></li>
+                        @endphp
+                        @foreach ($categories as $category)
+                        <li class="dropdown default-dropdown"><a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{$category->name}} <i class="fa fa-caret-down"></i></a>
+							<ul class="custom-menu">
+                                @php
+                                $subcategories =
+                                App\Models\SubCategory::where('category_id',$category->id)->orderBy('priority',
+                                'asc')->get();
+                                @endphp
+                                @foreach ($subcategories as $item)
+								<li><a href="{{$item->mypath()}}">{{$item->name}}</a></li>
+                                @endforeach
+                                <li><a href="{{$category->mypath()}}">All</a></li>
 							</ul>
-						</li>
-						@endforeach
+                        </li>
+                        @endforeach
 					</ul>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- /container -->
-	</div>
+    </div>
+
+
+
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
 		var alterClass = function () {
@@ -363,14 +359,8 @@
 			$(window).resize(function () { alterClass(); }); alterClass(); });
 	</script>
 
-	<!-- /NAVIGATION -->
-
-	{{-- <div class="container">
-		<div class="row">
 
 
-		</div>
-	</div> --}}
 	@yield('content')
 
 
