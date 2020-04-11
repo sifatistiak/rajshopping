@@ -326,8 +326,9 @@
 
                         @endphp
                         @foreach ($categories as $category)
-                        <li class="dropdown default-dropdown"><a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{$category->name}} <i class="fa fa-caret-down"></i></a>
-							<ul class="custom-menu">
+                        <li class="dropdown default-dropdown"><a href="{{$category->mypath()}}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{$category->name}} </a>
+                            {{-- <i class="fa fa-caret-down"></i> --}}
+                            <ul class="custom-menu">
                                 @php
                                 $subcategories =
                                 App\Models\SubCategory::where('category_id',$category->id)->orderBy('priority',
