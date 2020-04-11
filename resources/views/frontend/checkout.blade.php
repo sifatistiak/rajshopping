@@ -332,7 +332,7 @@
                         <input type="hidden" name="dis_amount" id="dis_amount_hidden">
                         <input type="hidden" name="count_cart" id="count_cart" value="{{count($carts)}}">
 						<div class="pull-right">
-                            <a class="btn btn-primary" href="{{route('cart')}}" style="margin-right: 100px; padding: 10px;  border-radius: 0;"> <i class="fa fa-pencil">&nbsp;&nbsp;</i>Edit Cart</a>
+                            <a class="btn btn-primary" href="{{route('cart')}}" style="margin-right: 100px; padding: 9px;  border-radius: 0;"> <i class="fa fa-pencil">&nbsp;&nbsp;</i>Edit Cart</a>
 							<button id="checkout" type="submit" class="primary-btn">Place Order</button>
 						</div>
 						@else
