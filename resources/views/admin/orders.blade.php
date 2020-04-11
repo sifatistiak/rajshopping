@@ -96,8 +96,8 @@
                 <td></td>
                 <th scope="col">Product</th>
                 <th colspan="2" scope="col">Image</th>
-                <th scope="col">quantity</th>
-                <th scope="col">price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price (Unit Price)</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
@@ -117,7 +117,7 @@
                 <td colspan="2"><img height="80px" width="100px"
                         src="{{asset('thumb_product_images/'.$product->displayImage->image)}}" alt=""></td>
                 <td>{{$orderProduct->quantity}}</td>
-                <td>{{$product->price}}</td>
+                <td>{{$product->price*$orderProduct->quantity}} <small>({{$product->price}})</small></td>
                 <td>
                     @if($product->deleted_at == NULL)
                     <button class="btn btn-success" disabled> Active</button>
@@ -131,7 +131,7 @@
                      || <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('admin.delete.order.product',$orderProduct->id)}}">Delete</a>
                 </td>
                 @php
-                $total += $product->price;
+                $total += $product->price*$orderProduct->quantity;
                 $dis_total += $orderProduct->amount;
                 @endphp
             </tr>

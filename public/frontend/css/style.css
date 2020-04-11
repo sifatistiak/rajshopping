@@ -347,7 +347,8 @@ textarea.input {
     text-transform: uppercase;
     border-bottom: 3px solid #8a1010;
     margin-bottom: -1px;
-    padding-bottom: 10px;}
+    padding-bottom: 10px;
+}
 
 /* .section-title:after {
     content: "";
@@ -359,7 +360,7 @@ textarea.input {
     background-color: #b11116;
 } */
 
-@media()
+
 
 /*----------------------------*\
 	Breadcrumb
