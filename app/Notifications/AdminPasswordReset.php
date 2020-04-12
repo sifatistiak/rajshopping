@@ -46,7 +46,7 @@ class AdminPasswordReset extends Notification
             ->subject('Admin Password Reset')
             ->line('Please Reset Password')
             ->action('Admin Reset Password', route('admin.password.reset', $this->token))
-            ->line('Regards: Admin | Rajshopping');
+            ->line('Regards: Rajshopping');
     }
 
     /**
