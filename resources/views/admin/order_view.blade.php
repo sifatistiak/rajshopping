@@ -17,7 +17,7 @@
                 <button style="float:right" onclick="window.print();">Print</button>
                 <div style="margin-top:1rem;">
                     <img src="{{asset('frontend/img/main-logo.png')}}" alt="">
-                    <p style="font-weight:bold; font-size:50px;"> BanglarMela.com </p>
+                    <p style="font-weight:bold; font-size:50px;"> Rajshopping.com </p>
                 </div>
                 <hr><br>
                 <h3>Customer Details</h3><br><br>
