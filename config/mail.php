@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.kaporbd.com'),
+    'host' => env('MAIL_HOST', 'mail.rajshopping.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'support@kaporbd.com'),
-        'name' => env('MAIL_FROM_NAME', 'KaporBD'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@rajshopping.com'),
+        'name' => env('MAIL_FROM_NAME', 'Rajshopping'),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'support@kaporbd.com',
+    'username' => 'support@rajshopping.com',
 
-    'password' => '10109914kaporbd',
+    'password' => 'skoder2020',
 
     /*
     |--------------------------------------------------------------------------
