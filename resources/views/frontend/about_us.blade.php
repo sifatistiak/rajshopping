@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','About Us')
+@section('title','About Us| RAJSHOPPING | Best Online Shop in Rajshahi')
 @section('content')
 
 

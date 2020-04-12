@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Terms and Conditions')
+@section('title','Terms and Conditions | RAJSHOPPING | Best Online Shop in Rajshahi')
 @section('content')
 
 <div class="container"><div class="section">

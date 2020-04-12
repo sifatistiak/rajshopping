@@ -6,9 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description"
-		content="This is a three piece market place for women. We are providing best quality three piece at low cost. We deliver our product very fast.">
-	<meta name="keywords" content="3 piece, shalwar kameez, best 3 piece, three piece">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        content="Best Online Shop in Rajshahi for groceries and household product.  Fastest Devilery within Entire Rajshahi. Even at the time of COVID 19 you
+        can get our online shop accessible for the people of Rajshahi to make Rajshahi safer from COVID-19. Order from home from any where in Rajshahi and get delivered out product at your doorsteps.">
+	<meta name="keywords" content="rajshahi online shop, online shop, e-shop, groceries, vegetables, fruits, rajshahi, online purchase">
 
 	<title>@yield('title')</title>
 	<link rel="icon" type="image/png" href="{{asset('frontend/img/logo.png')}}">
@@ -53,7 +53,7 @@
 
           gtag('config', 'UA-163410006-1');
         </script>
-        
+
 	<script src="{{asset('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
 </head>
 

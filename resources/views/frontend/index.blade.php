@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','RAJ SHOPPING')
+@section('title','RAJSHOPPING | Best Online Shop in Rajshahi')
 @section('content')
 <div id="boxes">
     <div style="display: none;" id="dialog" class="window">

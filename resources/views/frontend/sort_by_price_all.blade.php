@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Category Products')
+@section('title','Category Products | RAJSHOPPING | Best Online Shop in Rajshahi')
 @section('content')
 <!-- section -->
 <div class="section">
@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div style="margin-top:-20px" class="pull-right">
-						
+
 					</div>
 				</div>
 				<!-- /store top filter -->
@@ -95,7 +95,7 @@
 						</div>
 					</div>
 					<div style="margin-top:-20px" class="pull-right">
-						
+
 					</div>
 				</div>
 				<!-- /store top filter -->
@@ -108,7 +108,7 @@
 @section('script')
 <script>
 	$(document).ready(function(){
-			
+
 
 		});
 </script>

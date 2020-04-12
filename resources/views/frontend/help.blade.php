@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Feedback')
+@section('title','Feedback | RAJSHOPPING | Best Online Shop in Rajshahi')
 @section('content')
 
 <section>
@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-               
+
                 @include('includes.message')<br>
                 <form data-parsley-validate method="POST" action="{{route('submit.help')}}">
                     @csrf
@@ -29,7 +29,7 @@
                         <input data-parsley-trigger="change" required type="email" class="form-control" id="exampleInputEmail1"
                             value="{{Auth::user()->email}}" name="email" aria-describedby="emailHelp" placeholder="Enter email">
                         @endguest
-            
+
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Message</label><small> (optional)</small> <textarea name="message" class="form-control"

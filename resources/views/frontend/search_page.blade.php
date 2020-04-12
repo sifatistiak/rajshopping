@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','Search Result')
+@section('title','Search Result | RAJSHOPPING | Best Online Shop in Rajshahi')
 @section('content')
 <!-- section -->
 <div class="section">

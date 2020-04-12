@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title','All Products')
+@section('title','All Products | RAJSHOPPING | Best Online Shop in Rajshahi')
 @section('content')
 <!-- section -->
 <div class="section">
@@ -110,7 +110,7 @@
 @section('script')
 <script>
 	$(document).ready(function(){
-			
+
 
 		});
 </script>
